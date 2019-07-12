@@ -1,0 +1,16 @@
+// Modals
+
+.reveal:focus{
+    outline: none;
+}
+
+.reveal-overlay {
+    background-color: rgba(51,51,51,.7);
+}
+
+.reveal {
+    background: transparent;  
+    border: none;
+    
+    .close-button {}
+}

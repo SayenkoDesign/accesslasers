@@ -1,0 +1,96 @@
+.nav-primary {
+	background-color: $regional-primary-blue;
+
+	@include breakpoint(large) {
+		border-top: 2px solid $white;
+	}
+
+	.menu {
+		flex-grow: 1;
+
+		@include breakpoint(large) {
+			justify-content: space-evenly;
+			border-left: 2px solid $white;
+			border-right: 2px solid $white;
+		}
+	}
+
+	.menu-item {
+		display: block;
+		border-bottom: 1px solid $white;
+
+		@include breakpoint(large) {
+			flex-grow: 1;
+			text-align: center;
+			border-bottom: none;
+			border-right: 2px solid $white;
+
+			&:last-child {
+				border-right: none;
+			}
+		}
+
+		a {
+			color: $white;
+			text-transform: uppercase;
+			padding: 15px;
+
+			@include breakpoint(large) {
+				padding: 10px;
+			}
+		}
+	}
+}
+
+.nav-secondary {
+	background-color: $surrey-primary-pale-blue;
+	border-top: 2px solid $white;
+
+	@include breakpoint(large) {
+		background-color: transparent;
+		border-top: none;
+	}
+
+	.menu {
+		flex-grow: 1;
+		justify-content: space-evenly;
+		@include breakpoint(large) {
+			justify-content: flex-end;
+
+		}
+	}
+
+	.menu-item {
+		flex-grow: 1;
+		text-align: center;
+		border-bottom: none;
+		border-right: 2px solid $white;
+
+		&:last-child {
+			border-right: none;
+		}
+
+		@include breakpoint(large) {
+			border-right: none;
+			flex-grow: 0;
+			padding-left: 28px;
+		}
+
+		a {
+			color: $white;
+			font-size: rem-calc(14px);
+			@include breakpoint(medium) {
+				font-size: 14px;
+			}
+				font-weight: $font-weight-semi-bold;
+			text-transform: uppercase;
+
+			@include breakpoint(large) {
+				@include button(false, $surrey-primary-pale-blue);
+				font-size: 16px;
+				box-shadow: 0 2px 4px transparentize(#000000, 0.6);
+				margin-bottom: 0;
+			}
+		}
+	}
+}

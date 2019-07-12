@@ -1,0 +1,134 @@
+/*
+Header
+---------------------------------------------- */
+
+// Fix for sticky header
+.logged-in .site-header.fixed {
+	@include breakpoint(xlarge) {
+		top: 32px;
+	}
+}
+
+@include breakpoint(xlarge) {
+	.sticky-header {
+		// Set sticky header height as needed
+	}
+}
+
+.site-header {
+
+	.site-branding {
+		padding: 15px;
+		@include breakpoint(medium) {
+			padding: 21px 130px 20px 30px;
+		}
+		@include breakpoint(large) {
+			padding: 34px 0 40px;
+		}
+		display: flex;
+		flex-grow: 0;
+		flex-flow: row nowrap;
+		align-items: center;
+
+		.logo {
+			display: block;
+			padding-right: 8px;
+			@include breakpoint(medium) {
+				padding-right: 17px
+			}
+			@include breakpoint(large) {
+				padding-right: 21px
+			}
+
+			img {
+				width: 38px;
+				height: 41px;
+				@include breakpoint(medium) {
+					width: 58px;
+					height: 62px;
+				}
+				@include breakpoint(large) {
+					width: 72px;
+					height: 77px;
+				}
+			}
+
+		}
+
+		.title {
+			font-family: $open-sans;
+			font-weight: $font-weight-extra-bold;
+			color: $white;
+			font-size: 16px;
+			line-height: 16px;
+
+			a {
+				color: $white;
+			}
+
+			@include breakpoint(medium) {
+				font-size: 20px;
+				line-height: 24px;
+			}
+			@include breakpoint(large) {
+				font-size: 30px;
+				line-height: 36px;
+			}
+		}
+	}
+
+	.menu-toggle {
+		@include hamburger($white, $white, 28px, 24px, 3px, 3);
+		position: absolute;
+		top: 22px;
+		right: 21px;
+		@include breakpoint(medium) {
+			top: 36px;
+			right: 46px;
+		}
+
+		@include breakpoint(large) {
+			display: none;
+		}
+	}
+
+	.nav-secondary {
+		@include breakpoint(large) {
+			padding: 60px 0 0;
+		}
+	}
+
+	@include breakpoint(xlarge) {
+
+		&.fixed {
+			position: fixed !important;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 99;
+
+
+			&.shrink {
+				// Scale fixed header logo
+				.site-title {
+					img {
+						transform-origin: center center;
+						transform: scale(.7);
+						width: auto;
+					}
+				}
+			}
+
+			// Show/Hide fixed header
+			&.nav-up {
+				transform: translateY(-400%);
+			}
+
+			&.nav-down {
+				transform: translateY(0);
+				transition: transform .1s ease 0s;
+			}
+
+		}
+	}
+}

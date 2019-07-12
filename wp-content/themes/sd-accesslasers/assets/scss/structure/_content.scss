@@ -1,0 +1,15 @@
+// Content
+
+.site-content {
+	word-wrap: break-word;	
+}
+input[type="search"] {
+	 @include box-sizing(border-box);
+}
+
+[aria-hidden="true"] button,
+button[aria-hidden="true"] {
+    &:focus {
+        outline: none;   
+    }
+}

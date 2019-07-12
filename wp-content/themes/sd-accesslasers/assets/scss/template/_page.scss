@@ -1,0 +1,21 @@
+// Page
+body {
+	max-width: 2560px;
+	margin: 0 auto;
+}
+
+
+.page-template-default {}
+
+.page-error-404 {}
+
+.wp-block {
+	width: calc(100vw - (2 * 10));
+	@each $breakpoint, $size in $grid-padding-gutters {
+
+		@include breakpoint($breakpoint) {
+			width: calc(100vw - #{$size});
+		}
+
+	}
+}
