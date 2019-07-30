@@ -1,4 +1,27 @@
 <?php
+/**
+ * Gutenberg scripts and styles
+ */
+function be_gutenberg_scripts() {
+
+	wp_enqueue_script(
+		'be-editor', 
+		_s_asset_path( 'js/editor.js' ), 
+		array( 
+        'wp-i18n',
+		'wp-blocks',
+		'wp-dom-ready',
+		'wp-edit-post',
+		'wp-element',
+		'wp-token-list'
+        ), 
+        '',
+		true
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'be_gutenberg_scripts' );
+
+
 
 // Register scripts to load later as needed
 add_action( 'wp_enqueue_scripts', '_s_register_scripts' );

@@ -5,20 +5,17 @@
 // 0. Custom
 
 // Colors
-$regional-primary-blue: #004990;
-$regional-secondary-teal: #00B8BA;
-$surrey-primary-pale-blue: #5091CD;
-$surrey-secondary-brown: #A74E15;
-$chilliwack-primary-gold: #E19019;
-$chilliwack-secondary-green: #566C11;
-$coquitlam-primary-magenta: #CC026C;
-$coquitlam-secondary-lime: #A8B32A;
-$vancouver-primary-teal: #01A5A7;
-$vancouver-secondary-wine: #8C1309;
+$red: #ED3D4A;
+$gray: #ECECEC;
+$light-gray: #F9F9F9;
+$medium-gray: #596975;
+$dark-gray: #2C2E32;
+$blue-gray: #CADADE;
+
 
 
 // Fonts
-$open-sans: 'Open Sans', sans-serif;
+$lato: 'Lato', sans-serif;
 
 $font-weight-thin: 300;
 $font-weight-regular: 400;
@@ -30,23 +27,21 @@ $font-weight-extra-bold: 900;
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1280);
+$global-width: rem-calc(1620);
 $global-lineheight: 1.5;
 $foundation-palette: (
-	primary: $regional-primary-blue,
-	secondary: $regional-secondary-teal,
+	primary: $red,
+	secondary: $dark-gray,
 	success: #3adb76,
 	warning: #ffae00,
 	alert: #cc4b37,
 );
-$light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
-$black: #4A4A4A;
+
+$black: #000;
 $white: #ffffff;
 $body-background: $white;
 $body-font-color: $black;
-$body-font-family: $open-sans;
+$body-font-family: $lato;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
@@ -87,7 +82,7 @@ $grid-column-count: 12;
 $grid-column-gutter: (
 	small: 20px,
 	medium: 20px,
-	large: 30px,
+	large: 50px,
 );
 $grid-column-align-edge: true;
 $grid-column-alias: 'columns';
@@ -97,42 +92,47 @@ $block-grid-max: 8;
 // ------------------
 
 $header-font-family: $body-font-family;
-$header-font-weight: $font-weight-regular;
+$header-font-weight: $font-weight-extra-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
-$header-color: inherit;
-$header-lineheight: 1.4;
-$header-margin-bottom: 0.5rem;
+$header-color: $dark-gray;
+$header-lineheight: 1;
+$header-margin-bottom: rem-calc(20);
 $header-styles: (
 	small: (
-		'h1': ('font-size': 24),
-		'h2': ('font-size': 20),
-		'h3': ('font-size': 19),
-		'h4': ('font-size': 18),
-		'h5': ('font-size': 17),
-		'h6': ('font-size': 16),
+		'h1': ('font-size': 100),
+		'h2': ('font-size': 72),
+		'h3': ('font-size': 60),
+		'h4': ('font-size': 42),
+		'h5': ('font-size': 30),
+		'h6': ('font-size': 24),
 	),
 	medium: (
-		'h1': ('font-size': 48),
-		'h2': ('font-size': 40),
-		'h3': ('font-size': 31),
-		'h4': ('font-size': 25),
-		'h5': ('font-size': 20),
-		'h6': ('font-size': 16),
+		'h1': ('font-size': 100),
+		'h2': ('font-size': 72),
+		'h3': ('font-size': 60),
+		'h4': ('font-size': 42),
+		'h5': ('font-size': 30),
+		'h6': ('font-size': 24),
 	),
+    large: (
+		'h1': ('font-size': 100),
+		'h2': ('font-size': 72),
+		'h3': ('font-size': 60),
+		'h4': ('font-size': 42),
+		'h5': ('font-size': 30),
+		'h6': ('font-size': 24),
+	),
+
 );
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 80%;
 $header-small-font-color: $medium-gray;
+
 $paragraph-lineheight: 1.6666;
-$paragraph-margin-bottom: 1rem;
+$paragraph-margin-bottom: rem-calc(20);
 $paragraph-text-rendering: optimizeLegibility;
-$code-color: $black;
-$code-font-family: $font-family-monospace;
-$code-font-weight: $global-weight-normal;
-$code-background: $light-gray;
-$code-border: 1px solid $medium-gray;
-$code-padding: rem-calc(2 5 1);
+
 $anchor-color: $primary-color;
 $anchor-color-hover: scale-color($anchor-color, $lightness: -14%);
 $anchor-text-decoration: none;
@@ -195,16 +195,16 @@ $button-padding: 0.85em 2em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-background-hover: $dark-gray;
 $button-color: $white;
 $button-color-alt: $black;
-$button-radius: 8px;
+$button-radius: 0;
 $button-hollow-border-width: 1px;
 $button-sizes: (
-	tiny: 1rem,
-	small: 1rem,
-	default: 1.1111rem,
-	large: 1.25rem,
+	tiny: rem-calc(15),
+	small: rem-calc(15),
+	default: rem-calc(15),
+	large: rem-calc(15),
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;
@@ -340,7 +340,8 @@ $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
 	small: 20px,
-	medium: 30px
+	medium: 20px,
+    large: 50px
 );
 $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;

@@ -20,8 +20,8 @@ class CPT_People extends CPT_Core {
         parent::__construct(
         
         	array(
-				__( 'Person', self::TEXTDOMAIN ), // Singular
-				__( 'People', self::TEXTDOMAIN ), // Plural
+				__( 'Person', self::TEXTDOMAIN, '_s' ), // Singular
+				__( 'People', self::TEXTDOMAIN, '_s' ), // Plural
 				self::POST_TYPE // Registered name/slug
 			),
 			array( 

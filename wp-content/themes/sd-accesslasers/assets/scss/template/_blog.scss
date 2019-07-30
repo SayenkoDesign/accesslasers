@@ -16,84 +16,11 @@
             padding: 0;
             text-align: left;
         }
-        
-        .shrink {
-            flex: 0 0 auto!important;
-        }
-        
-        .media-buttons {
-            
-            @include breakpoint(small only) {
-                > * {
-                    margin-top: rem-calc(10);
-                    
-                    &:last-child {
-                        margin-top: rem-calc(15);   
-                    }
-                }
-            }
-            
-            @include breakpoint(medium) {
-                display: flex;   
-                align-items: center;                
-            }
-            
-            .social-icons {
-                
-                @include breakpoint(large) {
-                    margin-right: rem-calc(20);
-                }
-                
-                li {
-                    a {
-                        border-radius: 100%;
-                        border: 2px solid #fff;
-                        color: #fff;
-                        width: 28px;
-                        height: 28px;
-                        
-                        svg {
-                            height: 50%;   
-                        }
-                        
-                        &:hover {
-                            background-color: #fff;
-                            color: $blue;   
-                        }
-                    }
-                    
-                    margin-right: rem-calc(10)!important;
-                    
-                }
-            }
-            
-            .clear {
-                padding: rem-calc(2 12)!important;
-                background-color: transparent;
-                box-shadow: none; 
-                border: 2px solid #fff;
-                min-width: 0;
-                
-                &:hover {
-                    background-color: #fff;
-                    color: $blue;   
-                }
-            }
-        }
     }    
     
     .site-main {
         padding-top: rem-calc(30);
         padding-bottom: rem-calc(45);   
-    }
-    
-    .slick-arrows {
-        display: flex;
-        margin-bottom: $global-margin;
-        
-        > *:first-child {
-            margin-right: rem-calc(36);   
-        }
     }
        
     .grid {
@@ -281,7 +208,7 @@
                 display: inline-block;
                 
                 &:hover {
-                    color: $lime; 
+                    color: $red; 
                     
                     &:after {
                         content: ' >';   

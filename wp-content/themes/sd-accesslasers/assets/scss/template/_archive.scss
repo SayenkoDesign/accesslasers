@@ -1,12 +1,9 @@
 // Archive
 
-
-// Arrows 
-
 $nav-arrow-width: 31px;
 $nav-arrow-height: 22px;
-$nav-arrow-color: $primary-color;
-$nav-arrow-color-hover: $secondary;
+$nav-arrow-color: #d7d5d6;
+$nav-arrow-color-hover: $red;
 
 
 @mixin nav-arrow( $color: #999, $position: left ) {
@@ -116,7 +113,7 @@ $nav-arrow-color-hover: $secondary;
 
 
 
-
+.gallery-pagination,
 .posts-pagination,
 .facetwp-pager {
     @include clearfix;
@@ -159,15 +156,15 @@ $nav-arrow-color-hover: $secondary;
         
         .active a,
         .number span.current {
-            color: $lime;
+            color: $red;
             
             &:after {
-                background: $lime;   
+                background: $red;   
             }
         }
         
         &:not(.active) a:hover {
-            color: $lime;
+            color: $red;
         }
                   
         .nav-previous,
@@ -295,7 +292,7 @@ $nav-arrow-color-hover: $secondary;
             width: 100%;  
             
             &.active {
-                color: $green;   
+                color: $red;   
             }
         }
     }
@@ -321,7 +318,7 @@ $nav-arrow-color-hover: $secondary;
                 content: '';
                 display: block;
                 width: 0;
-                background: $green;
+                background: $red;
                 height: 2px;
                 position: relative;
                 margin-top: rem-calc(2);

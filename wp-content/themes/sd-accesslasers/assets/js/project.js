@@ -4,6 +4,9 @@ import ModuleLoader from './loader/ModuleLoader';
 // Foundation
 import foundation from './modules/foundation'; /* eslint-disable-line */
 
+
+import whatInput from 'what-input';
+
 // Custom Modules
 // import externalLinks from './modules/external-links';
 // import facetWp from './modules/facetwp';
@@ -17,7 +20,8 @@ import slick from './modules/slick';
 import smoothScroll from './modules/smooth-scroll';
 // import superfish from './modules/superfish';
 import backgroundVideo from './modules/background-video';
-import menuToggle from './modules/menu-toggle';
+// import menuToggle from './modules/menu-toggle';
+import accordionFix from './modules/accordion-fix';
 
 const modules = new ModuleLoader( {
 	// externalLinks,
@@ -32,7 +36,8 @@ const modules = new ModuleLoader( {
 	smoothScroll,
 	// superfish
 	backgroundVideo,
-	menuToggle,
+	//menuToggle,
+    accordionFix
 } );
 
 $( document ).ready( () => {

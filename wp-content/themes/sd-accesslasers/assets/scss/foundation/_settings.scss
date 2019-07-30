@@ -2,7 +2,8 @@
 //  -----------------------------
 //
 //  Table of Contents:
-//
+//   
+//   0. Custom
 //   1. Global
 //   2. Breakpoints
 //   3. The Grid
@@ -62,35 +63,58 @@
 
 @import '../../../node_modules/foundation-sites/scss/util/util';
 
+
+// 0. Custom
+// ---------
+
+// Colors
+$red: #ED3D4A;
+$gray: #ECECEC;
+$light-gray: #F9F9F9;
+$medium-gray: #596975;
+$dark-gray: #2C2E32;
+
+$blue-gray: #CADADE;
+
+// Fonts
+$lato: 'Lato', sans-serif;
+
+$font-weight-thin: 300;
+$font-weight-regular: 400;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 900;
+
+$box-shadow: 0 11px 12px 0 rgba(0,0,0,0.1); 
+
+
 // 1. Global
 // ---------
 
 $global-font-size: 100%;
-$global-width: rem-calc(1200);
+$global-width: rem-calc(1620);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #1779ba,
-  secondary: #767676,
-  success: #3adb76,
-  warning: #ffae00,
-  alert: #cc4b37,
+	primary: $red,
+	secondary: $dark-gray,
+	success: #3adb76,
+	warning: #ffae00,
+	alert: #cc4b37,
 );
-$light-gray: #e6e6e6;
-$medium-gray: #cacaca;
-$dark-gray: #8a8a8a;
-$black: #0a0a0a;
-$white: #fefefe;
+
+$black: #000;
+$white: #ffffff;
 $body-background: $white;
-$body-font-color: $black;
-$body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$body-font-color: $dark-gray;
+$body-font-family: $lato;
 $body-antialiased: true;
 $global-margin: 1rem;
 $global-padding: 1rem;
 $global-position: 1rem;
 $global-weight-normal: normal;
-$global-weight-bold: bold;
+$global-weight-bold: 700;
 $global-radius: 0;
-$global-menu-padding: 0.7rem 1rem;
+$global-menu-padding: rem-calc(11.5 16);
 $global-menu-nested-margin: 1rem;
 $global-text-direction: ltr;
 $global-flexbox: true;
@@ -108,12 +132,14 @@ $print-hrefs: true;
 $breakpoints: (
   small: 0,
   medium: 640px,
-  large: 1024px,
-  xlarge: 1200px,
-  xxlarge: 1440px,
+  medium-large: 768px,
+  large: 992px,
+  xlarge: 1024px,
+  xxlarge: 1200px,
+  xxxlarge: 1440px,
 );
 $print-breakpoint: large;
-$breakpoint-classes: (small medium large);
+$breakpoint-classes: (small medium medium-large large xlarge xxlarge xxxlarge);
 
 // 3. The Grid
 // -----------
@@ -121,8 +147,10 @@ $breakpoint-classes: (small medium large);
 $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
-  small: 20px,
-  medium: 30px,
+  small: 40px,
+  medium: 40px,
+  medium-large: 40px,
+  large: 50px,
 );
 $grid-column-align-edge: true;
 $grid-column-alias: 'columns';
@@ -132,35 +160,45 @@ $block-grid-max: 8;
 // ------------------
 
 $header-font-family: $body-font-family;
-$header-font-weight: $global-weight-normal;
+$header-font-weight: $font-weight-extra-bold;
 $header-font-style: normal;
 $font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace;
-$header-color: inherit;
-$header-lineheight: 1.4;
-$header-margin-bottom: 0.5rem;
+$header-color: $dark-gray;
+$header-lineheight: 1;
+$header-margin-bottom: rem-calc(20);
 $header-styles: (
-  small: (
-    'h1': ('font-size': 24),
-    'h2': ('font-size': 20),
-    'h3': ('font-size': 19),
-    'h4': ('font-size': 18),
-    'h5': ('font-size': 17),
-    'h6': ('font-size': 16),
-  ),
-  medium: (
-    'h1': ('font-size': 48),
-    'h2': ('font-size': 40),
-    'h3': ('font-size': 31),
-    'h4': ('font-size': 25),
-    'h5': ('font-size': 20),
-    'h6': ('font-size': 16),
-  ),
+	small: (
+		'h1': ('font-size': 100*.6, 'lh': 1, 'mb': 30 ),
+		'h2': ('font-size': 60*.6, 'lh': 1, 'mb': 30),
+		'h3': ('font-size': 60*.6, 'lh': 1, 'mb': 20),
+		'h4': ('font-size': 42*.6, 'lh': 1, 'mb': 20),
+		'h5': ('font-size': 30*.6, 'lh': 1, 'mb': 20),
+		'h6': ('font-size': 24*.6, 'lh': 1, 'mb': 20),
+	),
+	medium-large: (
+		'h1': ('font-size': 100*.8),
+		'h2': ('font-size': 60*.8),
+		'h3': ('font-size': 60*.8),
+		'h4': ('font-size': 42*.8),
+		'h5': ('font-size': 30*.8),
+		'h6': ('font-size': 24*.8),
+	),
+    large: (
+		'h1': ('font-size': 100),
+		'h2': ('font-size': 60),
+		'h3': ('font-size': 60),
+		'h4': ('font-size': 42),
+		'h5': ('font-size': 30),
+		'h6': ('font-size': 24),
+	),
+
 );
+
 $header-text-rendering: optimizeLegibility;
 $small-font-size: 80%;
 $header-small-font-color: $medium-gray;
 $paragraph-lineheight: 1.6;
-$paragraph-margin-bottom: 1rem;
+$paragraph-margin-bottom: rem-calc(20);
 $paragraph-text-rendering: optimizeLegibility;
 $code-color: $black;
 $code-font-family: $font-family-monospace;
@@ -223,16 +261,16 @@ $input-error-font-weight: $global-weight-bold;
 // 7. Accordion
 // ------------
 
-$accordion-background: $white;
+$accordion-background: transparent;
 $accordion-plusminus: true;
-$accordion-title-font-size: rem-calc(12);
-$accordion-item-color: $primary-color;
-$accordion-item-background-hover: $light-gray;
-$accordion-item-padding: 1.25rem 1rem;
+$accordion-title-font-size: rem-calc(20);
+$accordion-item-color: #596975;
+$accordion-item-background-hover: $red;
+$accordion-item-padding: rem-calc(20 50 20 20);
 $accordion-content-background: $white;
-$accordion-content-border: 1px solid $light-gray;
+$accordion-content-border: none;
 $accordion-content-color: $body-font-color;
-$accordion-content-padding: 1rem;
+$accordion-content-padding: rem-calc(20);
 
 // 8. Accordion Menu
 // -----------------
@@ -280,20 +318,20 @@ $breadcrumbs-item-separator-color: $medium-gray;
 // ----------
 
 $button-font-family: inherit;
-$button-padding: 0.85em 1em;
+$button-padding: rem-calc(27.5 20);
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-background-hover: $dark-gray;
 $button-color: $white;
 $button-color-alt: $black;
-$button-radius: $global-radius;
+$button-radius: 0;
 $button-hollow-border-width: 1px;
 $button-sizes: (
-  tiny: 0.6rem,
-  small: 0.75rem,
-  default: 0.9rem,
-  large: 1.25rem,
+	tiny: rem-calc(15),
+	small: rem-calc(15),
+	default: rem-calc(15),
+	large: rem-calc(15),
 );
 $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;
@@ -301,6 +339,7 @@ $button-background-hover-lightness: -20%;
 $button-hollow-hover-lightness: -50%;
 $button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
 $button-responsive-expanded: false;
+
 
 // 12. Button Group
 // ----------------
@@ -387,11 +426,11 @@ $dropdown-sizes: (
 // 18. Dropdown Menu
 // -----------------
 
-$dropdownmenu-arrows: true;
+$dropdownmenu-arrows: false;
 $dropdownmenu-arrow-color: $anchor-color;
 $dropdownmenu-arrow-size: 6px;
 $dropdownmenu-arrow-padding: 1.5rem;
-$dropdownmenu-min-width: 200px;
+$dropdownmenu-min-width: 160px;
 $dropdownmenu-background: null;
 $dropdownmenu-submenu-background: $white;
 $dropdownmenu-padding: $global-menu-padding;
@@ -794,17 +833,17 @@ $table-stack-breakpoint: medium;
 // --------
 
 $tab-margin: 0;
-$tab-background: $white;
-$tab-color: $primary-color;
-$tab-background-active: $light-gray;
+$tab-background: transparent;
+$tab-color: $dark-gray;
+$tab-background-active: transparent;
 $tab-active-color: $primary-color;
-$tab-item-font-size: rem-calc(12);
-$tab-item-background-hover: $white;
-$tab-item-padding: 1.25rem 1.5rem;
-$tab-content-background: $white;
-$tab-content-border: $light-gray;
-$tab-content-color: $body-font-color;
-$tab-content-padding: 1rem;
+$tab-item-font-size: rem-calc(16);
+$tab-item-background-hover: transparent;
+$tab-item-padding: rem-calc(10 30);
+$tab-content-background: transparent;
+$tab-content-border: 0;
+$tab-content-color: inherit;
+$tab-content-padding: 0;
 
 // 52. Thumbnail
 // -------------
@@ -859,8 +898,10 @@ $xy-grid: true;
 $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
-  small: 20px,
-  medium: 30px
+  small: 40px,
+  medium: 40px,
+  medium-large: 40px,
+  large: 50px
 );
 $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;

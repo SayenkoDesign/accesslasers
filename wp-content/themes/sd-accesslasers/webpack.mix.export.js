@@ -18,7 +18,7 @@ const rimraf  = require( 'rimraf' );
 const fs      = require( 'fs' );
 
 // Folder name to export the files to.
-let exportPath = 'exhale';
+let exportPath = 'sd-access-lasers';
 
 // Theme root-level files to include.
 let files = [
@@ -36,8 +36,8 @@ let folders = [
 	'app',
 	'config',
 	'public',
-//	'resources/js',      // Required for WordPress.org theme review.
-//	'resources/scss',    // Required for WordPress.org theme review.
+    //	'assets/js',      // Required for WordPress.org theme review.
+    //	'assets/scss',    // Required for WordPress.org theme review.
 	'vendor'
 ];
 

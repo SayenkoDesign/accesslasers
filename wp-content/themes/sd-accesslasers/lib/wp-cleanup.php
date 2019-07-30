@@ -117,21 +117,47 @@ function be_disable_wpseo_nag( $options ) {
 
 //Page Slug Body Class
 add_filter( 'body_class', 'add_slug_body_class', 10, 2 );
-function add_slug_body_class( $wp_classes, $extra_classes ) {
+function add_slug_body_class( $wp_classes, $classes ) {
 	
 	global $post;
+    
+    // @codingStandardsIgnoreStart
+	// Allows for incorrect snake case like is_IE to be used without throwing errors.
+	global $is_IE, $is_edge, $is_safari;
+	// If it's IE, add a class.
+	if ( $is_IE ) {
+		$classes[] = 'ie';
+	}
+	// If it's Edge, add a class.
+	if ( $is_edge ) {
+		$classes[] = 'edge';
+	}
+	// If it's Safari, add a class.
+	if ( $is_safari ) {
+		$classes[] = 'safari';
+	}
+	// Are we on mobile?
+	if ( wp_is_mobile() ) {
+		$classes[] = 'mobile';
+	}
+	// @codingStandardsIgnoreEnd
+    
+    
+    if( ! is_admin() ) {
+        $classes[] = 'frontend';
+    }
 
     // add a class for the name of the page - later might want to remove the auto generated pageid class which isn't very useful
     if( is_page()) {
         $pn = $post->post_name;
-        $extra_classes[] = "page-".$pn;
+        $classes[] = "page-".$pn;
     }
 
     // add a class for the parent page name
     if ( is_page() && $post->post_parent ) {
         $post_parent = get_post($post->post_parent);
         $parentSlug = $post_parent->post_name;
-        $extra_classes[] = "parent-".$parentSlug;
+        $classes[] = "parent-".$parentSlug;
     }
     
      // add class for the name of the custom template used (if any)
@@ -140,7 +166,7 @@ function add_slug_body_class( $wp_classes, $extra_classes ) {
         $path = pathinfo($temp);
         $tmp = $path['filename'] . "." . $path['extension'];
         $tn= str_replace(".php", "", $tmp);
-        $extra_classes[] = "template-".$tn;
+        $classes[] = "template-".$tn;
     }	
     
     // remove default page template name from front-page.php
@@ -149,7 +175,7 @@ function add_slug_body_class( $wp_classes, $extra_classes ) {
     }	
     	
 	// Add the extra classes back untouched
-    return array_merge( $wp_classes, (array) $extra_classes );
+    return array_merge( $wp_classes, (array) $classes );
 }
 
 /**

@@ -4,15 +4,61 @@
 
 
 .site-footer {
+    
+    @include breakpoint(large) {
+        background: linear-gradient(to left, #fff 50%, $dark-gray 50%);   
+    }
+    
+    .left {
+        padding-top: rem-calc(50); 
+        background-color: $dark-gray;  
+        
+        @include breakpoint(large) {
+            padding-top: rem-calc(100);
+        }
+    }
+    
+    .right {
+       background-color: #fff; 
+       
+       padding-top: rem-calc(50);   
+        
+        @include breakpoint(large) {
+            padding-top: rem-calc(100);
+        }
+       
+       .content {
+            @include breakpoint(large) {
+                padding-left: 10%;
+            }
+            
+            @include breakpoint(xxxlarge) {
+                padding-left: rem-calc(145);
+            }
+            
+            h2 {
+                font-size: rem-calc(72*.6);
+                
+                @include breakpoint(medium) {
+                    font-size: rem-calc(72*.8);
+                }
+                
+                @include breakpoint(large) {
+                    font-size: rem-calc(72);
+                }
+                
+                line-height: 1.138888889;   
+                margin-bottom: rem-calc(60);
+            }
+       }
+    }
 
 	.widget {
 		color: $white;
 
 		.widget-title {
-			font-size: $global-font-size;
-			line-height: 24px;
-			font-weight: $font-weight-extra-bold;
-			letter-spacing: 1.08px;
+            color: $white;
+			font-size: rem-calc(20);
 		}
 	}
 
@@ -39,76 +85,6 @@
 		}
 	}
 
-	.sidebar-footer-2 {
-		margin-bottom: 30px;
-		@include breakpoint(medium) {
-			margin-bottom: 51px;
-		}
-		@include breakpoint(large) {
-			margin-bottom: 68px;
-		}
-	}
-
-	.primary-footer {
-		padding-top: 83px;
-		margin-bottom: 11px;
-	}
-
-	.sub-footer {
-		margin-bottom: 10px;
-	}
-
-	.footer-col-1 {
-		display: flex;
-		flex-flow: row nowrap;
-		margin-bottom: 30px;
-		@include breakpoint(medium) {
-			margin-bottom: 0;
-		}
-
-		.site-branding {
-			flex-grow: 0;
-
-			.logo {
-				display: block;
-				padding-top: 6px;
-				padding-right: 27px;
-
-				img {
-					width: 110px;
-					height: 119px;
-				}
-
-			}
-		}
-	}
-
-	.footer-col-2 {
-		.widget,
-		.social-icons {
-			padding-left: 137px;
-			@include breakpoint(medium) {
-				padding-left: 0;
-			}
-		}
-	}
-
-	.footer-col-bottom {
-		border-top: 1px solid transparentize($white, 0.7);
-		padding-top: 21px;
-
-		.widget {
-			color: transparentize($white, 0.5);
-			font-size: 11px;
-			letter-spacing: 1.08px;
-
-			a {
-				color: transparentize($white, 0.5);
-			}
-
-		}
-	}
-
 	.social-icons {
 
 		@include list-reset;
@@ -131,12 +107,12 @@
 			width: 24px;
 			height: 24px;
 			display: block;
-			background-color: $surrey-primary-pale-blue;
+			background-color: $primary-color;
 			border-radius: 50%;
 			position: relative;
 
 			&:hover {
-				background-color: $regional-primary-blue;
+				background-color: $primary-color;
 				border-radius: 50%;
 
 				&:hover {

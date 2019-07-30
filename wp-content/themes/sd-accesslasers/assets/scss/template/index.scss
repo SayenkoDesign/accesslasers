@@ -2,6 +2,11 @@
 @import 'page';
 @import 'front-page';
 
-// @import 'archive';
-// @import 'blog';
-// @import 'post';
+@import 'archive';
+@import 'single';
+
+@import 'blog';
+@import 'post';
+
+@import 'application';
+@import 'product';

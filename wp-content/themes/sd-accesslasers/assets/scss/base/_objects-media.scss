@@ -15,11 +15,13 @@ video {
 	vertical-align: middle;
 }
 
-svg, img[src$=".svg"] {
+/*
+svg:not([width]), img[src$=".svg"] {
   width: 100%;
   height: auto;
   max-width: 100%; // use max-width for it to work
 }
+*/
 
 svg {
    overflow: visible!important;   

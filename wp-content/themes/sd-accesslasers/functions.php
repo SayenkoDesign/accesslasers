@@ -23,11 +23,11 @@ if ( ! function_exists( '_s_setup' ) ) :
 		define( 'THEME_DIR', get_template_directory() );
 		define( 'THEME_URL', get_template_directory_uri() );
 		define( 'THEME_PUBLIC', THEME_URL . '/public' );
-		define( 'THEME_LANG', THEME_URL . '/lang' );
+		define( 'THEME_LANG', THEME_URL . '/language' );
 		define( 'THEME_LIB', THEME_URL . '/lib' );
 		define( 'THEME_FAVICONS', THEME_PUBLIC . '/favicon' );
 		define( 'THEME_CSS', THEME_PUBLIC . '/css' );
-		define( 'THEME_IMG', THEME_PUBLIC . '/img' );
+		define( 'THEME_IMG', THEME_PUBLIC . '/images' );
 		define( 'THEME_JS', THEME_PUBLIC . '/js' );
 
 		define( 'THEME_NAME', sanitize_title( wp_get_theme() ) );
@@ -70,7 +70,7 @@ if ( ! function_exists( '_s_setup' ) ) :
 		register_nav_menus( array(
 			'primary'   => esc_html__( 'Primary Menu', '_s' ),
 			'secondary' => esc_html__( 'Secondary Menu', '_s' ),
-			'footer'    => esc_html__( 'Footer Menu', '_s' )
+			'copyright'    => esc_html__( 'Copyright Menu', '_s' )
 		) );
 
 		/**
@@ -119,10 +119,8 @@ function _s_widgets_init() {
 	// Define sidebars.
 	$sidebars = array(
 		'footer-1'      => esc_html__( 'Footer 1', '_s' ),
-		'footer-2'      => esc_html__( 'Footer 2', '_s' ),
-		'footer-3'      => esc_html__( 'Footer 3', '_s' ),
-		'footer-bottom' => esc_html__( 'Footer Bottom', '_s' ),
-	);
+		'footer-2'      => esc_html__( 'Footer 2', '_s' )
+   	);
 
 	// Loop through each sidebar and register.
 	foreach ( $sidebars as $sidebar_id => $sidebar_name ) {

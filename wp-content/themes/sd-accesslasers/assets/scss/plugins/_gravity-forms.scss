@@ -95,7 +95,7 @@ body .gform_wrapper {
 	}
 
 	.button {
-		@include button(false, $surrey-primary-pale-blue);
+		@include button(false, $primary-color);
 	}
 
 }

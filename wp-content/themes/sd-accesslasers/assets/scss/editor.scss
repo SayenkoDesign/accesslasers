@@ -8,24 +8,21 @@
 
 @import "foundation/settings";
 
-// Settings (allows us to override Foundation global settings)
-@import "foundation/custom";
-
 // Import Foundation
 @import "../../node_modules/foundation-sites/scss/foundation";
 
 // Global styles
 
-.wp-block {
+.wp-block .acf-block-preview {
     @include foundation-global-styles;
     @include foundation-typography;
     @include foundation-button;
     @include foundation-table;
     
     // Grids (choose one)
-    // @include foundation-xy-grid-classes;
+    @include foundation-xy-grid-classes;
     // @include foundation-grid;
-    @include foundation-flex-grid;
+    //@include foundation-flex-grid;
     
     // Generic components
     //@include foundation-button;
@@ -41,27 +38,23 @@
 /** === Content Width === */
 .wp-block {
 	max-width: $global-width;
-    
-    font-size: $global-font-size;
-	font-family: $body-font-family;
-	color: $body-font-color;
 }
 
 /** === Base Typography === */
-.wp-block {
+.wp-block .acf-block-preview {
 	font-size: $global-font-size;
 	font-family: $body-font-family;
 	color: $body-font-color;
 }
 
 /** === Blocks === */
-.wp-block {
-	@import "blocks";
+.wp-block .acf-block-preview {
+	@import 'blocks';
 }
 
 /** === Post Title === */
 .editor-post-title__block .editor-post-title__input{
-  @extend h1;
+    @extend h1;
 }
 
 /** === Button === */
@@ -89,11 +82,6 @@
 	&.is-style-outline:active {
 		background: transparent;
 	}
-}
-
-/** === File === */
-.wp-block-file__button{
-	@include button();
 }
 
 /** === Pullquote === */

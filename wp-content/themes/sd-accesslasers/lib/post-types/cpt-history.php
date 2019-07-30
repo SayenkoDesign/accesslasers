@@ -20,8 +20,8 @@ class CPT_History extends CPT_Core {
         parent::__construct(
         
         	array(
-				__( 'History', self::TEXTDOMAIN ), // Singular
-				__( 'History', self::TEXTDOMAIN ), // Plural
+				__( 'History', self::TEXTDOMAIN, '_s' ), // Singular
+				__( 'History', self::TEXTDOMAIN, '_s' ), // Plural
 				self::POST_TYPE // Registered name/slug
 			),
 			array( 

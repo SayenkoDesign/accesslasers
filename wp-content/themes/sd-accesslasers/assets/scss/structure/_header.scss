@@ -16,69 +16,56 @@ Header
 }
 
 .site-header {
+    
+    .wrap {
+        max-width: $global-width;
+        margin: 0 auto;  
+                
+        @include breakpoint(xlarge) {
+            padding-left: rem-calc(map-get($grid-column-gutter, large)/2); 
+            padding-right: rem-calc(map-get($grid-column-gutter, large)/2); 
+            
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;            
+        }
+        
+        
+    }
 
 	.site-branding {
-		padding: 15px;
-		@include breakpoint(medium) {
-			padding: 21px 130px 20px 30px;
-		}
-		@include breakpoint(large) {
-			padding: 34px 0 40px;
-		}
-		display: flex;
-		flex-grow: 0;
-		flex-flow: row nowrap;
-		align-items: center;
-
-		.logo {
-			display: block;
-			padding-right: 8px;
-			@include breakpoint(medium) {
-				padding-right: 17px
-			}
-			@include breakpoint(large) {
-				padding-right: 21px
-			}
-
-			img {
-				width: 38px;
-				height: 41px;
-				@include breakpoint(medium) {
-					width: 58px;
-					height: 62px;
-				}
-				@include breakpoint(large) {
-					width: 72px;
-					height: 77px;
-				}
-			}
-
-		}
-
-		.title {
-			font-family: $open-sans;
-			font-weight: $font-weight-extra-bold;
-			color: $white;
-			font-size: 16px;
-			line-height: 16px;
-
-			a {
-				color: $white;
-			}
-
-			@include breakpoint(medium) {
-				font-size: 20px;
-				line-height: 24px;
-			}
-			@include breakpoint(large) {
-				font-size: 30px;
-				line-height: 36px;
-			}
-		}
+        
+        padding-left: rem-calc(map-get($grid-column-gutter, small)/2); 
+        padding-right: rem-calc(map-get($grid-column-gutter, small)/2); 
+       
+        @include breakpoint(medium) {
+            padding-left: rem-calc(map-get($grid-column-gutter, medium)/2); 
+            padding-right: rem-calc(map-get($grid-column-gutter, medium)/2); 
+        }
+        
+        padding-top: rem-calc(10);
+        padding-bottom: rem-calc(10);
+                        
+        @include breakpoint(xlarge) {
+            max-width: 25vw;
+            padding: rem-calc(26 0);
+        }
+        
+        @include breakpoint(xxxlarge) {
+            max-width: 100%;
+        }
+        
+        .site-title {
+            margin-right: rem-calc(75);   
+            
+            @include breakpoint(xlarge) {
+                margin-right: 0;   
+            }
+        }
 	}
 
 	.menu-toggle {
-		@include hamburger($white, $white, 28px, 24px, 3px, 3);
+		@include hamburger($black, $black, 28px, 24px, 3px, 3);
 		position: absolute;
 		top: 22px;
 		right: 21px;
@@ -87,7 +74,7 @@ Header
 			right: 46px;
 		}
 
-		@include breakpoint(large) {
+		@include breakpoint(xlarge) {
 			display: none;
 		}
 	}

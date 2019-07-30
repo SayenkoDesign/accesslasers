@@ -5,8 +5,7 @@ function _s_load_google_fonts() {
 
 	// change array as needed
 	$font_families = array(
-		'Open+Sans:300,400,600,700,800',
-		'Caveat:400'
+		'Lato:300,400,700,900'
 	);
 
 	// do not touch below here:

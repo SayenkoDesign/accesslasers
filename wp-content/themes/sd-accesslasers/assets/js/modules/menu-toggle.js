@@ -4,9 +4,13 @@ import { MediaQuery } from 'foundation-sites/js/foundation.util.mediaQuery';
 export default {
 	init() {
 
-		const $menuToggle = $( '.js-menu-toggle' );
+		// add classes for responsive menu
+        /*
+        $('#primary-menu .sub-menu').addClass('vertical menu');
+        
+        const $menuToggle = $( '.js-menu-toggle' );
 
-		if ( !MediaQuery.atLeast( 'large' ) ) {
+		if ( !MediaQuery.atLeast( 'xlarge' ) ) {
 			$( $menuToggle.data( 'menu' ) ).hide();
 		}
 
@@ -15,11 +19,12 @@ export default {
 		} );
 
 		$( window ).on( 'changed.zf.mediaquery', function( event, newSize, oldSize ) {
-			if ( MediaQuery.atLeast( 'large' ) ) {
+			if ( MediaQuery.atLeast( 'xlarge' ) ) {
 				$( $menuToggle.data( 'menu' ) ).show();
 			} else {
 				$( $menuToggle.data( 'menu' ) ).hide();
 			}
 		} );
+        */
 	},
 };

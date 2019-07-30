@@ -41,78 +41,70 @@ wp_reset_postdata();
 
 ?>
 
-<div class="row column">
+<div class="grid-container">
 
-    <div id="primary" class="content-area">
-    
-        <?php
-        if( ! is_paged() ) {
-            _s_get_template_part( 'template-parts/blog', 'videos' );
-        }
-        ?>
-    
-        <main id="main" class="site-main" role="main">            
-                        
-            <?php
-             
-            if ( have_posts() ) : ?>
+    <div class="grid-x grid-margin-x">    
+  
+        <div id="primary" class="cell content-area">
             
-                <header>
-                <?php
-                $heading = 'News';
-                
-                if( is_category() ) {
-                    $heading = single_cat_title( '', false );
-                }
-                
-                if( ! is_paged() ) {
-                    printf( '<h2>%s</h2>', $heading );
-                }
-                ?>
-                
-                </header>
-                
-               <?php
-               
-               echo '<div class="row small-up-1 medium-up-2 large-up-3 xlarge-up-4 grid" data-equalizer data-equalize-on="large" data-equalize-by-row="true">';
-                               
-                while ( have_posts() ) :
-    
-                    the_post();
-                                       
-                    printf( '<div class="%s">', 'column column-block' );
+                <main id="main" class="site-main" role="main">
+                           
+                    <?php
+                    // Categories?
+                    $cat_current = false;
+                    $categories = get_categories( [ 'exclude' => 1 ] );
+                    if( ! empty( $categories ) ) {
+                        $out = '';
+                        
+                        if ( is_category() ) { 
+                            $taxonomy = get_queried_object();
+                            if ( is_a( $taxonomy, 'WP_Term') ) {
+                                $cat_current = $taxonomy->term_id;
+                            }
+                        } 
+                        
+                        foreach( $categories as $cat ) {
+                            $class = $cat->term_id == $cat_current ? ' class="cat-current' : '';
+                            $out .= sprintf( '<li><a%s href="%s">%s</a></li>', $class, get_term_link( $cat->term_id ), $cat->name );
+                        }
+                        
+                        if( ! empty( $out ) ) {
+                            printf( '<ul class="no-bullet categories">%s</ul>', $out );      
+                        }
+                    }
                     
-                    _s_get_template_part( 'template-parts', 'content-post-column' );
+                    $classes[] = 'small-up-1 medium-up-2 large-up-3 xlarge-up-4';
+                    
+                    printf( '<div class="grid-x grid-margin-x %s grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">', join( ' ', $classes ) );
+                     
+                    if ( have_posts() ) : ?>
+                        
+                       <?php
+                                                      
+                        while ( have_posts() ) :
+            
+                            the_post();
+                                                                   
+                            _s_get_template_part( 'template-parts', 'content-post-column' );
+                            
+                        endwhile;
+                   
+                    endif; 
                     
                     echo '</div>';
-    
-                endwhile;
-                
-                echo '</div>';
-                
-                
-                echo _s_paginate_links();
-                                
-            else :
-    
-                get_template_part( 'template-parts/content', 'none' );
-    
-            endif; ?>
-                            
-        </main>
+                    
+                    if( function_exists( '_s_paginate_links' ) ) {
+                        echo _s_paginate_links();
+                    } else {
+                        echo paginate_links();   
+                    }
+                    ?>
+            
+                </main>
+            
+        </div>
         
-        <?php
-        if( ! is_paged() ) {
-            _s_get_template_part( 'template-parts/blog', 'stories' );
-        }
-        
-        _s_get_template_part( 'template-parts/blog', 'media-contact' );
-        ?>
-    
     </div>
-
 </div>
-    
-
 <?php
 get_footer();

@@ -39,6 +39,7 @@ class JsonManifest {
 }
 
 function _s_asset_path( $filename ) {
+    $filename = ltrim( $filename, '/' );
 	$dist_path = get_template_directory_uri() . '/public/';
 	static $manifest;
 
@@ -77,8 +78,3 @@ add_action( 'wp_enqueue_scripts', '_s_enqueue_stylesheet', 15 );
  *****************************************/
 
 add_image_size( 'hero', 1440, 9999 ); // 1440 x 510
-add_image_size( 'two-column', 610, 9999 ); // 1440 x 510
-add_image_size( 'image-carousel', 858, 9999 ); // 1440 x 510
-add_image_size( 'video-gallery', 370, 9999 ); // 1440 x 510
-add_image_size( 'facilities-map', 1250, 9999 ); // 1440 x 510
-add_image_size( 'testimonial-icon', 82, 999 ); // 1440 x 510

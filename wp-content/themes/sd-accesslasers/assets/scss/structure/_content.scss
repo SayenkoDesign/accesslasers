@@ -1,5 +1,9 @@
 // Content
 
+body {
+    overflow-x: hidden;   
+}
+
 .site-content {
 	word-wrap: break-word;	
 }
@@ -7,9 +11,18 @@ input[type="search"] {
 	 @include box-sizing(border-box);
 }
 
-[aria-hidden="true"] button,
-button[aria-hidden="true"] {
-    &:focus {
-        outline: none;   
+[data-whatintent='mouse'] *:focus {
+  outline: none;
+}
+
+.icon {
+    color: #596975;   
+}
+
+.entry-content {
+ 
+    section {
+        @include full-width;
     }
+    
 }

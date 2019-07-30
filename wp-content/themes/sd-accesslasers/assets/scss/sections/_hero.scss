@@ -1,15 +1,16 @@
 
 
 .section-hero {
+    /*
+    background-color: $red;
     
-    &.has-background {
-       
-    }
+    
  
-    .background-image {        
+    &.background-image {        
+        background-color: transparent;
         background-size: cover;
         position: relative;
-        
+                
         &:after {
             content: '';
             display: block;
@@ -18,8 +19,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            background: linear-gradient(270deg, rgba(#64A70B, .8) 0%, rgba(#046A38, .8) 100%);
+            background: rgba( $gray, .4);
         }
-    }     
+        
+        .wrap {
+            position: relative;
+            z-index: 3;   
+        }
+    }
+    */     
 }
 

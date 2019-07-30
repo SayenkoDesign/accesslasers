@@ -5,7 +5,7 @@
 	"author": "Kyle Rumble",
 	"license": "GPL-2.0+",
 	"homepage": "https://kylerumble.com",
-	"main": "resources/js/project.js",
+	"main": "assets/js/project.js",
 	"scripts": {
 		"dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
 		"watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
@@ -14,11 +14,11 @@
 		"prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
 		"export": "cross-env export=1 NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
 		"lint": "npm run lint:styles && npm run lint:scripts",
-		"lint:styles": "cross-env stylelint './resources/scss/**/*.scss' --syntax scss",
-		"lint:scripts": "cross-env eslint './resources/js/**/*.js'",
+		"lint:styles": "cross-env stylelint './assets/scss/**/*.scss' --syntax scss",
+		"lint:scripts": "cross-env eslint './assets/js/**/*.js'",
 		"i18n": "npm run i18n:textdomain && npm run i18n:pot",
 		"i18n:textdomain": "npx wpi18n addtextdomain --exclude=vendor,node_modules",
-		"i18n:pot": "npx wpi18n makepot --domain-path=/resources/lang",
+		"i18n:pot": "npx wpi18n makepot --domain-path=/assets/lang",
 		"build": "npm run prod && npm run i18n && npm run export",
 		"rename": "theme-claim"
 	},
@@ -30,6 +30,9 @@
 		"url": "https://github.com/iamcanadian1973/_s/issues"
 	},
 	"devDependencies": {
+		"@babel/preset-react": "^7.0.0",
+		"@wordpress/babel-preset-default": "^4.3.0",
+		"@wordpress/dependency-extraction-webpack-plugin": "^1.0.1",
 		"browser-sync": "^2.26.3",
 		"browser-sync-webpack-plugin": "2.2.2",
 		"copy-webpack-plugin": "^4.6.0",
@@ -38,23 +41,28 @@
 		"eslint-config-wordpress": "^2.0.0",
 		"imagemin-mozjpeg": "^6.0.0",
 		"imagemin-webpack-plugin": "^2.4.2",
-		"laravel-mix": "^4.0.15",
+		"laravel-mix": "^4.1.2",
+		"laravel-mix-wp-blocks": "^0.2.0",
 		"node-wp-i18n": "^1.2.3",
 		"postcss-preset-env": "^6.6.0",
 		"rimraf": "^2.6.3",
-		"sass": "^1.17.3",
+		"sass": "^1.22.7",
 		"sass-loader": "^7.1.0",
 		"stylelint": "^9.10.1",
 		"stylelint-config-wordpress": "^13.1.0",
 		"theme-claim": "^0.1.2",
-		"vue-template-compiler": "^2.6.9"
+		"vue-template-compiler": "^2.6.9",
+		"webpack-dashboard": "^3.0.7"
 	},
 	"dependencies": {
+		"classnames": "^2.2.6",
 		"foundation-sites": "^6.5.3",
 		"jquery-smooth-scroll": "^2.2.0",
+		"lodash.assign": "^4.2.0",
 		"motion-ui": "^2.0.3",
 		"normalize.css": "^8.0.1",
 		"slick-carousel": "^1.8.1",
-		"webfontloader": "^1.6.28"
+		"webfontloader": "^1.6.28",
+		"what-input": "^5.2.3"
 	}
 }

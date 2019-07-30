@@ -34,76 +34,77 @@
 </ul>
 
 <div class="sticky-header">
-	<header id="top" class="site-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
-		<div class="wrap">
-			<div class="row small-collapse large-uncollapse">
-				<div class="column small-12 large-6">
-					<div class="site-branding">
-						<div class="logo shrink">
-							<a href="<?php echo esc_url( home_url() ); ?>">
-								<?php printf( '<img src="%s" alt="site logo" class="" />', _s_asset_path( 'svg/y-logo.svg' ) ); ?>
-							</a>
-						</div>
-						<a class="title" href="<?php echo esc_url( home_url() ); ?>">
-							<?php _e( 'Website Title' ); ?>
-						</a>
-						<button class="menu-toggle js-menu-toggle" data-menu="#primary-menu"><span class="screen-reader-text">Toggle Menu</span></button>
-					</div>
-				</div>
-				<div class="column small-12 large-6">
-					<div class="nav-secondary">
-						<?php
-						wp_nav_menu( [
-							'theme_location'  => 'secondary',
-							'menu'            => 'Secondary Menu',
-							'container'       => '',
-							'container_class' => '',
-							'container_id'    => '',
-							'menu_id'         => 'secondary-menu',
-							'menu_class'      => 'menu',
-							'before'          => '',
-							'after'           => '',
-							'link_before'     => '',
-							'link_after'      => '',
-							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>'
-						] );
-						?>
-					</div>
-				</div>
-			</div>
-
-			<nav id="site-navigation" class="nav-primary" role="navigation" aria-label="Main" itemscope itemtype="https://schema.org/SiteNavigationElement">
-
-				<div class="row small-collapse large-uncollapse">
-					<div class="column">
-						<?php
-
-						// Desktop Menu
-						$args = array(
-							'theme_location'  => 'primary',
-							'menu'            => 'Primary Menu',
-							'container'       => '',
-							'container_class' => '',
-							'container_id'    => '',
-							'menu_id'         => 'primary-menu',
-							'menu_class'      => 'menu vertical large-horizontal',
-							'before'          => '',
-							'after'           => '',
-							'link_before'     => '',
-							'link_after'      => '',
-							'items_wrap'      => '<ul id="%1$s" class="%2$s">%3$s</ul>'
-						);
-						wp_nav_menu( $args );
-						?>
-
-					</div>
-				</div>
-
-			</nav>
-		</div><!-- wrap -->
-
-	</header><!-- #masthead -->
+        <header id="masthead" class="site-header" role="banner" itemscope itemtype="https://schema.org/WPHeader">
+            <div class="wrap">
+                <div class="site-branding">
+                    <div class="site-title">
+                    <?php
+                    $site_url = home_url();
+                    $logo = sprintf('<img src="%slogo.png" alt="site logo" class="logo" />', trailingslashit( THEME_IMG ) );  
+                    $logo_white = sprintf('<img src="%slogo-white.png" alt="site logo" class="logo-white hide" aria-hidden="true" />', 
+                                            trailingslashit( THEME_IMG ) ); 
+                    printf('<a href="%s" title="%s">%s%s</a>',
+                            $site_url, 
+                            get_bloginfo( 'name' ), 
+                            $logo,
+                            $logo_white
+                            );
+                    ?>
+                    </div>
+                    
+                    <div class="title-bar" data-responsive-toggle="site-navigation" data-hide-for="xlarge">
+  <button class="menu-toggle" type="button" data-toggle="site-navigation"></button>
+  
 </div>
+                    
+                    <!--<button class="menu-toggle js-menu-toggle" data-menu="#site-navigation"><span class="screen-reader-text">Toggle Menu</span></button>-->                               
+                </div><!-- .site-branding -->
+                
+                <nav id="site-navigation" class="nav-primary" role="navigation" aria-label="Main" itemscope itemtype="https://schema.org/SiteNavigationElement">  
+                  
+                    <?php
+                    
+                        $args = array(
+                            'theme_location' => 'secondary',
+                            'container' => '',
+                            'container_class' => '',
+                            'container_id' => '',
+                            'menu_id'        => 'secondary-menu',
+                            'menu_class'     => 'menu',
+                            'before' => '',
+                            'after' => '',
+                            'link_before' => '',
+                            'link_after' => '',
+                            'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>'
+                         );
+                         // Add telephone to secondary menu
+                         add_filter( 'wp_nav_menu_items', 'add_telephone', 10, 2 );
+                         wp_nav_menu($args);
+                         remove_filter( 'wp_nav_menu_items', 'add_telephone', 10, 2 );
+                                            
+                        // Desktop Menu
+                    $args = array(
+                        'theme_location'  => 'primary',
+                        'container'       => '',
+                        'container_class' => '',
+                        'container_id'    => '',
+                        'menu_id'         => 'primary-menu',
+                        'menu_class'      => 'menu vertical xlarge-horizontal',
+                        'before'          => '',
+                        'after'           => '',
+                        'link_before'     => '',
+                        'link_after'      => '',
+                        'items_wrap'      => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion xlarge-dropdown">%3$s</ul>'
+                    );
+                    wp_nav_menu( $args );
+                    ?>
+                    
+                </nav>
+
+            </div><!-- wrap -->
+             
+        </header><!-- #masthead -->
+    </div>
 
 <div id="page" class="site-container">
 

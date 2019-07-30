@@ -95,6 +95,10 @@ mix.js( `${ devPath }/js/project.js`, 'js' )
 	.js( `${ devPath }/js/modernizr-custom.js`, 'js' )
 	.extract();
 
+
+mix.react( `${devPath}/js/editor.js`, 'js' );
+
+
 /*
  * Compile CSS. Mix supports Sass, Less, Stylus, and plain CSS, and has functions
  * for each of them.
@@ -112,14 +116,14 @@ var sassConfig = {
 };
 
 var sassEditorConfig = {
-	outputStyle: 'expanded',
+	outputStyle: 'compressed',
 	indentType: 'tab',
-	indentWidth: 1,
-    sourceMap: false,
+	indentWidth: 1
 };
 
 // Compile SASS/CSS.
-mix.sass( `${ devPath }/scss/style.scss`, 'css', sassConfig ).sass( `${ devPath }/scss/editor.scss`, 'css', sassEditorConfig );
+mix.sass( `${ devPath }/scss/style.scss`, 'css', sassConfig );
+mix.sass( `${ devPath }/scss/editor.scss`, 'css', sassEditorConfig );
 
 /*
  * Add custom Webpack configuration.
@@ -164,9 +168,10 @@ mix.webpackConfig( {
 				// @link https://github.com/imagemin/imagemin-mozjpeg
 				imageminMozjpeg( { quality: 75 } ),
 			],
-		} ),
+		} )
 	],
 } );
+
 
 if ( process.env.sync ) {
 
