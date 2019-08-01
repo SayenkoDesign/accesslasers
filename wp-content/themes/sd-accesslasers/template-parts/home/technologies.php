@@ -1,13 +1,13 @@
 <?php
-// About - Core Values
+// Home - What
 
-if( ! class_exists( 'About_Core_Values' ) ) {
-    class About_Core_Values extends Element_Section {
+if( ! class_exists( 'Home_Technologies_Section' ) ) {
+    class Home_Technologies_Section extends Element_Section {
                 
         public function __construct() {
             parent::__construct();
             
-            $fields = get_field( 'core_values' );
+            $fields = get_field( 'technologies' );
             $this->set_fields( $fields );
                         
             $settings = get_field( 'settings' );
@@ -30,13 +30,13 @@ if( ! class_exists( 'About_Core_Values' ) ) {
     
             $this->add_render_attribute(
                 'wrapper', 'class', [
-                     $this->get_name() . '-core-values'
+                     $this->get_name() . '-technologies'
                 ]
             );   
 
             $this->add_render_attribute(
                 'wrapper', 'id', [
-                     $this->get_name() . '-core-values'
+                     $this->get_name() . '-technologies'
                 ], true
             );            
             
@@ -48,7 +48,7 @@ if( ! class_exists( 'About_Core_Values' ) ) {
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : '';
             $heading = _s_format_string( $heading, 'h2' );
             
-            $grid = $this->get_grid();
+            $technologies = $this->get_grid();
                         
             return sprintf( '<div class="grid-container">
                                 <div class="grid-x grid-margin-x">
@@ -56,7 +56,7 @@ if( ! class_exists( 'About_Core_Values' ) ) {
                                 </div>%s
                             </div>',
                             $heading,
-                            $grid
+                            $technologies
                          );  
         }
         
@@ -68,7 +68,9 @@ if( ! class_exists( 'About_Core_Values' ) ) {
             if( empty( $rows ) ) {
                 return false;
             }
-                               
+            
+            // Let's cache images
+                   
             $items = '';
                
             foreach( $rows as $row ) {  
@@ -85,30 +87,47 @@ if( ! class_exists( 'About_Core_Values' ) ) {
             if( empty( $row ) ) {
                 return false;   
             }
-                                 
-            $image = $row['grid_image'];
-            $image = sprintf( '<div class="icon">%s</div>', _s_get_acf_image( $image, 'thumbnail' ) );                                   
+                                                                    
             $heading = _s_format_string( $row['grid_title'], 'h4' ); 
             $description = _s_format_string( $row['grid_description'], 'p' );
+            $image = $row['grid_image'];
+            $image = sprintf( '<div class="icon">%s</div>', _s_get_acf_image( $image, 'thumbnail' ) );
+            $list = $row['grid_list'];
+            if( ! empty( $list ) ) {
+                
+                $list_items = '';
+                
+                foreach( $list as $item ) {
+                    $list_items .= sprintf( '<li>%s</li>', $item['item'] );
+                }
+                
+                if( ! empty( $list_items ) ) {
+                    $list = sprintf( '<div class="options"><h6>%s</h6><ul>%s</ul></div>', __( 'Technologies Covered:' ), $list_items  );
+                } else {
+                    $list = false;
+                }             
+            }
             
-            if( $heading && ! $description && ! $image ) {
+            if( $heading && ! $description && ! $image && ! $list ) {
                 return false;
             }
                       
             return sprintf( '<div class="cell">
                                 <div class="grid-item">
-                                    <div class="grid-image">%s</div>
                                     <header>%s</header>
                                     <div class="description">%s</div>
+                                    <div class="grid-image">%s</div>
+                                    <footer>%s</footer>
                                 </div>
                             </div>', 
-                            $image,
                             $heading,
-                            $description
+                            $description,
+                            $image, 
+                            $list
                          );
         }
         
     }
 }
    
-new About_Core_Values;
+new Home_Technologies_Section;

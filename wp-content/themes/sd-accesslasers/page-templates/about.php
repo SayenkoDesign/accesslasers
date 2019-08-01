@@ -20,9 +20,9 @@ _s_get_template_part( 'template-parts/about', 'hero' );
     <main id="main" class="site-main" role="main">
     <?php
         _s_get_template_part( 'template-parts/about', 'mission' );
-        //_s_get_template_part( 'template-parts/about', 'core-values' );
-        //_s_get_template_part( 'template-parts/about', 'leadership' );
-        //_s_get_template_part( 'template-parts/about', 'history' );
+        _s_get_template_part( 'template-parts/about', 'core-values' );
+        _s_get_template_part( 'template-parts/global', 'people' );
+        _s_get_template_part( 'template-parts/about', 'history' );
         
     ?>
     </main>

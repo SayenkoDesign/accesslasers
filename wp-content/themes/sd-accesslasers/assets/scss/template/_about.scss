@@ -1,0 +1,40 @@
+// About
+
+
+
+
+
+
+
+.section-about-history {
+    
+    .container {
+        position: relative;
+        
+        .slick-arrows {
+            @include breakpoint(xlarge) {
+                display: none!important;
+            }
+        }
+        
+        .slick-dots {
+            display: none!important;
+            @include breakpoint(xlarge) {
+                display: block!important;
+            }
+            
+            position: absolute;
+            top: 50%;
+            transform: transtaeY(-50%);
+            right: 0;
+            bottom: auto;
+            width: auto;  
+            
+            li {
+                display: block;   
+            }
+        }
+    }
+    
+    
+}

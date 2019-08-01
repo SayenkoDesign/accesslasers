@@ -1,23 +1,20 @@
 <?php
 
 /*
-Global - Hero
+About - Hero
 		
 */
 
 
-if( ! class_exists( 'Hero_Section' ) ) {
-    class Hero_Section extends Element_Section {
+if( ! class_exists( 'About_Hero' ) ) {
+    class About_Hero extends Element_Section {
         
         public function __construct() {
             parent::__construct();
-                        
-            $fields = get_field( 'hero' );            
+            
+            $fields = get_field( 'hero' );
             $this->set_fields( $fields );
-            
-            $settings = [];
-            $this->set_settings( $settings );
-            
+                                    
             // Render the section
             $this->render();
             
@@ -38,55 +35,66 @@ if( ! class_exists( 'Hero_Section' ) ) {
             );
             
             $background_image       = $this->get_fields( 'background_image' );
+            $background_position_x  = strtolower( $this->get_fields( 'background_position_x' ) ) ?: 'center';
+            $background_position_y  = strtolower( $this->get_fields( 'background_position_y' ) ) ?: 'center';
+            $background_overlay     = $this->get_fields( 'background_overlay' );
+            
+            
             
             if( ! empty( $background_image ) ) {
                 $background_image = _s_get_acf_image( $background_image, 'hero', true );
-                $background_position_x  = strtolower(  $this->get_fields( 'background_position_x' ) );
-                $background_position_y  = strtolower( $this->get_fields( 'background_position_y' ) );
-                $background_overlay     = $this->get_fields( 'background_overlay' );
+            } else  {
+                $background_image = get_the_post_thumbnail_url( get_the_ID(), 'hero' );
                 
-                $this->add_render_attribute( 'wrapper', 'class', 'has-background' );
-                $this->add_render_attribute( 'background', 'class', 'background-image' );
-                $this->add_render_attribute( 'background', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
-                $this->add_render_attribute( 'background', 'style', sprintf( 'background-position: %s %s;', 
-                                                                          $background_position_x, $background_position_y ) );
-                
-                if( true == $background_overlay ) {
-                     $this->add_render_attribute( 'background', 'class', 'background-overlay' ); 
+                if( empty( $background_image ) ) {
+                    $background_image = get_field( 'post_image_fallback', 'option' );
+                    if( ! empty( $background_image ) ) {
+                        $background_image = wp_get_attachment_image_src( $background_image, 'hero' );
+                    }   
                 }
-                                                                          
-            }             
-        } 
-        
-        
-        public function after_render() {
-            
-            $shape = '';
-            
-            if( ! empty( $this->get_fields( 'background_image' ) ) ) {
-                $shape = sprintf( '<div class="shape"><img src="%sglobal/hero-bottom.png" /></div>', trailingslashit( THEME_IMG ) ); 
             }
-            return sprintf( '</div></div></div>%s</%s>', $shape, esc_html( $this->get_html_tag() ) );
+            
+            $this->add_render_attribute( 'wrapper', 'class', 'has-background' );
+            $this->add_render_attribute( 'wrapper', 'class', 'background-image' );
+            $this->add_render_attribute( 'wrapper', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
+            $this->add_render_attribute( 'wrapper', 'style', sprintf( 'background-position: %s %s;', 
+                                                                      $background_position_x, $background_position_y ) );
+            
+            if( true == $background_overlay ) {
+                 $this->add_render_attribute( 'wrapper', 'class', 'background-overlay' ); 
+            }
+                                                                          
         }
-           
+
         
         // Add content
         public function render() {
-                                    
-            $heading        = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading        = _s_format_string( $heading, 'h1' );
             
-            $subheading = empty( $this->get_fields( 'subheading' ) ) ? '' : _s_format_string( $this->get_fields( 'subheading' ), 'h2' );
+            $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
+            $heading = _s_format_string( $heading, 'h1' );
             
             $description = empty( $this->get_fields( 'description' ) ) ? '' : _s_format_string( $this->get_fields( 'description' ), 'p' );
-
-            return sprintf( '<div class="row align-middle"><div class="column"><div class="hero-content">%s%s%s</div></div></div>', 
+            
+            $button = $this->get_fields( 'button' );
+            if( ! empty( $button['link'] ) ) {
+                                
+                $args = [
+                    'link' => $button['link'],
+                    'echo' => false,
+                    'classes' => 'button large',
+                ];
+                $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
+            }
+    
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
+                                <div class="cell"><div class="hero-content">%s%s%s</div></div>
+                            </div></div>',
                             $heading,
-                            $subheading,
-                            $description
+                            $description,
+                            $button
                          );
         }
     }
 }
    
-new Hero_Section; 
+new About_Hero; 

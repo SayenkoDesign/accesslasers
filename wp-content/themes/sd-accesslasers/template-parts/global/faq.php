@@ -32,7 +32,7 @@ if( ! class_exists( 'Product_FAQ' ) ) {
     
             $this->add_render_attribute(
                 'wrapper', 'class', [
-                     $this->get_name() . '-product-faq'
+                     $this->get_name() . '-faq'
                 ]
             );            
         } 

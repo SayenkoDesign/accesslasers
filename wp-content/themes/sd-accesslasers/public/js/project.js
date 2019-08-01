@@ -297,6 +297,417 @@ foundation_sites_js_foundation_core__WEBPACK_IMPORTED_MODULE_1__["Foundation"].p
 
 /***/ }),
 
+/***/ "./assets/js/modules/full-screen-scrolling-section.js":
+/*!************************************************************!*\
+  !*** ./assets/js/modules/full-screen-scrolling-section.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  init: function init() {
+    var fullScreenScrollingSectionVars = {
+      content_break_point: "1024",
+      container_hundred_percent_height_mobile: "0",
+      is_sticky_header_ignored: "0"
+    };
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).load(function () {
+      // Check if page is already loaded scrolled, without anchor scroll script. If so, move to beginning of correct scrolling section.
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()("#content").find(".full-screen-scroll-section").length && "undefined" === typeof jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-page-load-link").attr("href")) {
+        setTimeout(function () {
+          scrollToCurrentScrollSection();
+        }, 400);
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
+      var mainContentScrollSections = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#content").find(".full-screen-scroll-section"),
+          lastYPosition,
+          onlyOneScrollSectionOnPage,
+          stickyHeaderHeight = !Boolean(Number(fullScreenScrollingSectionVars.is_sticky_header_ignored)) && "function" === typeof getStickyHeaderHeight ? getStickyHeaderHeight(true) : 0,
+          adminbarHeight = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").length ? parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").height(), 10) : 0,
+          sectionTopOffset = stickyHeaderHeight + adminbarHeight,
+          overallSectionHeight; // Check if there are 100% height scroll sections.
+
+      if (mainContentScrollSections.length) {
+        if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()("#content").find(".non-hundred-percent-height-scrolling").length && 1 === mainContentScrollSections.length && !jquery__WEBPACK_IMPORTED_MODULE_0___default.a.trim(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#sliders-container").html())) {} // uncomment if you only want full height scrolling sections on page
+        //mainContentScrollSections.addClass( 'active' );
+        //mainContentScrollSections.find( '.full-screen-scroll-section-nav li:first a' ).addClass( 'active' );
+        //onlyOneScrollSectionOnPage = true;
+        // Set correct heights for the wrapping scroll sections and individual scroll elements, based on the number of elements, sticky header and admin bar.
+
+
+        mainContentScrollSections.each(function () {
+          if (1 < jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children("div").length) {
+            overallSectionHeight = sectionTopOffset ? "calc(" + (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children("div").size() * 100 + 50) + "vh - " + sectionTopOffset + "px)" : jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children("div").size() * 100 + 50 + "vh"; // Set correct height for the wrapping scroll section.
+
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).css("height", overallSectionHeight); // Set the correct height offset per section and also for the nav.
+
+            if (sectionTopOffset) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".hundred-percent-height-scrolling").css("height", "calc(100vh - " + sectionTopOffset + "px)");
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".full-screen-scroll-section-nav").css("top", "calc(50% + " + sectionTopOffset / 2 + "px)");
+            }
+          }
+        }); // Set the last scroll position to the initial loading value.
+
+        lastYPosition = jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scroll(function () {
+          var currentYPosition = jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop(); // Position the elements of a scroll section correctly.
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").each(function () {
+            if (1 < jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children("div").length && !jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).hasClass("full-screen-scroll-section-mobile-disabled")) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).fullScreenPositionScrollSectionElements(lastYPosition, currentYPosition, onlyOneScrollSectionOnPage);
+            }
+          });
+          lastYPosition = currentYPosition;
+        }); // Set the "active" class to the correct scroll nav link and the correct section element.
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section-link").on("click", function (e) {
+          var scrollSection = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parents(".full-screen-scroll-section"),
+              numberOfLastActive = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parents(".full-screen-scroll-section-nav").find(".full-screen-scroll-section-link.active").data("element"), 10),
+              numberOfNewActive = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("element"), 10),
+              numberOfScrolledElements = Math.abs(numberOfNewActive - numberOfLastActive),
+              scrollAnimationTime = (350 + 30 * (numberOfScrolledElements - 1)) * numberOfScrolledElements;
+          e.preventDefault(); // If slide is already active, do nothing.
+
+          if (0 === numberOfScrolledElements) {
+            return;
+          }
+
+          if (20 < numberOfScrolledElements) {
+            scrollAnimationTime = (350 + 30 * 20) * numberOfScrolledElements;
+          } // Add active class to the correct section element.
+
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parents(".full-screen-scroll-section").find(".full-screen-scroll-section-element").removeClass("active");
+          console.log(Math.ceil(scrollSection.offset().top) + jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height() * (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("element") - 1)); // Scroll to correct position of current section.
+
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()("html, body").animate({
+            scrollTop: Math.ceil(scrollSection.offset().top) + jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height() * (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("element") - 1)
+          }, scrollAnimationTime, "linear");
+        });
+      }
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".hundred-percent-height").length) {
+        setCorrectResizeValuesForScrollSections();
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on("resize", function () {
+          setCorrectResizeValuesForScrollSections();
+        });
+      }
+    });
+
+    function setCorrectResizeValuesForScrollSections() {
+      var mainContentScrollSections = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#content").find(".full-screen-scroll-section"),
+          stickyHeaderHeight = 0,
+          stickyHeaderHeight = 0,
+          sectionTopOffset = 0,
+          adminbarHeight = 0; // Check if there are 100% height scroll sections.
+
+      if (mainContentScrollSections.length) {
+        // Resize the fixed containers, to fit the correct area.
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section.active").find(".full-screen-scroll-section-element").css({
+          left: jquery__WEBPACK_IMPORTED_MODULE_0___default()("#content").offset().left
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").find(".full-screen-scroll-section-element").css({
+          width: jquery__WEBPACK_IMPORTED_MODULE_0___default()("#content").width()
+        });
+
+        if (0 == fullScreenScrollingSectionVars.container_hundred_percent_height_mobile) {
+          // jshint ignore:line
+          // Mobile view.
+          if (Modernizr.mq("only screen and (max-width: " + fullScreenScrollingSectionVars.content_break_point + "px)")) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").removeClass("active").addClass("full-screen-scroll-section-mobile-disabled");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").attr("style", "");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").find(".full-screen-scroll-section-element").attr("style", "");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").find(".hundred-percent-height-scrolling").css("height", "auto");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").find(".fullwidth-center-content").css("height", "auto");
+          } else {
+            // Desktop view.
+            if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").hasClass("full-screen-scroll-section-mobile-disabled")) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").find(".fullwidth-center-content").css("height", "");
+
+              if (!Boolean(Number(fullScreenScrollingSectionVars.is_sticky_header_ignored)) && "function" === typeof getStickyHeaderHeight) {
+                stickyHeaderHeight = getStickyHeaderHeight(true);
+              }
+
+              if (jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").length) {
+                adminbarHeight = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").height(), 10);
+              }
+
+              sectionTopOffset = stickyHeaderHeight + adminbarHeight; // Set correct heights for the wrapping scroll sections, based on the number of elements.
+
+              mainContentScrollSections.each(function () {
+                if (1 < jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children("div").length) {
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).css("height", jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).children("div").size() * 100 + 50 + "vh");
+                  jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find(".hundred-percent-height-scrolling").css("height", "calc(100vh - " + sectionTopOffset + "px)");
+                }
+              });
+              scrollToCurrentScrollSection();
+            }
+          }
+        }
+      } // Special handling of 100% height containers without scrolling sections.
+
+
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(".hundred-percent-height.non-hundred-percent-height-scrolling").length) {
+        if (!Boolean(Number(fullScreenScrollingSectionVars.is_sticky_header_ignored)) && "function" === typeof getStickyHeaderHeight) {
+          stickyHeaderHeight = getStickyHeaderHeight(true);
+        }
+
+        if (jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").length) {
+          adminbarHeight = parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").height(), 10);
+        }
+
+        sectionTopOffset = stickyHeaderHeight + adminbarHeight;
+
+        if (0 == fullScreenScrollingSectionVars.container_hundred_percent_height_mobile) {
+          // jshint ignore:line
+          // Mobile view.
+          if (Modernizr.mq("only screen and (max-width: " + fullScreenScrollingSectionVars.content_break_point + "px)")) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".hundred-percent-height.non-hundred-percent-height-scrolling").css("height", "auto");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".hundred-percent-height.non-hundred-percent-height-scrolling").find(".fullwidth-center-content").css("height", "auto");
+          } else {
+            // Desktop view.
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".hundred-percent-height.non-hundred-percent-height-scrolling").css("height", "calc(100vh - " + sectionTopOffset + "px)");
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(".hundred-percent-height.non-hundred-percent-height-scrolling").find(".fullwidth-center-content").css("height", "");
+          }
+        }
+      }
+    }
+
+    function scrollToCurrentScrollSection() {
+      var currentScrollPosition = jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop(),
+          // jshint ignore:line
+      viewportTop = Math.ceil(jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop()),
+          viewportHeight = jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height(),
+          viewportBottom = Math.floor(viewportTop + viewportHeight),
+          stickyHeaderHeight = !Boolean(Number(fullScreenScrollingSectionVars.is_sticky_header_ignored)) && "function" === typeof getStickyHeaderHeight ? getStickyHeaderHeight(true) : 0,
+          adminbarHeight = jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").length ? parseInt(jquery__WEBPACK_IMPORTED_MODULE_0___default()("#wpadminbar").height(), 10) : 0;
+      viewportTop += stickyHeaderHeight + adminbarHeight; // Get the scroll section in view, but only if not while loading when a one page scroll link is present.
+
+      if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-page-load-link").hasClass("load-scroll-section-link")) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").each(function () {
+          var section = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this),
+              sectionTop = Math.ceil(section.offset().top),
+              sectionHeight = Math.ceil(section.outerHeight()),
+              sectionBottom = Math.floor(sectionTop + sectionHeight); // Scrolled position is inside a scroll section.
+
+          if (sectionTop <= viewportTop && sectionBottom >= viewportBottom) {
+            section.addClass("active"); // Scroll to beginning position of correct section.
+
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()("html, body").animate({
+              scrollTop: sectionTop - 50
+            }, {
+              duration: 50,
+              easing: "easeInExpo",
+              complete: function complete() {
+                jquery__WEBPACK_IMPORTED_MODULE_0___default()("html, body").animate({
+                  scrollTop: sectionTop
+                }, {
+                  duration: 50,
+                  easing: "easeOutExpo",
+                  complete: function complete() {
+                    // Remove the mobile disabling class if in desktop mode.
+                    if (!Modernizr.mq("only screen and (max-width: " + fullScreenScrollingSectionVars.content_break_point + "px)")) {
+                      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").removeClass("full-screen-scroll-section-mobile-disabled");
+                    }
+                  }
+                });
+              }
+            });
+          } else {
+            // Added as this was breaking resize without it
+            // Remove the mobile disabling class if in desktop mode.
+            if (!Modernizr.mq("only screen and (max-width: " + fullScreenScrollingSectionVars.content_break_point + "px)")) {
+              jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-scroll-section").removeClass("full-screen-scroll-section-mobile-disabled");
+            }
+          }
+        });
+      }
+    }
+
+    (function ($) {
+      "use strict";
+
+      $.fn.fullScreenPositionScrollSectionElements = function (lastYPosition, currentYPosition, onlyOneScrollSectionOnPage) {
+        var section = $(this),
+            sectionTop = Math.ceil(section.offset().top),
+            sectionHeight = Math.ceil(section.outerHeight()),
+            sectionBottom = Math.floor(sectionTop + sectionHeight),
+            viewportTop = Math.ceil($(window).scrollTop()),
+            viewportHeight = $(window).height(),
+            viewportBottom = Math.floor(viewportTop + viewportHeight),
+            numberOfElements = section.find(".full-screen-scroll-section-element").length,
+            currentSegment = 0,
+            sectionWidth,
+            sectionTopOffset,
+            sectionLeftOffset,
+            sectionPadding,
+            i;
+        onlyOneScrollSectionOnPage = onlyOneScrollSectionOnPage || false; // Top offset is 0 or wpadminbar height if no sticky header is used.
+
+        sectionTopOffset = $("#wpadminbar").length ? parseInt($("#wpadminbar").height(), 10) : 0; // We have a non-transparent sticky header, so we need correct top offset.
+
+        sectionTopOffset += !Boolean(Number(fullScreenScrollingSectionVars.is_sticky_header_ignored)) && "function" === typeof getStickyHeaderHeight ? getStickyHeaderHeight(true) : 0; // Add the sticky header offset to the viewpot top for calcs.
+
+        viewportTop += sectionTopOffset; // Set the correct offsets for general use.
+
+        sectionWidth = $("#content").width();
+        sectionLeftOffset = $("#content").offset().left;
+        sectionPadding = "0"; // Make sure there is more than one scroll section, otherwise the one will always be active.
+
+        if (!onlyOneScrollSectionOnPage) {
+          // Set the section to active if it is in viewport.
+          if (sectionTop <= viewportTop && sectionBottom >= viewportBottom) {
+            section.addClass("active");
+          } else {
+            section.removeClass("active");
+          }
+        } // Scrolling down.
+
+
+        if (lastYPosition < currentYPosition) {
+          // Get the current element by checking in which section segment the viewport top is.
+          for (i = 1; i < numberOfElements; i++) {
+            if (viewportTop >= sectionTop + viewportHeight * i && viewportTop < sectionTop + viewportHeight * (i + 1)) {
+              currentSegment = i + 1;
+            }
+          } // First element comes into viewport.
+
+
+          if (sectionTop <= viewportTop && sectionTop + viewportHeight > viewportTop) {
+            // Set correct element to be active.
+            section.find(".full-screen-scroll-section-element").removeClass("active");
+            section.children(":nth-child(1)").addClass("active"); // Set correct navigation link to be active.
+
+            section.find(".full-screen-scroll-section-nav a").removeClass("active");
+            section.find('.full-screen-scroll-section-nav a[data-element="' + section.children(":nth-child(1)").data("element") + '"] ').addClass("active"); // When entering a scroll section all elements need to be positioned fixed and other values set depending on layout.
+
+            section.find(".full-screen-scroll-section-element").css({
+              position: "fixed",
+              top: sectionTopOffset,
+              left: sectionLeftOffset,
+              padding: "0 " + sectionPadding,
+              width: sectionWidth
+            });
+            section.children(":nth-child(1)").css("display", "block");
+          } else if (sectionBottom <= viewportBottom && "absolute" !== section.find(".full-screen-scroll-section-element").last().css("position")) {
+            // Last element is in viewport and it is scrolled further down, so exiting scroll section.
+            section.find(".full-screen-scroll-section-element").removeClass("active");
+            section.find(".full-screen-scroll-section-element").last().addClass("active");
+            section.find(".full-screen-scroll-section-element").css("position", "absolute");
+            section.find(".full-screen-scroll-section-element").last().css({
+              top: "auto",
+              left: "0",
+              bottom: "0",
+              padding: ""
+            });
+          } else if (0 < currentSegment && !section.children(":nth-child(" + currentSegment + ")").hasClass("active")) {
+            // Transition between individual elements.
+            // Set correct element to be active.
+            section.find(".full-screen-scroll-section-element").removeClass("active");
+            section.children(":nth-child(" + currentSegment + ")").addClass("active"); // Set correct navigation link to be active.
+
+            section.find(".full-screen-scroll-section-nav a").removeClass("active");
+            section.find('.full-screen-scroll-section-nav a[data-element="' + section.children(":nth-child(" + currentSegment + ")").data("element") + '"] ').addClass("active");
+          }
+        } else if (lastYPosition > currentYPosition) {
+          // Scrolling up.
+          // Get the current element by checking in which section segment the viewport top is.
+          for (i = 1; i < numberOfElements; i++) {
+            if (sectionTop + viewportHeight * i > viewportTop && sectionTop + viewportHeight * (i - 1) < viewportTop) {
+              currentSegment = i;
+            }
+          } // Entering the last element of a scrolling section.
+
+
+          if (sectionBottom >= viewportBottom && sectionTop + viewportHeight * (numberOfElements - 1) < viewportTop && "fixed" !== section.find(".full-screen-scroll-section-element").last().css("position")) {
+            // Set correct element to be active.
+            section.find(".full-screen-scroll-section-element").removeClass("active");
+            section.find(".full-screen-scroll-section-element").last().addClass("active"); // Set correct navigation link to be active.
+
+            section.find(".full-screen-scroll-section-nav a").removeClass("active");
+            section.find('.full-screen-scroll-section-nav a[data-element="' + section.find(".full-screen-scroll-section-element").last().data("element") + '"] ').addClass("active"); // When entering a scroll section all elements need to be positioned fixed and other values set depending on layout.
+
+            section.find(".full-screen-scroll-section-element").css({
+              position: "fixed",
+              top: sectionTopOffset,
+              left: sectionLeftOffset,
+              padding: "0 " + sectionPadding,
+              width: sectionWidth
+            });
+            section.find(".full-screen-scroll-section-element").last().css("display", "block");
+          } else if ((sectionTop >= viewportTop || 0 === $(window).scrollTop() && section.find(".full-screen-scroll-section-element").first().hasClass("active")) && "" !== section.find(".full-screen-scroll-section-element").first().css("position")) {
+            // First element is in viewport and it is further scrolled up.
+            section.find(".full-screen-scroll-section-element").removeClass("active");
+            section.find(".full-screen-scroll-section-element").first().addClass("active");
+            section.find(".full-screen-scroll-section-element").css("position", "");
+            section.find(".full-screen-scroll-section-element").first().css("padding", "");
+          } else if (0 < currentSegment && !section.children(":nth-child(" + currentSegment + ")").hasClass("active")) {
+            // Transition between individual elements.
+            // Set correct element to be active.
+            section.find(".full-screen-scroll-section-element").removeClass("active");
+            section.children(":nth-child(" + currentSegment + ")").addClass("active"); // Set correct navigation link to be active.
+
+            section.find(".full-screen-scroll-section-nav a").removeClass("active");
+            section.find('.full-screen-scroll-section-nav a[data-element="' + section.children(":nth-child(" + currentSegment + ")").data("element") + '"] ').addClass("active");
+          }
+        }
+      };
+    })(jquery__WEBPACK_IMPORTED_MODULE_0___default.a);
+  }
+});
+
+/***/ }),
+
+/***/ "./assets/js/modules/general.js":
+/*!**************************************!*\
+  !*** ./assets/js/modules/general.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  init: function init() {
+    // Example scroll to element
+
+    /*
+     $('.scroll-next').on('click',function(e){
+    	 $.smoothScroll({
+     offset: -100,
+     scrollTarget: $('main section:first-child'),
+     });
+     });
+     */
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').addClass('window-loaded'); // Frontpage
+    // Technologies
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid header').matchHeight({
+      row: true
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid .description').matchHeight({
+      row: true
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid .grid-image').matchHeight({
+      row: true
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid footer').matchHeight({
+      row: true
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./assets/js/modules/slick.js":
 /*!************************************!*\
   !*** ./assets/js/modules/slick.js ***!
@@ -310,65 +721,160 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! slick-carousel/slick/slick */ "./node_modules/slick-carousel/slick/slick.js");
 /* harmony import */ var slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(slick_carousel_slick_slick__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! imagesloaded */ "./node_modules/imagesloaded/imagesloaded.js");
+/* harmony import */ var imagesloaded__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(imagesloaded__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   init: function init() {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-slick-hero-carousel').slick({
-      arrows: false,
-      autoplay: true
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-slick-testimonials-carousel').slick({
-      arrows: false,
-      dots: true,
-      adaptiveHeight: true
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.js-slick-image-carousel').slick({
-      mobileFirst: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      infinite: true,
-      arrows: true,
-      responsive: [{
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '20%',
-          arrows: true
-        }
-      }, {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '20%',
-          arrows: true
-        }
-      }]
-    }); // Example
+    if (!String.prototype.padStart) {
+      String.prototype.padStart = function padStart(targetLength, padString) {
+        targetLength = targetLength >> 0; //truncate if number, or convert non-number to 0;
 
-    /*$( '<div class="slick-arrows"></div>' ).insertAfter( '.section-videos .slick' ); // add arrows below slick slider, easier to position
-    		 $('.section-videos .slick').slick({
-     dots: false,
-     infinite: true,
-     speed: 300,
-     slidesToShow: 2,
-     slidesToScroll: 2,
-     appendArrows: $('.section-videos .slick-arrows'),
-     responsive: [
-     {
-     breakpoint: 979,
-     settings: {
-     slidesToShow: 1,
-     slidesToScroll: 1
-     }
-     }
-     ]
-     });
-     */
+        padString = String(typeof padString !== 'undefined' ? padString : ' ');
+
+        if (this.length >= targetLength) {
+          return String(this);
+        } else {
+          targetLength = targetLength - this.length;
+
+          if (targetLength > padString.length) {
+            padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
+          }
+
+          return padString.slice(0, targetLength) + String(this);
+        }
+      };
+    }
+
+    var $slider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-home-news .slider');
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $slider).length) {
+      var currentSlide;
+
+      var updateSliderCounter = function updateSliderCounter(slick, currentIndex) {
+        currentSlide = slick.slickCurrentSlide() + 1;
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-arrows .counter', $slider).text(currentSlide);
+      };
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $slider).on('init', function (event, slick) {
+        updateSliderCounter(slick);
+        $slider.css({
+          opacity: 1,
+          visibility: 'visible'
+        });
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $slider).on('afterChange', function (event, slick, currentSlide) {
+        updateSliderCounter(slick, currentSlide);
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $slider).slick({
+        fade: true,
+        autoplay: false,
+        infinite: true,
+        adaptiveHeight: true,
+        dots: false,
+        speed: 300,
+        nextArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-next', $slider),
+        prevArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-prev', $slider)
+      });
+    } // About - history
+
+
+    var $historySlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-about-history .slider');
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).length) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).slick({
+        fade: true,
+        autoplay: false,
+        infinite: true,
+        adaptiveHeight: false,
+        dots: true,
+        customPaging: function customPaging(slider, i) {
+          var number = i + 1;
+          number = number.toString().padStart(2, '0');
+          return '<a class="dot">' + number + '</a>';
+        },
+        speed: 300,
+        nextArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-next', $historySlider),
+        prevArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-prev', $historySlider)
+      });
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.wrap', $historySlider).append(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).find('.slick-dots'));
+    }
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-main .slick').length) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider').imagesLoaded().done(function (instance) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".product__slider-main .slick").slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          fade: true,
+          autoplay: false,
+          infinite: true,
+          arrows: false,
+          dots: false,
+          speed: 300,
+          rows: 0,
+          nextArrow: '.product__slider-main .slick-next',
+          prevArrow: '.product__slider-main .slick-prev' //asNavFor: '.product__slider-thumbs .slick',
+
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".product__slider-thumbs .slick").slick({
+          dots: false,
+          autoplay: false,
+          infinite: true,
+          speed: 300,
+          arrows: false,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          asNavFor: '.product__slider-main .slick',
+          vertical: true,
+          verticalSwiping: true,
+          focusOnSelect: true,
+          rows: 0,
+          responsive: [{
+            breakpoint: 979,
+            settings: {
+              slidesToShow: 6,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false,
+              vertical: false,
+              verticalSwiping: false
+            }
+          }, {
+            breakpoint: 639,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+              infinite: true,
+              dots: false,
+              vertical: false,
+              verticalSwiping: false
+            }
+          }]
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider').addClass('images-loaded');
+      });
+    }
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-product-slideshow .slider .slick').length) {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".section-product-slideshow .slider .slick").slick({
+        fade: true,
+        autoplay: false,
+        infinite: true,
+        adaptiveHeight: true,
+        dots: true,
+        speed: 300,
+        customPaging: function customPaging(slider, i) {
+          var number = i + 1;
+          number = number.toString().padStart(2, '0');
+          var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+          return '<a class="dot">' + number + '</a>';
+        },
+        nextArrow: '.section-product-slideshow .slider .slick-next',
+        prevArrow: '.section-product-slideshow .slider .slick-prev'
+      });
+    }
   }
 });
 
@@ -456,22 +962,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modules_foundation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/foundation */ "./assets/js/modules/foundation.js");
 /* harmony import */ var what_input__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! what-input */ "./node_modules/what-input/dist/what-input.js");
 /* harmony import */ var what_input__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(what_input__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _modules_slick__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./modules/slick */ "./assets/js/modules/slick.js");
-/* harmony import */ var _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/smooth-scroll */ "./assets/js/modules/smooth-scroll.js");
-/* harmony import */ var _modules_background_video__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/background-video */ "./assets/js/modules/background-video.js");
-/* harmony import */ var _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/accordion-fix */ "./assets/js/modules/accordion-fix.js");
+/* harmony import */ var jquery_match_height__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery-match-height */ "./node_modules/jquery-match-height/dist/jquery.matchHeight.js");
+/* harmony import */ var jquery_match_height__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery_match_height__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _modules_general__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/general */ "./assets/js/modules/general.js");
+/* harmony import */ var _modules_slick__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slick */ "./assets/js/modules/slick.js");
+/* harmony import */ var _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/smooth-scroll */ "./assets/js/modules/smooth-scroll.js");
+/* harmony import */ var _modules_background_video__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/background-video */ "./assets/js/modules/background-video.js");
+/* harmony import */ var _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordion-fix */ "./assets/js/modules/accordion-fix.js");
+/* harmony import */ var _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/full-screen-scrolling-section */ "./assets/js/modules/full-screen-scrolling-section.js");
 
  // Foundation
 
 
 /* eslint-disable-line */
+// what Input NPM
+
+ // jquery match height NMP
 
  // Custom Modules
 // import externalLinks from './modules/external-links';
 // import facetWp from './modules/facetwp';
 // import fixedHeader from './modules/fixed-header';
-// import general from './modules/general';
-// import inlineSvg from './modules/inline-svg';
+
+ // import inlineSvg from './modules/inline-svg';
 // import modalVideo from './modules/modal-video';
 // import responsiveVideoEmbed from './modules/responsive-video-embeds';
 // import search from './modules/search';
@@ -481,22 +994,25 @@ __webpack_require__.r(__webpack_exports__);
 
  // import menuToggle from './modules/menu-toggle';
 
+ // import full screen scrolling section
+
 
 var modules = new _loader_ModuleLoader__WEBPACK_IMPORTED_MODULE_1__["default"]({
   // externalLinks,
   // facetWp,
   // fixedHeader,
-  // general,
+  general: _modules_general__WEBPACK_IMPORTED_MODULE_5__["default"],
   // inlineSvg,
   // modalVideo,
   // responsiveVideoEmbed,
   // search,
-  slick: _modules_slick__WEBPACK_IMPORTED_MODULE_4__["default"],
-  smoothScroll: _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_5__["default"],
+  slick: _modules_slick__WEBPACK_IMPORTED_MODULE_6__["default"],
+  //smoothScroll,
   // superfish
-  backgroundVideo: _modules_background_video__WEBPACK_IMPORTED_MODULE_6__["default"],
+  backgroundVideo: _modules_background_video__WEBPACK_IMPORTED_MODULE_8__["default"],
   //menuToggle,
-  accordionFix: _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_7__["default"]
+  accordionFix: _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_9__["default"],
+  fullScreenScrollingSection: _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_10__["default"]
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();

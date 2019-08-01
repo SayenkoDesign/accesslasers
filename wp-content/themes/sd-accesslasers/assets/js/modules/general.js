@@ -13,18 +13,15 @@ export default {
 		 });
 		 */
 
-		// Mobile, allow top lvel menu item to toggle sub menu
-		$('li.menu-item-has-children > a').on('click',function(e){
-
-			var $toggle = $(this).parent().find('.sub-menu-toggle');
-
-			if( $toggle.is(':visible') ) {
-				$toggle.trigger('click');
-				e.preventDefault();
-			}
-
-
-
-		});
+		$('html').addClass('window-loaded');
+        
+        
+        // Frontpage
+        
+            // Technologies
+            $('.section-technologies .grid header').matchHeight({row:true});
+            $('.section-technologies .grid .description').matchHeight({row:true});
+            $('.section-technologies .grid .grid-image').matchHeight({row:true});
+            $('.section-technologies .grid footer').matchHeight({row:true});
 	},
 };

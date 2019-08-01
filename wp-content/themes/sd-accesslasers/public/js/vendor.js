@@ -1,5 +1,126 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/vendor"],{
 
+/***/ "./node_modules/ev-emitter/ev-emitter.js":
+/*!***********************************************!*\
+  !*** ./node_modules/ev-emitter/ev-emitter.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+ * EvEmitter v1.1.0
+ * Lil' event emitter
+ * MIT License
+ */
+
+/* jshint unused: true, undef: true, strict: true */
+
+( function( global, factory ) {
+  // universal module definition
+  /* jshint strict: false */ /* globals define, module, window */
+  if ( true ) {
+    // AMD - RequireJS
+    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+
+}( typeof window != 'undefined' ? window : this, function() {
+
+"use strict";
+
+function EvEmitter() {}
+
+var proto = EvEmitter.prototype;
+
+proto.on = function( eventName, listener ) {
+  if ( !eventName || !listener ) {
+    return;
+  }
+  // set events hash
+  var events = this._events = this._events || {};
+  // set listeners array
+  var listeners = events[ eventName ] = events[ eventName ] || [];
+  // only add once
+  if ( listeners.indexOf( listener ) == -1 ) {
+    listeners.push( listener );
+  }
+
+  return this;
+};
+
+proto.once = function( eventName, listener ) {
+  if ( !eventName || !listener ) {
+    return;
+  }
+  // add event
+  this.on( eventName, listener );
+  // set once flag
+  // set onceEvents hash
+  var onceEvents = this._onceEvents = this._onceEvents || {};
+  // set onceListeners object
+  var onceListeners = onceEvents[ eventName ] = onceEvents[ eventName ] || {};
+  // set flag
+  onceListeners[ listener ] = true;
+
+  return this;
+};
+
+proto.off = function( eventName, listener ) {
+  var listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) {
+    return;
+  }
+  var index = listeners.indexOf( listener );
+  if ( index != -1 ) {
+    listeners.splice( index, 1 );
+  }
+
+  return this;
+};
+
+proto.emitEvent = function( eventName, args ) {
+  var listeners = this._events && this._events[ eventName ];
+  if ( !listeners || !listeners.length ) {
+    return;
+  }
+  // copy over to avoid interference if .off() in listener
+  listeners = listeners.slice(0);
+  args = args || [];
+  // once stuff
+  var onceListeners = this._onceEvents && this._onceEvents[ eventName ];
+
+  for ( var i=0; i < listeners.length; i++ ) {
+    var listener = listeners[i]
+    var isOnce = onceListeners && onceListeners[ listener ];
+    if ( isOnce ) {
+      // remove listener
+      // remove before trigger to prevent recursion
+      this.off( eventName, listener );
+      // unset once flag
+      delete onceListeners[ listener ];
+    }
+    // trigger listener
+    listener.apply( this, args );
+  }
+
+  return this;
+};
+
+proto.allOff = function() {
+  delete this._events;
+  delete this._onceEvents;
+};
+
+return EvEmitter;
+
+}));
+
+
+/***/ }),
+
 /***/ "./node_modules/foundation-sites/js/foundation.accordion.js":
 /*!******************************************************************!*\
   !*** ./node_modules/foundation-sites/js/foundation.accordion.js ***!
@@ -6333,6 +6454,779 @@ Triggers.init = function ($, Foundation) {
 }
 
 
+
+
+/***/ }),
+
+/***/ "./node_modules/imagesloaded/imagesloaded.js":
+/*!***************************************************!*\
+  !*** ./node_modules/imagesloaded/imagesloaded.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * imagesLoaded v4.1.4
+ * JavaScript is all like "You images are done yet or what?"
+ * MIT License
+ */
+
+( function( window, factory ) { 'use strict';
+  // universal module definition
+
+  /*global define: false, module: false, require: false */
+
+  if ( true ) {
+    // AMD
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [
+      __webpack_require__(/*! ev-emitter/ev-emitter */ "./node_modules/ev-emitter/ev-emitter.js")
+    ], __WEBPACK_AMD_DEFINE_RESULT__ = (function( EvEmitter ) {
+      return factory( window, EvEmitter );
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+
+})( typeof window !== 'undefined' ? window : this,
+
+// --------------------------  factory -------------------------- //
+
+function factory( window, EvEmitter ) {
+
+'use strict';
+
+var $ = window.jQuery;
+var console = window.console;
+
+// -------------------------- helpers -------------------------- //
+
+// extend objects
+function extend( a, b ) {
+  for ( var prop in b ) {
+    a[ prop ] = b[ prop ];
+  }
+  return a;
+}
+
+var arraySlice = Array.prototype.slice;
+
+// turn element or nodeList into an array
+function makeArray( obj ) {
+  if ( Array.isArray( obj ) ) {
+    // use object if already an array
+    return obj;
+  }
+
+  var isArrayLike = typeof obj == 'object' && typeof obj.length == 'number';
+  if ( isArrayLike ) {
+    // convert nodeList to array
+    return arraySlice.call( obj );
+  }
+
+  // array of single index
+  return [ obj ];
+}
+
+// -------------------------- imagesLoaded -------------------------- //
+
+/**
+ * @param {Array, Element, NodeList, String} elem
+ * @param {Object or Function} options - if function, use as callback
+ * @param {Function} onAlways - callback function
+ */
+function ImagesLoaded( elem, options, onAlways ) {
+  // coerce ImagesLoaded() without new, to be new ImagesLoaded()
+  if ( !( this instanceof ImagesLoaded ) ) {
+    return new ImagesLoaded( elem, options, onAlways );
+  }
+  // use elem as selector string
+  var queryElem = elem;
+  if ( typeof elem == 'string' ) {
+    queryElem = document.querySelectorAll( elem );
+  }
+  // bail if bad element
+  if ( !queryElem ) {
+    console.error( 'Bad element for imagesLoaded ' + ( queryElem || elem ) );
+    return;
+  }
+
+  this.elements = makeArray( queryElem );
+  this.options = extend( {}, this.options );
+  // shift arguments if no options set
+  if ( typeof options == 'function' ) {
+    onAlways = options;
+  } else {
+    extend( this.options, options );
+  }
+
+  if ( onAlways ) {
+    this.on( 'always', onAlways );
+  }
+
+  this.getImages();
+
+  if ( $ ) {
+    // add jQuery Deferred object
+    this.jqDeferred = new $.Deferred();
+  }
+
+  // HACK check async to allow time to bind listeners
+  setTimeout( this.check.bind( this ) );
+}
+
+ImagesLoaded.prototype = Object.create( EvEmitter.prototype );
+
+ImagesLoaded.prototype.options = {};
+
+ImagesLoaded.prototype.getImages = function() {
+  this.images = [];
+
+  // filter & find items if we have an item selector
+  this.elements.forEach( this.addElementImages, this );
+};
+
+/**
+ * @param {Node} element
+ */
+ImagesLoaded.prototype.addElementImages = function( elem ) {
+  // filter siblings
+  if ( elem.nodeName == 'IMG' ) {
+    this.addImage( elem );
+  }
+  // get background image on element
+  if ( this.options.background === true ) {
+    this.addElementBackgroundImages( elem );
+  }
+
+  // find children
+  // no non-element nodes, #143
+  var nodeType = elem.nodeType;
+  if ( !nodeType || !elementNodeTypes[ nodeType ] ) {
+    return;
+  }
+  var childImgs = elem.querySelectorAll('img');
+  // concat childElems to filterFound array
+  for ( var i=0; i < childImgs.length; i++ ) {
+    var img = childImgs[i];
+    this.addImage( img );
+  }
+
+  // get child background images
+  if ( typeof this.options.background == 'string' ) {
+    var children = elem.querySelectorAll( this.options.background );
+    for ( i=0; i < children.length; i++ ) {
+      var child = children[i];
+      this.addElementBackgroundImages( child );
+    }
+  }
+};
+
+var elementNodeTypes = {
+  1: true,
+  9: true,
+  11: true
+};
+
+ImagesLoaded.prototype.addElementBackgroundImages = function( elem ) {
+  var style = getComputedStyle( elem );
+  if ( !style ) {
+    // Firefox returns null if in a hidden iframe https://bugzil.la/548397
+    return;
+  }
+  // get url inside url("...")
+  var reURL = /url\((['"])?(.*?)\1\)/gi;
+  var matches = reURL.exec( style.backgroundImage );
+  while ( matches !== null ) {
+    var url = matches && matches[2];
+    if ( url ) {
+      this.addBackground( url, elem );
+    }
+    matches = reURL.exec( style.backgroundImage );
+  }
+};
+
+/**
+ * @param {Image} img
+ */
+ImagesLoaded.prototype.addImage = function( img ) {
+  var loadingImage = new LoadingImage( img );
+  this.images.push( loadingImage );
+};
+
+ImagesLoaded.prototype.addBackground = function( url, elem ) {
+  var background = new Background( url, elem );
+  this.images.push( background );
+};
+
+ImagesLoaded.prototype.check = function() {
+  var _this = this;
+  this.progressedCount = 0;
+  this.hasAnyBroken = false;
+  // complete if no images
+  if ( !this.images.length ) {
+    this.complete();
+    return;
+  }
+
+  function onProgress( image, elem, message ) {
+    // HACK - Chrome triggers event before object properties have changed. #83
+    setTimeout( function() {
+      _this.progress( image, elem, message );
+    });
+  }
+
+  this.images.forEach( function( loadingImage ) {
+    loadingImage.once( 'progress', onProgress );
+    loadingImage.check();
+  });
+};
+
+ImagesLoaded.prototype.progress = function( image, elem, message ) {
+  this.progressedCount++;
+  this.hasAnyBroken = this.hasAnyBroken || !image.isLoaded;
+  // progress event
+  this.emitEvent( 'progress', [ this, image, elem ] );
+  if ( this.jqDeferred && this.jqDeferred.notify ) {
+    this.jqDeferred.notify( this, image );
+  }
+  // check if completed
+  if ( this.progressedCount == this.images.length ) {
+    this.complete();
+  }
+
+  if ( this.options.debug && console ) {
+    console.log( 'progress: ' + message, image, elem );
+  }
+};
+
+ImagesLoaded.prototype.complete = function() {
+  var eventName = this.hasAnyBroken ? 'fail' : 'done';
+  this.isComplete = true;
+  this.emitEvent( eventName, [ this ] );
+  this.emitEvent( 'always', [ this ] );
+  if ( this.jqDeferred ) {
+    var jqMethod = this.hasAnyBroken ? 'reject' : 'resolve';
+    this.jqDeferred[ jqMethod ]( this );
+  }
+};
+
+// --------------------------  -------------------------- //
+
+function LoadingImage( img ) {
+  this.img = img;
+}
+
+LoadingImage.prototype = Object.create( EvEmitter.prototype );
+
+LoadingImage.prototype.check = function() {
+  // If complete is true and browser supports natural sizes,
+  // try to check for image status manually.
+  var isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    // report based on naturalWidth
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    return;
+  }
+
+  // If none of the checks above matched, simulate loading on detached element.
+  this.proxyImage = new Image();
+  this.proxyImage.addEventListener( 'load', this );
+  this.proxyImage.addEventListener( 'error', this );
+  // bind to image as well for Firefox. #191
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.proxyImage.src = this.img.src;
+};
+
+LoadingImage.prototype.getIsImageComplete = function() {
+  // check for non-zero, non-undefined naturalWidth
+  // fixes Safari+InfiniteScroll+Masonry bug infinite-scroll#671
+  return this.img.complete && this.img.naturalWidth;
+};
+
+LoadingImage.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  this.emitEvent( 'progress', [ this, this.img, message ] );
+};
+
+// ----- events ----- //
+
+// trigger specified handler for event type
+LoadingImage.prototype.handleEvent = function( event ) {
+  var method = 'on' + event.type;
+  if ( this[ method ] ) {
+    this[ method ]( event );
+  }
+};
+
+LoadingImage.prototype.onload = function() {
+  this.confirm( true, 'onload' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.onerror = function() {
+  this.confirm( false, 'onerror' );
+  this.unbindEvents();
+};
+
+LoadingImage.prototype.unbindEvents = function() {
+  this.proxyImage.removeEventListener( 'load', this );
+  this.proxyImage.removeEventListener( 'error', this );
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+// -------------------------- Background -------------------------- //
+
+function Background( url, element ) {
+  this.url = url;
+  this.element = element;
+  this.img = new Image();
+}
+
+// inherit LoadingImage prototype
+Background.prototype = Object.create( LoadingImage.prototype );
+
+Background.prototype.check = function() {
+  this.img.addEventListener( 'load', this );
+  this.img.addEventListener( 'error', this );
+  this.img.src = this.url;
+  // check if image is already complete
+  var isComplete = this.getIsImageComplete();
+  if ( isComplete ) {
+    this.confirm( this.img.naturalWidth !== 0, 'naturalWidth' );
+    this.unbindEvents();
+  }
+};
+
+Background.prototype.unbindEvents = function() {
+  this.img.removeEventListener( 'load', this );
+  this.img.removeEventListener( 'error', this );
+};
+
+Background.prototype.confirm = function( isLoaded, message ) {
+  this.isLoaded = isLoaded;
+  this.emitEvent( 'progress', [ this, this.element, message ] );
+};
+
+// -------------------------- jQuery -------------------------- //
+
+ImagesLoaded.makeJQueryPlugin = function( jQuery ) {
+  jQuery = jQuery || window.jQuery;
+  if ( !jQuery ) {
+    return;
+  }
+  // set local variable
+  $ = jQuery;
+  // $().imagesLoaded()
+  $.fn.imagesLoaded = function( options, callback ) {
+    var instance = new ImagesLoaded( this, options, callback );
+    return instance.jqDeferred.promise( $(this) );
+  };
+};
+// try making plugin
+ImagesLoaded.makeJQueryPlugin();
+
+// --------------------------  -------------------------- //
+
+return ImagesLoaded;
+
+});
+
+
+/***/ }),
+
+/***/ "./node_modules/jquery-match-height/dist/jquery.matchHeight.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/jquery-match-height/dist/jquery.matchHeight.js ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+* jquery-match-height 0.7.2 by @liabru
+* http://brm.io/jquery-match-height/
+* License: MIT
+*/
+
+;(function(factory) { // eslint-disable-line no-extra-semi
+    'use strict';
+    if (true) {
+        // AMD
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "jquery")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+})(function($) {
+    /*
+    *  internal
+    */
+
+    var _previousResizeWidth = -1,
+        _updateTimeout = -1;
+
+    /*
+    *  _parse
+    *  value parse utility function
+    */
+
+    var _parse = function(value) {
+        // parse value and convert NaN to 0
+        return parseFloat(value) || 0;
+    };
+
+    /*
+    *  _rows
+    *  utility function returns array of jQuery selections representing each row
+    *  (as displayed after float wrapping applied by browser)
+    */
+
+    var _rows = function(elements) {
+        var tolerance = 1,
+            $elements = $(elements),
+            lastTop = null,
+            rows = [];
+
+        // group elements by their top position
+        $elements.each(function(){
+            var $that = $(this),
+                top = $that.offset().top - _parse($that.css('margin-top')),
+                lastRow = rows.length > 0 ? rows[rows.length - 1] : null;
+
+            if (lastRow === null) {
+                // first item on the row, so just push it
+                rows.push($that);
+            } else {
+                // if the row top is the same, add to the row group
+                if (Math.floor(Math.abs(lastTop - top)) <= tolerance) {
+                    rows[rows.length - 1] = lastRow.add($that);
+                } else {
+                    // otherwise start a new row group
+                    rows.push($that);
+                }
+            }
+
+            // keep track of the last row top
+            lastTop = top;
+        });
+
+        return rows;
+    };
+
+    /*
+    *  _parseOptions
+    *  handle plugin options
+    */
+
+    var _parseOptions = function(options) {
+        var opts = {
+            byRow: true,
+            property: 'height',
+            target: null,
+            remove: false
+        };
+
+        if (typeof options === 'object') {
+            return $.extend(opts, options);
+        }
+
+        if (typeof options === 'boolean') {
+            opts.byRow = options;
+        } else if (options === 'remove') {
+            opts.remove = true;
+        }
+
+        return opts;
+    };
+
+    /*
+    *  matchHeight
+    *  plugin definition
+    */
+
+    var matchHeight = $.fn.matchHeight = function(options) {
+        var opts = _parseOptions(options);
+
+        // handle remove
+        if (opts.remove) {
+            var that = this;
+
+            // remove fixed height from all selected elements
+            this.css(opts.property, '');
+
+            // remove selected elements from all groups
+            $.each(matchHeight._groups, function(key, group) {
+                group.elements = group.elements.not(that);
+            });
+
+            // TODO: cleanup empty groups
+
+            return this;
+        }
+
+        if (this.length <= 1 && !opts.target) {
+            return this;
+        }
+
+        // keep track of this group so we can re-apply later on load and resize events
+        matchHeight._groups.push({
+            elements: this,
+            options: opts
+        });
+
+        // match each element's height to the tallest element in the selection
+        matchHeight._apply(this, opts);
+
+        return this;
+    };
+
+    /*
+    *  plugin global options
+    */
+
+    matchHeight.version = '0.7.2';
+    matchHeight._groups = [];
+    matchHeight._throttle = 80;
+    matchHeight._maintainScroll = false;
+    matchHeight._beforeUpdate = null;
+    matchHeight._afterUpdate = null;
+    matchHeight._rows = _rows;
+    matchHeight._parse = _parse;
+    matchHeight._parseOptions = _parseOptions;
+
+    /*
+    *  matchHeight._apply
+    *  apply matchHeight to given elements
+    */
+
+    matchHeight._apply = function(elements, options) {
+        var opts = _parseOptions(options),
+            $elements = $(elements),
+            rows = [$elements];
+
+        // take note of scroll position
+        var scrollTop = $(window).scrollTop(),
+            htmlHeight = $('html').outerHeight(true);
+
+        // get hidden parents
+        var $hiddenParents = $elements.parents().filter(':hidden');
+
+        // cache the original inline style
+        $hiddenParents.each(function() {
+            var $that = $(this);
+            $that.data('style-cache', $that.attr('style'));
+        });
+
+        // temporarily must force hidden parents visible
+        $hiddenParents.css('display', 'block');
+
+        // get rows if using byRow, otherwise assume one row
+        if (opts.byRow && !opts.target) {
+
+            // must first force an arbitrary equal height so floating elements break evenly
+            $elements.each(function() {
+                var $that = $(this),
+                    display = $that.css('display');
+
+                // temporarily force a usable display value
+                if (display !== 'inline-block' && display !== 'flex' && display !== 'inline-flex') {
+                    display = 'block';
+                }
+
+                // cache the original inline style
+                $that.data('style-cache', $that.attr('style'));
+
+                $that.css({
+                    'display': display,
+                    'padding-top': '0',
+                    'padding-bottom': '0',
+                    'margin-top': '0',
+                    'margin-bottom': '0',
+                    'border-top-width': '0',
+                    'border-bottom-width': '0',
+                    'height': '100px',
+                    'overflow': 'hidden'
+                });
+            });
+
+            // get the array of rows (based on element top position)
+            rows = _rows($elements);
+
+            // revert original inline styles
+            $elements.each(function() {
+                var $that = $(this);
+                $that.attr('style', $that.data('style-cache') || '');
+            });
+        }
+
+        $.each(rows, function(key, row) {
+            var $row = $(row),
+                targetHeight = 0;
+
+            if (!opts.target) {
+                // skip apply to rows with only one item
+                if (opts.byRow && $row.length <= 1) {
+                    $row.css(opts.property, '');
+                    return;
+                }
+
+                // iterate the row and find the max height
+                $row.each(function(){
+                    var $that = $(this),
+                        style = $that.attr('style'),
+                        display = $that.css('display');
+
+                    // temporarily force a usable display value
+                    if (display !== 'inline-block' && display !== 'flex' && display !== 'inline-flex') {
+                        display = 'block';
+                    }
+
+                    // ensure we get the correct actual height (and not a previously set height value)
+                    var css = { 'display': display };
+                    css[opts.property] = '';
+                    $that.css(css);
+
+                    // find the max height (including padding, but not margin)
+                    if ($that.outerHeight(false) > targetHeight) {
+                        targetHeight = $that.outerHeight(false);
+                    }
+
+                    // revert styles
+                    if (style) {
+                        $that.attr('style', style);
+                    } else {
+                        $that.css('display', '');
+                    }
+                });
+            } else {
+                // if target set, use the height of the target element
+                targetHeight = opts.target.outerHeight(false);
+            }
+
+            // iterate the row and apply the height to all elements
+            $row.each(function(){
+                var $that = $(this),
+                    verticalPadding = 0;
+
+                // don't apply to a target
+                if (opts.target && $that.is(opts.target)) {
+                    return;
+                }
+
+                // handle padding and border correctly (required when not using border-box)
+                if ($that.css('box-sizing') !== 'border-box') {
+                    verticalPadding += _parse($that.css('border-top-width')) + _parse($that.css('border-bottom-width'));
+                    verticalPadding += _parse($that.css('padding-top')) + _parse($that.css('padding-bottom'));
+                }
+
+                // set the height (accounting for padding and border)
+                $that.css(opts.property, (targetHeight - verticalPadding) + 'px');
+            });
+        });
+
+        // revert hidden parents
+        $hiddenParents.each(function() {
+            var $that = $(this);
+            $that.attr('style', $that.data('style-cache') || null);
+        });
+
+        // restore scroll position if enabled
+        if (matchHeight._maintainScroll) {
+            $(window).scrollTop((scrollTop / htmlHeight) * $('html').outerHeight(true));
+        }
+
+        return this;
+    };
+
+    /*
+    *  matchHeight._applyDataApi
+    *  applies matchHeight to all elements with a data-match-height attribute
+    */
+
+    matchHeight._applyDataApi = function() {
+        var groups = {};
+
+        // generate groups by their groupId set by elements using data-match-height
+        $('[data-match-height], [data-mh]').each(function() {
+            var $this = $(this),
+                groupId = $this.attr('data-mh') || $this.attr('data-match-height');
+
+            if (groupId in groups) {
+                groups[groupId] = groups[groupId].add($this);
+            } else {
+                groups[groupId] = $this;
+            }
+        });
+
+        // apply matchHeight to each group
+        $.each(groups, function() {
+            this.matchHeight(true);
+        });
+    };
+
+    /*
+    *  matchHeight._update
+    *  updates matchHeight on all current groups with their correct options
+    */
+
+    var _update = function(event) {
+        if (matchHeight._beforeUpdate) {
+            matchHeight._beforeUpdate(event, matchHeight._groups);
+        }
+
+        $.each(matchHeight._groups, function() {
+            matchHeight._apply(this.elements, this.options);
+        });
+
+        if (matchHeight._afterUpdate) {
+            matchHeight._afterUpdate(event, matchHeight._groups);
+        }
+    };
+
+    matchHeight._update = function(throttle, event) {
+        // prevent update if fired from a resize event
+        // where the viewport width hasn't actually changed
+        // fixes an event looping bug in IE8
+        if (event && event.type === 'resize') {
+            var windowWidth = $(window).width();
+            if (windowWidth === _previousResizeWidth) {
+                return;
+            }
+            _previousResizeWidth = windowWidth;
+        }
+
+        // throttle updates
+        if (!throttle) {
+            _update(event);
+        } else if (_updateTimeout === -1) {
+            _updateTimeout = setTimeout(function() {
+                _update(event);
+                _updateTimeout = -1;
+            }, matchHeight._throttle);
+        }
+    };
+
+    /*
+    *  bind events
+    */
+
+    // apply on DOM ready event
+    $(matchHeight._applyDataApi);
+
+    // use on or bind where supported
+    var on = $.fn.on ? 'on' : 'bind';
+
+    // update heights on load and resize events
+    $(window)[on]('load', function(event) {
+        matchHeight._update(false, event);
+    });
+
+    // throttled update heights on resize events
+    $(window)[on]('resize orientationchange', function(event) {
+        matchHeight._update(true, event);
+    });
+
+});
 
 
 /***/ }),

@@ -57,6 +57,8 @@
 	"dependencies": {
 		"classnames": "^2.2.6",
 		"foundation-sites": "^6.5.3",
+		"imagesloaded": "^4.1.4",
+		"jquery-match-height": "^0.7.2",
 		"jquery-smooth-scroll": "^2.2.0",
 		"lodash.assign": "^4.2.0",
 		"motion-ui": "^2.0.3",

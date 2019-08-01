@@ -9,9 +9,12 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'column row' ); ?>>
-	<header class="entry-header">
+	
+    <?php if( ! has_blocks() ) : ?>
+    <header class="entry-header">
 		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
 	</header><!-- .entry-header -->
+    <?php endif; ?>
 
 	<div class="entry-content">
 		<?php the_content(); ?>

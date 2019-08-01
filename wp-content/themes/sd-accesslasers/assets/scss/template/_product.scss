@@ -5,6 +5,80 @@
  
     .section-product-details {
         
+        .product__image {
+            padding-top: rem-calc(50);
+            padding-bottom: rem-calc(50);
+            
+            @include breakpoint(large) {
+                padding-top: rem-calc(100);
+                padding-bottom: rem-calc(100);  
+            }
+        }
+        
+        .product__slider {
+            
+            position: relative;
+            opacity: 0;
+            visibility: hidden;
+            
+            padding-top: rem-calc(50);
+            padding-bottom: rem-calc(50);
+
+            
+            &.images-loaded {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            @include breakpoint(large) {
+                
+                min-height: rem-calc(400);
+                padding-top: rem-calc(100);
+                padding-left: rem-calc(200);
+                padding-bottom: rem-calc(100);
+                
+                .product__slider-thumbs {
+                    width: rem-calc(100); 
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 0;
+                    
+                    .slick-slide {
+                        height: rem-calc(90);  
+                        display: flex;
+                        align-items: center;
+                        padding: rem-calc(10);cursor: pointer;
+                        
+                        &.slick-current {
+                            border: 1px solid $red;
+                        }
+                    }
+                }
+                
+                .product__slider-main {
+                    
+                    .slick-track { // vertical center slides
+                        display: flex; 
+                        align-items: center;     
+                    }
+    
+                }
+            }
+        }
+        
+        header {
+            
+            margin-bottom: rempcalc(30);
+            
+             @include breakpoint(large) { 
+                margin-bottom: rem-calc(60);
+                h1 {
+                    font-size: rem-calc(48);
+                }
+            }
+        }
+        
         
         .application-technology {
             ul {
@@ -14,6 +88,10 @@
         }
         
         .downloads {
+                        
+            
+            @include mui-animation(fade);
+            animation-duration: 1s;  
             
             a {
                 display: inline-block;
@@ -98,142 +176,118 @@
         
     }
     
-    .section-product-faq {
-        background-color: transparent;
-        padding: rem-calc(100 0 100); 
-        background: $gray; 
+    
+    .section-product-slideshow {
+        background-color: #ECECEC;
+        padding: rem-calc(75 0);
         
-        .accordion-filter {
-           > .accordion-item {
-               
-                margin-bottom: rem-calc(30);
-                
-                > .accordion-title {
-                    background-color: $medium-gray;   
-                    color: #fff;
-                    text-transform: uppercase;
-                
-                    &::before {
-                        position: absolute;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        right: 1rem;
-                        margin-top: 0!important;
-                        color: #fff;
-                        font-size: rem-calc(40);
-                        content: "\002B";
-                    }   
-                }
-                
-                &.is-active>.accordion-title::before {
-                    content: "\2212";
-                }
-                
-                &.is-active>.accordion-title,
-                .accordion-title:hover, 
-                .accordion-title:focus {
-                    background: $dark-gray;
-                    color: #fff;
-                    
-                    &::before {
-                        color: #fff;   
-                    }
-                }
-                
-                > .accordion-content {
-                    background-color: transparent;
-                    padding: rem-calc(30 0 0 0); 
-                }
-            }
+        @include breakpoint(large) {
+            padding: rem-calc(150 0);
         }
         
-        // FAQ accordions
-        .accordion {
+        .slider {
+            position: relative;   
+        }
+        
+        .slick-dots {
+            display: none!important;
             
-            .accordion-item {
-               margin-bottom: rem-calc(30);
+            a {
+                color: $dark-gray;
+                font-size: rem-calc(16);
+                font-weight: 900;   
             }
             
-            
-            .accordion-title {
-                line-height: 1.2;                  
+            .slick-active a {
+                color: $red;   
             }
             
-            .accordion-title::before {
+            @include breakpoint(large) {
+                display: block!important;
+                position: relative;
+                left: auto;
+                bottom: auto;
+                text-align: center;
+            }
+            
+            @include breakpoint(xxlarge) {
                 position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                right: 1rem;
-                margin-top: 0!important;
-                color: $red;
-                font-size: rem-calc(40);
-                content: "\002B";
-            } 
-
+                left: 0;
+                bottom: rem-calc(45);
+                text-align: left;
+                width: auto;
+                width: 40%;
+            }
+        }
+     
+        .slick-arrows {
+            width: rem-calc(180);
+            display: flex;
+            margin: 0 auto;
             
-            .is-active>.accordion-title::before {
-                content: "\2212";
+            @include breakpoint(xxlarge) {
+                position: absolute;
+                bottom: 0;
+                right: calc(50% - 90px - #{map-get($grid-margin-gutters, large)/2});
             }
             
+            .slick-prev,
+            .slick-next {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                transform: none;
+            }
+            
+        }
+        
+        header {
+            @include breakpoint(large) {
+                margin-top: rem-calc(40); 
+                margin-bottom: rem-calc(120);  
+            }
+        }
+        
+        .entry-content {
+            
+            margin-left: rem-calc(24);
+            padding-bottom: rem-calc(40);
+            
+            @include breakpoint(xxlarge) {
+                 margin-left: calc(8.33333% + #{map-get($grid-margin-gutters, large)} + 24px);
+                 margin-right: calc(8.33333% + #{map-get($grid-margin-gutters, large)});
+                 padding-bottom: rem-calc(120);
+            }
+            
+            
+            p,
+            li {
+                
+                margin-bottom: $paragraph-margin-bottom;
+                
+                @include breakpoint(large) {
+                    font-size: rem-calc(24); 
+                    margin-bottom: rem-calc(50); 
+                    line-height: 1.8; 
+                }
+            }
+            
+            ul {
+              list-style: none;
+            }
+            
+            ul li::before {
+              content: "\2022";
+              color: $red;
+              font-weight: 900;
+              display: inline-block; 
+              width: rem-calc(24);
+              margin-left: rem-calc(-24);
+            }
+        }
                
-        }
         
-        .cell > .accordion {
-            .is-active>.accordion-title,
-            .accordion-title:hover, 
-            .accordion-title:focus {
-                background: $red;
-                color: #fff;
-                
-                &::before {
-                    color: #fff;   
-                }
-            }
-            
-            .accordion-item {
-                background-color: #fff;   
-            }
-            
-            .accordion-content {
-                
-                .grid-margin-x {
-                    margin-right: 0;
-                    margin-left: 0;  
-                    
-                    .cell {
-                        margin-right: 0;
-                        margin-left: 0;  
-                        width: 100%;   
-                    }
-                }
-                
-                p, li {
-                    font-size: rem-calc(20);   
-                }
-            }
-        }
-        
-        .tabs {
-            
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            margin-bottom: rem-calc(50);
-         
-            .tabs-title {
-                a {
-                    font-weight: 900; 
-                    letter-spacing: 2px;
-                    text-transform: uppercase;
-                    padding: rem-calc(10 0 30);
-                }
-                
-                &.is-active a {
-                    border-bottom: 1px solid #ED3D4A;   
-                }
-                
-                padding-right: rem-calc(50);
-            }
-            
-        }
     }
     
 }

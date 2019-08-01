@@ -48,7 +48,7 @@ if( ! class_exists( 'Product_Details' ) ) {
         // Add content
         public function render() {
                      
-            $heading = _s_format_string( get_the_title(), 'h1', [ 'class' => 'h3' ] );
+            $heading = sprintf( '<header>%s</header>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h4' ] ) );
             
             $classes = [ 'auto' ];
             $photos = $this->get_photos();
@@ -113,12 +113,24 @@ if( ! class_exists( 'Product_Details' ) ) {
                 return false;
             }
             
+            if( count( $photos ) == 1 ) {
+                return sprintf( '<div class="product__image">%s</div>', wp_get_attachment_image( $photos[0], 'large' ) );
+            }
+            
             $slides = array_map( function ( $id ) {
-                return wp_get_attachment_image( $id, 'large' );
+                return sprintf( '<div class="slide"><div class="vertical-center">%s</div></div>', wp_get_attachment_image( $id, 'large' ) );
             }, $photos );
             
+            $buttons = '<div class="slick-arrows">
+                            <button class="slick-prev slick-arrow" aria-label="Previous" type="button">Previous</button>
+                            <button class="slick-next slick-arrow" aria-label="Next" type="button">Previous</button>
+                        </div>';
+            
             if( ! empty( $slides ) ) {
-                return sprintf( '<div class="photos slick">%s</div>', join( '', $slides ) ); 
+                $main = sprintf( '<div class="product__slider-main"><div class="slick">%s</div></div>', join( '', $slides ) ); 
+                $thumbs = sprintf( '<div class="product__slider-thumbs"><div class="slick">%s</div></div>', join( '', $slides ) ); 
+                
+                return sprintf( '<div class="product__slider">%s%s</div>', $main, $thumbs );
             }
             
             return false;

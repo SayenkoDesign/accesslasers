@@ -14,6 +14,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Element_Section extends Element_Base {
             
+    static public $count;
+    
+    static public $row_layouts = [];
+    
     /**
 	 * Get section name.
 	 *
@@ -27,6 +31,32 @@ class Element_Section extends Element_Base {
 	public function get_name() {
 		return 'section';
 	}
+    
+    
+    /**
+	 * Get default data.
+	 *
+	 * Retrieve the default data. Used to reset the data on initialization.
+	 *
+	 * @since 1.4.0
+	 * @access protected
+	 *
+	 * @return array Default data.
+	 */
+	protected function get_default_data() {
+		        
+        $default_data = parent::get_default_data();
+        
+        if( ! self::$count ) {
+            self::$count ++;
+        }
+        
+        return [
+			'id' => self::$count,
+			'settings' => [],
+            'fields' => [],
+		];
+	}
         
     /**
 	 * Before section rendering.
@@ -37,7 +67,7 @@ class Element_Section extends Element_Base {
 	 * @access public
 	 */
 	public function before_render() {            
-                        
+        
         $this->add_render_attribute( 'wrap', 'class', 'wrap' );
         
         $this->add_render_attribute( 'container', 'class', 'container' );
@@ -84,13 +114,39 @@ class Element_Section extends Element_Base {
             ]
         );
         
+        // Set layout index
+        self::$row_layouts[]['name'] = get_row_layout() ? get_row_layout() : 'section';
+        // Get row layout
+        $count = 0;
+        $criteria = array( 'name' => get_row_layout() );
+        $row_layout = wp_list_filter( self::$row_layouts, $criteria );
+        if( $row_layout ) { 
+            $count = count( $row_layout );
+        }
         
-        if( empty( $this->add_render_attribute( 'id' ) ) ) {
-            $this->add_render_attribute(
-                'wrapper', 'id', [
-                    $this->get_name() . '-' . $this->get_id()
-                ]
-            );   
+        if( $row_layout ) {
+
+            // Set default classes
+            $row_layout = str_replace( '_', '-', get_row_layout() . '-section-' . $count ); 
+            $this->add_render_attribute( 'wrapper', 'class', $row_layout );
+            $even_odd = $count % 2 == 0 ? 'even' : 'odd';
+            $even_odd_class = str_replace( '_', '-', get_row_layout() . '-section-' . $even_odd );  
+            $this->add_render_attribute( 'wrapper', 'class', $even_odd_class );
+            
+            // Set default ID
+            $row_layout = get_row_layout() ? str_replace( '_', '-', get_row_layout() . '-' . $count ) : ''; 
+            if( $row_layout ) {
+                $this->add_render_attribute( 'wrapper', 'id', $row_layout, true );
+            }
+        } else {
+                            
+            if( empty( $this->get_render_attribute_string( 'id' ) ) ) {
+                $this->add_render_attribute(
+                    'wrapper', 'id', [
+                        $this->get_name() . '-' . $this->get_id()
+                    ]
+                );   
+            }
         }
         
 		
@@ -111,5 +167,10 @@ class Element_Section extends Element_Base {
 		$html_tag = 'section';
 
 		return $html_tag;
-	}    
+	} 
+    
+    
+    function __destruct() {
+        self::$count ++;
+    }   
 }

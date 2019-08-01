@@ -69,6 +69,7 @@
 
 // Colors
 $red: #ED3D4A;
+$red-hover: #D43642;
 $gray: #ECECEC;
 $light-gray: #F9F9F9;
 $medium-gray: #596975;
@@ -168,12 +169,12 @@ $header-lineheight: 1;
 $header-margin-bottom: rem-calc(20);
 $header-styles: (
 	small: (
-		'h1': ('font-size': 100*.6, 'lh': 1, 'mb': 30 ),
-		'h2': ('font-size': 60*.6, 'lh': 1, 'mb': 30),
-		'h3': ('font-size': 60*.6, 'lh': 1, 'mb': 20),
-		'h4': ('font-size': 42*.6, 'lh': 1, 'mb': 20),
-		'h5': ('font-size': 30*.6, 'lh': 1, 'mb': 20),
-		'h6': ('font-size': 24*.6, 'lh': 1, 'mb': 20),
+		'h1': ('font-size': 100*.6, 'lh': 1.2, 'mb': 30 ),
+		'h2': ('font-size': 60*.6, 'lh': 1.2, 'mb': 40),
+		'h3': ('font-size': 60*.6, 'lh': 1.2, 'mb': 20),
+		'h4': ('font-size': 42*.6, 'lh': 1.2, 'mb': 20),
+		'h5': ('font-size': 30*.6, 'lh': 1.2, 'mb': 20),
+		'h6': ('font-size': 24*.6, 'lh': 1.2, 'mb': 20),
 	),
 	medium-large: (
 		'h1': ('font-size': 100*.8),

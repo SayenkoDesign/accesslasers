@@ -55,6 +55,44 @@
 }
 
 
+@mixin bullets-arrow($color: #ffffff, $background: $red ) {        
+    @include list-reset;
+    margin-bottom: rem-calc($global-margin);
+    $color: str-replace(#{$color}, '#', '');
+        
+    li {
+        position: relative;
+        min-height: rem-calc(24);
+        padding-left: rem-calc(45);
+        line-height: inherit;
+        margin: rem-calc(0 auto 20 0);
+        
+        &:before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 5px;
+            left: 0;
+            background-color: $background;
+            border-radius: 50%;
+            
+        }
+        
+        &:after {
+            content: '';
+            width: 6px;
+            height: 8px;
+            position: absolute;
+            top: 11px;
+            left: 7px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='8'%3E%3Cpath fill='%23#{$color}' fill-rule='evenodd' d='M6 4.003L2.387 8H.005l3.619-4L0 0l2.387.005z'/%3E%3C/svg%3E");
+            
+        }
+    }
+}
+
+
 @mixin link-arrow( $color: #999, $position: left ) {
     content: '';
     display: block;

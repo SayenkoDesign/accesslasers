@@ -10,10 +10,9 @@ get_header(); ?>
             the_post();
 
             _s_get_template_part( 'template-parts/product', 'details' );
-            
-            // _s_get_template_part( 'template-parts/product', 'slideshow' );
+            _s_get_template_part( 'template-parts/product', 'slideshow' );
             _s_get_template_part( 'template-parts/product', 'options' );
-            _s_get_template_part( 'template-parts/product', 'faq' );
+            _s_get_template_part( 'template-parts/global', 'faq' );
                 
         endwhile;       
        ?>

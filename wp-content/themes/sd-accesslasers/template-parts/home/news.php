@@ -1,24 +1,26 @@
 <?php
 
 /*
-About - History
+Home - News
 */
 
 
-if( ! class_exists( 'About_History' ) ) {
-    class Home_Why extends Element_Section {
-                
+if( ! class_exists( 'Home_News' ) ) {
+    class Home_News extends Element_Section {
+        
         public function __construct() {
             parent::__construct();
               
-            $fields = get_field( 'history' );           
+            $fields = get_field( 'news' );           
             $this->set_fields( $fields );
             
             $settings = [];
             $this->set_settings( $settings );
             
             // Render the section
-            //$this->render();
+            if( empty( $this->render() ) ) {
+                // return false;   
+            }
             
             // print the section
             $this->print_element();        
@@ -32,7 +34,7 @@ if( ! class_exists( 'About_History' ) ) {
     
             $this->add_render_attribute(
                 'wrapper', 'class', [
-                     $this->get_name() . '-about-history'
+                     $this->get_name() . '-home-news'
                 ]
             ); 
         } 
@@ -43,36 +45,36 @@ if( ! class_exists( 'About_History' ) ) {
         public function render() {
             
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading = _s_format_string( $heading, 'h1', [ 'class' => 'h6' ] );
-                        
-            $posts = $this->get_grid();
+            $heading = _s_format_string( $heading, 'h2', ['class' => 'text-center'] );
+            
+            $image = $this->get_fields( 'image' );
+            $image = _s_get_acf_image( $image, 'hero' );
+            
+            $posts = $this->get_posts();
             
             if( empty( $posts ) ) {
                 return false;
             }
-            
-            return sprintf( '<div class="grid-container">
-                                <div class="grid-x grid-margin-x">
-                                    <div class="cell">%s%s</div>
-                                </div>
-                             </div>', 
+             
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x"><div class="cell">%s%s%s</div></div></div>', 
                             $heading, 
+                            $image,
                             $posts 
                           );
                
         }
         
         
-        private function get_grid() {
-            
+        private function get_posts() {
+         
             $post_ids = $this->get_fields( 'posts' );
             
             if( empty( $post_ids ) ) {
                 return false;
             }
-            
+        
             $args = array(
-                'post_type' => 'history',
+                'post_type' => 'post',
                 'order' => 'ASC',
                 'orderby' => 'post__in',
                 'post__in' => $post_ids,
@@ -93,16 +95,17 @@ if( ! class_exists( 'About_History' ) ) {
     
                     $loop->the_post(); 
                     
-                    $posts .= $this->get_item( get_the_ID() );
+                    $posts .= $this->get_post( get_the_ID() );
     
                 endwhile;
                 
             endif; 
             
             wp_reset_postdata();
-                        
+            
             $buttons = '<div class="slick-arrows">
                             <button class="slick-prev slick-arrow" aria-label="Previous" type="button">Previous</button>
+                            <div class="counter"></div>
                             <button class="slick-next slick-arrow" aria-label="Next" type="button">Previous</button>
                         </div>';
             
@@ -112,36 +115,33 @@ if( ! class_exists( 'About_History' ) ) {
                                 </div></div>', $posts, $buttons );
             }
             
-            
         }
         
-        
-        private function get_item( $post_id = false ) {
+        private function get_post( $post_id = false ) {
             
             if( ! absint( $post_id ) ) {
                 return false;
             }
             
-            $image = get_the_post_thumbnail( $post_id, 'large' );   
-
-            $heading = _s_format_string( get_the_title( $post_id ), 'h4' ); 
-            $content = apply_filters( 'the_content', get_the_content( $post_id ) );
+            $title = get_the_title();
+            $title = _s_format_string( $title, 'h4' );
             
-            if( ! $image && ! $heading && ! $content ) {
+            $excerpt = get_the_excerpt();
+                                 
+            if( ! $title && ! $excerpt ) {
                 return false;
             }
-                       
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell large-auto">%s</div>
-                                <div class="cell large-6"><div class=""entry-content"><header>%s</header>%s</div></div>
-                             </div></div>', 
-                                $image,
+            
+            $link = sprintf( '<p><a href="%s"><span>%s</span></a></p>', get_the_permalink( $post_id ), __( 'read more' ) );
+           
+            return sprintf( '<div class="post">%s%s%s</div>', 
                                 $title,
-                                $content
+                                $excerpt,
+                                $link
                              );
         }
-                
+        
     }
 }
    
-new Home_Why; 
+new Home_News; 
