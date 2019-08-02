@@ -60,7 +60,7 @@
     margin-bottom: rem-calc($global-margin);
     $color: str-replace(#{$color}, '#', '');
         
-    li {
+    > li {
         position: relative;
         min-height: rem-calc(24);
         padding-left: rem-calc(45);

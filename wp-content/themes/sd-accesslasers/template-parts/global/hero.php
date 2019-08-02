@@ -1,13 +1,13 @@
 <?php
 
 /*
-About - Hero
+Global - Hero
 		
 */
 
 
-if( ! class_exists( 'About_Hero' ) ) {
-    class About_Hero extends Element_Section {
+if( ! class_exists( 'Global_Hero' ) ) {
+    class Global_Hero extends Element_Section {
         
         public function __construct() {
             parent::__construct();
@@ -71,7 +71,7 @@ if( ! class_exists( 'About_Hero' ) ) {
         public function render() {
             
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading = _s_format_string( $heading, 'h1' );
+            $heading = _s_format_string( $heading, 'h1', ['class' => 'h2' ] );
             
             $description = empty( $this->get_fields( 'description' ) ) ? '' : _s_format_string( $this->get_fields( 'description' ), 'p' );
             
@@ -97,4 +97,4 @@ if( ! class_exists( 'About_Hero' ) ) {
     }
 }
    
-new About_Hero; 
+new Global_Hero; 
