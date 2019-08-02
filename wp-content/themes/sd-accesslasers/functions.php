@@ -149,7 +149,7 @@ add_action( 'login_enqueue_scripts', '_s_login_stylesheet' );
 
 // changing the login logo
 function _s_login_logo() {
-	$logo = sprintf( '%slogo.svg', trailingslashit( THEME_IMG ) );
+	$logo = sprintf( '%slogo.png', trailingslashit( THEME_IMG ) );
 	printf( '<style type="text/css">h1 a { background-image:url(%s)!important; }</style>', $logo );
 }
 

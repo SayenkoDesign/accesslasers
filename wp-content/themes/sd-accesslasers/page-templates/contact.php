@@ -20,7 +20,7 @@ _s_get_template_part( 'template-parts/contact', 'hero' );
     <main id="main" class="site-main" role="main">
     <?php
         _s_get_template_part( 'template-parts/contact', 'map' );
-        _s_get_template_part( 'template-parts/about', 'connect' );
+        //_s_get_template_part( 'template-parts/about', 'connect' );
         _s_get_template_part( 'template-parts/global', 'people' );
         _s_get_template_part( 'template-parts/global', 'faq' );
         

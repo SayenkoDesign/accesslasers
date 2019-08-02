@@ -6,13 +6,13 @@ About - Hero
 */
 
 
-if( ! class_exists( 'About_Hero' ) ) {
-    class About_Hero extends Element_Section {
+if( ! class_exists( 'Contact_Map' ) ) {
+    class Contact_Map extends Element_Section {
         
         public function __construct() {
             parent::__construct();
             
-            $fields = get_field( 'hero' );
+            $fields = get_field( 'map' );
             $this->set_fields( $fields );
                                     
             // Render the section
@@ -30,7 +30,7 @@ if( ! class_exists( 'About_Hero' ) ) {
     
             $this->add_render_attribute(
                 'wrapper', 'class', [
-                     $this->get_name() . '-hero'
+                     $this->get_name() . '-map'
                 ]
             );
             
@@ -70,31 +70,18 @@ if( ! class_exists( 'About_Hero' ) ) {
         // Add content
         public function render() {
             
-            $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading = _s_format_string( $heading, 'h1' );
+            $title = $this->get_fields( 'title' );
+            $text = $this->get_fields( 'text' );
             
-            $description = empty( $this->get_fields( 'description' ) ) ? '' : _s_format_string( $this->get_fields( 'description' ), 'p' );
-            
-            $button = $this->get_fields( 'button' );
-            if( ! empty( $button['link'] ) ) {
-                                
-                $args = [
-                    'link' => $button['link'],
-                    'echo' => false,
-                    'classes' => 'button large',
-                ];
-                $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
-            }
+            $location = sprintf( '<div class="location"><h6>%s</h6><p>%s</p></div>', $title, $text );
     
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell"><div class="hero-content">%s%s%s</div></div>
+                                <div class="cell"><div class="map-content">%s</div></div>
                             </div></div>',
-                            $heading,
-                            $description,
-                            $button
+                            $location
                          );
         }
     }
 }
    
-new About_Hero; 
+new Contact_Map; 

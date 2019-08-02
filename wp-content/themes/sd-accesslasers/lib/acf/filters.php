@@ -21,7 +21,7 @@ function acf_hide_menu_item() {
     }
 }
 
-// add_action('init', 'acf_hide_menu_item');
+add_action('init', 'acf_hide_menu_item');
 
 
 // filter for a specific field based on it's name

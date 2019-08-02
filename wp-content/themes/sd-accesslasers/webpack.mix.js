@@ -96,7 +96,7 @@ mix.js( `${ devPath }/js/project.js`, 'js' )
 	.extract();
 
 
-mix.react( `${devPath}/js/editor.js`, 'js' );
+//mix.react( `${devPath}/js/editor.js`, 'js' );
 
 
 /*
@@ -123,6 +123,7 @@ var sassEditorConfig = {
 
 // Compile SASS/CSS.
 mix.sass( `${ devPath }/scss/style.scss`, 'css', sassConfig );
+mix.sass( `${ devPath }/scss/login.scss`, 'css', sassEditorConfig );
 //mix.sass( `${ devPath }/scss/editor.scss`, 'css', sassEditorConfig );
 
 /*
