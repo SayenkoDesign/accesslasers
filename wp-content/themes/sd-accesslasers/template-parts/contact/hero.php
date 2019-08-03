@@ -73,25 +73,28 @@ if( ! class_exists( 'About_Hero' ) ) {
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
             $heading = _s_format_string( $heading, 'h1' );
             
-            $description = empty( $this->get_fields( 'description' ) ) ? '' : _s_format_string( $this->get_fields( 'description' ), 'p' );
+            $hours      = get_field( 'hours', 'option' );
+            $phone      = get_field( 'phone', 'option' );
             
-            $button = $this->get_fields( 'button' );
-            if( ! empty( $button['link'] ) ) {
-                                
-                $args = [
-                    'link' => $button['link'],
-                    'echo' => false,
-                    'classes' => 'button large',
-                ];
-                $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
+            $out = '';
+            
+            if( ! empty( $phone ) ) {
+                $out .= sprintf( '<li class="phone"><a href="%s">%s</a></li>', _s_format_telephone_url( $phone ), $phone );
             }
-    
+            
+            if( ! empty( $hours ) ) {
+                $out .= sprintf( '<li class="hours">%s</li>', $hours );
+            }
+            
+            if( ! empty( $out ) ) {
+                $out = sprintf( '<div class="content"><ul class="hours-phone">%s</ul></div>', $out );
+            }
+                
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell"><div class="hero-content">%s%s%s</div></div>
+                                <div class="cell large-8 large-offset-1"><div class="hero-content">%s%s</div></div>
                             </div></div>',
                             $heading,
-                            $description,
-                            $button
+                            $out
                          );
         }
     }

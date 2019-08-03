@@ -72,11 +72,12 @@ if( ! class_exists( 'Home_Why' ) ) {
             
             $nav_items = sprintf( '<nav id="full-screen-scroll-section-nav-1" class="full-screen-scroll-section-nav scroll-navigation-right" data-section="1">
                                    <ul>%s</ul>
-                                   </div>', 
+                                   </nav>', 
                                    join( '', $this->nav_items ) 
                                  );
             
-            return sprintf( '<div id="full-screen-scroll-section-1" class="full-screen-scroll-section" data-section="1">%s%s</div><a class="full-screen-page-load-link"></a>', 
+            return sprintf( '<div id="full-screen-scroll-section-1" class="full-screen-scroll-section" data-section="1">%s%s</div>
+                            <a class="full-screen-page-load-link"></a>', 
                                     join( '', $this->sections ), $nav_items );
         }
         
@@ -111,16 +112,18 @@ if( ! class_exists( 'Home_Why' ) ) {
                 return false;
             }
                       
-            $grid = sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell large-auto">%s</div>
-                                <div class="cell large-7 xlarge-6">
-                                    <div class="grid-item">
-                                        <header>%s</header>
-                                        %s
-                                        %s
+            $grid = sprintf( '<div class="grid-container">
+                                <div class="grid-x grid-margin-x align-middle">
+                                    <div class="cell large-auto">%s</div>
+                                    <div class="cell large-7 xlarge-6">
+                                        <div class="grid-item">
+                                            <header>%s</header>
+                                            %s
+                                            %s
+                                        </div>
                                     </div>
                                 </div>
-                            </div></div>', 
+                            </div>', 
                             $image,
                             $heading,
                             $description,
@@ -130,14 +133,17 @@ if( ! class_exists( 'Home_Why' ) ) {
             
             static $element = 1;
             
-            $this->sections[] = sprintf( '<div class="full-screen-scroll-section-element" data-section="1" data-element="%d">
+            $active = 1 === $element ? ' active' : '';
+            
+            $this->sections[] = sprintf( '<div class="full-screen-scroll-section-element%s" data-section="1" data-element="%d">
                                 <div id="full-screen-scroll-section-element-1-%d" class="hundred-percent-height hundred-percent-height-center-content hundred-percent-height-scrolling">
                                   <div class="fullwidth-center-content">%s</div>
                                 </div>
-                            </div>', $element, $element, $grid );
+                            </div>', $active, $element, $element, $grid );
                             
                             
-            $this->nav_items[] = sprintf( '<li><a href="#full-screen-scroll-section-element-1-%s" class="full-screen-scroll-section-link" data-element="%s" data-name="%s">
+            $this->nav_items[] = sprintf( '<li>
+                <a href="#full-screen-scroll-section-element-1-%s" class="full-screen-scroll-section-link" data-element="%s" data-name="%s">
             <span class="full-screen-scroll-section-link-number">%s</span></a>
         </li>', $element, $element, $row['grid_title'], str_pad( $element, 2, "0", STR_PAD_LEFT ) );                            
            

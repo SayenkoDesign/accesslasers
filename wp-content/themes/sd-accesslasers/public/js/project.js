@@ -673,6 +673,18 @@ __webpack_require__.r(__webpack_exports__);
      });
      */
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').addClass('window-loaded'); // Frontpage
+    // what
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-what .grid .grid-item').matchHeight({
+      row: true
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-what .grid header').matchHeight({
+      row: true
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-what .grid .description').matchHeight({
+      row: true
+    }); //$('.section-what .grid .grid-image').matchHeight({row:true});
+    // $('.section-what .grid footer').matchHeight({row:true});
     // Technologies
 
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid header').matchHeight({

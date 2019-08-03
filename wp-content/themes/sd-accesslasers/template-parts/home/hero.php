@@ -55,23 +55,47 @@ if( ! class_exists( 'Home_Hero' ) ) {
             }
             
             $this->add_render_attribute( 'wrapper', 'class', 'has-background' );
-            $this->add_render_attribute( 'wrapper', 'class', 'background-image' );
-            $this->add_render_attribute( 'wrapper', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
-            $this->add_render_attribute( 'wrapper', 'style', sprintf( 'background-position: %s %s;', 
+            $this->add_render_attribute( 'background', 'class', 'background-image' );
+            $this->add_render_attribute( 'background', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
+            $this->add_render_attribute( 'background', 'style', sprintf( 'background-position: %s %s;', 
                                                                       $background_position_x, $background_position_y ) );
             
             if( true == $background_overlay ) {
-                 $this->add_render_attribute( 'wrapper', 'class', 'background-overlay' ); 
+                 $this->add_render_attribute( 'background', 'class', 'background-overlay' ); 
             }
                                                                           
         }
+        
+        
+        /**
+	 * Before section rendering.
+	 *
+	 * Used to add stuff before the section element.
+	 *
+	 * @since 1.0.0
+	 * @access public
+	 */
+	public function before_render() {            
+        
+        $this->add_render_attribute( 'wrap', 'class', 'wrap' );
+        
+        $this->add_render_attribute( 'container', 'class', 'container' );
+        
+        return sprintf( '<%s %s><div %s></div><div %s><div %s>', 
+                        esc_html( $this->get_html_tag() ), 
+                        $this->get_render_attribute_string( 'wrapper' ),
+                        $this->get_render_attribute_string( 'background' ),
+                        $this->get_render_attribute_string( 'wrap' ),
+                        $this->get_render_attribute_string( 'container' )
+                        );
+    }
 
         
         // Add content
         public function render() {
             
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading = _s_format_string( $heading, 'h1' );
+            $heading = _s_format_string( $heading, 'h1', [ 'class' => 'h4' ] );
             
             $description = empty( $this->get_fields( 'description' ) ) ? '' : _s_format_string( $this->get_fields( 'description' ), 'p' );
             
@@ -86,7 +110,7 @@ if( ! class_exists( 'Home_Hero' ) ) {
                 $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
             }
     
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-padding-x align-bottom">
                                 <div class="cell"><div class="hero-content">%s%s%s</div></div>
                             </div></div>',
                             $heading,

@@ -46,20 +46,20 @@ if( ! class_exists( 'Home_What_Section' ) ) {
         public function render() {
             
             $superheading = $this->get_fields( 'superheading' ) ? $this->get_fields( 'superheading' ) : __( 'What we do?' );
-            $superheading = _s_format_string( $superheading, 'h5' );
+            $superheading = _s_format_string( $superheading, 'h6' );
             
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : '';
             $heading = _s_format_string( $heading, 'h2' );
             
-            $description = empty( $this->get_fields( 'description' ) ) ? '' : _s_format_string( $this->get_fields( 'description' ), 'p' );  
+            $description = $this->get_fields( 'description' );  
             
             $applications = $this->get_applications();  
             
             return sprintf( '<div class="grid-container">
                             <div class="grid-x grid-margin-x">
-                            <div class="cell large-6 large-offset-6">%s%s%s</div>
-                            </div>
-                        </div>%s',
+                            <div class="cell large-9 xxlarge-6 large-offset-3 xxlarge-offset-6">%s%s<div class="entry-content">%s</div></div>
+                            </div>%s
+                        </div>',
                             $superheading,
                             $heading,
                             $description,
@@ -106,7 +106,7 @@ if( ! class_exists( 'Home_What_Section' ) ) {
             
             wp_reset_postdata();
                         
-            return sprintf( '<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3 align-center grid" data-equalizer data-equalize-on="medium">%s</div>', 
+            return sprintf( '<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
                                     $out );
         }
         
@@ -124,17 +124,18 @@ if( ! class_exists( 'Home_What_Section' ) ) {
             }
                                                                     
             $icon = $row['icon'];
-            $icon = sprintf( '<div class="icon">%s</div>', _s_get_acf_image( $icon, 'thumbnail' ) );
-            $heading = _s_format_string( $row['heading'], 'h4', [ 'data-equalizer-watch' => 'true' ] ); 
+            $icon = sprintf( '<div class="grid-image">%s</div>', _s_get_acf_image( $icon, 'thumbnail' ) );
+            $heading = _s_format_string( $row['heading'], 'h3', [ 'class' => 'h5' ] ); 
             $description = _s_format_string( $row['description'], 'p' ); 
             
             if( ! $icon && ! $heading && ! $description ) {
                 return false;
             }
             
-            $link = sprintf( '<p><a href="%s"><span>%s</span></a></p>', get_the_permalink( $post_id ), __( 'learn more' ) );
+            $link = sprintf( '<p><span>%s</span></p>', __( 'learn more' ) );
            
-            return sprintf( '<div class="cell"><div class="grid-item">%s%s%s%s</div></div>', 
+            return sprintf( '<div class="cell"><a href="%s" class="grid-item">%s<header>%s</header><div class="description">%s</div><footer>%s</footer></a></div>', 
+                                get_the_permalink( $post_id ),
                                 $icon, 
                                 $heading,
                                 $description,

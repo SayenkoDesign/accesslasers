@@ -67,7 +67,7 @@
     include_once( 'acf/search.php' );
     
     // Load fields via PHP
-    //include_once( 'fields.php' );
+    // include_once( 'acf/fields.php' );
 
 
 /****************************************

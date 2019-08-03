@@ -102,7 +102,7 @@ if( ! class_exists( 'Leadership_People_Section' ) ) {
                array_push( $posts, $cta );
             }
                                                            
-            return sprintf( '<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
+            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
                                     join( '', $posts ) );
         }
         
