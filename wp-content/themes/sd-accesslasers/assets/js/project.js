@@ -12,7 +12,7 @@ import jqueryMatchHeight from 'jquery-match-height';
 // Custom Modules
 // import externalLinks from './modules/external-links';
 // import facetWp from './modules/facetwp';
-// import fixedHeader from './modules/fixed-header';
+import fixedHeader from './modules/fixed-header';
 import general from './modules/general';
 // import inlineSvg from './modules/inline-svg';
 // import modalVideo from './modules/modal-video';
@@ -31,7 +31,7 @@ import fullScreenScrollingSection from './modules/full-screen-scrolling-section'
 const modules = new ModuleLoader( {
 	// externalLinks,
 	// facetWp,
-	// fixedHeader,
+	fixedHeader,
 	general,
 	// inlineSvg,
 	// modalVideo,

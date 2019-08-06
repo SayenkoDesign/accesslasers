@@ -8,6 +8,10 @@ Home - Why
 if( ! class_exists( 'Home_Why' ) ) {
     class Home_Why extends Element_Section {
         
+        private $heading = '';
+        
+        private $button = '';
+        
         private $sections = [];
         
         private $nav_items = [];
@@ -17,7 +21,7 @@ if( ! class_exists( 'Home_Why' ) ) {
               
             $fields = get_field( 'why' );           
             $this->set_fields( $fields );
-            
+                        
             $settings = [];
             $this->set_settings( $settings );
             
@@ -46,10 +50,25 @@ if( ! class_exists( 'Home_Why' ) ) {
         // Add content
         public function render() {
             
-            $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading = _s_format_string( $heading, 'h1' );
+            $heading = $this->get_fields( 'heading' );
+            $this->heading = _s_format_string( $heading, 'h2', ['class'=> 'h6' ] );
+            
+            $button = $this->get_fields( 'button' );
                         
-            return $this->get_grid();
+            if( ! empty( $button['link'] ) ) {
+                                
+                $args = [
+                    'link' => $button['link'],
+                    'echo' => false,
+                    'classes' => 'Button' == $button['style'] ? 'button' : '',
+                ];
+                
+                $this->button = sprintf( '<p class="button-wrapper show-for-xxlarge">%s</p>', _s_acf_button( $args ) );
+            }
+                        
+            return sprintf( '<div class="hide-for-xxlarge"><div class="grid-container">
+                                <div class="grid-x grid-margin-x">
+                                    <div class="cell large-auto">%s</div></div></div></div>%s', $this->heading, $this->get_grid() );
                
         }
         
@@ -88,7 +107,7 @@ if( ! class_exists( 'Home_Why' ) ) {
                 return false;   
             }
                                                                     
-            $heading = _s_format_string( $row['grid_title'], 'h2', [ 'class' => 'h4' ] ); 
+            $heading = _s_format_string( $row['grid_title'], 'h3', [ 'class' => 'h4' ] ); 
             $description = _s_format_string( $row['grid_description'], 'p' );
             $image = $row['grid_image'];
             $image = sprintf( '<div class="photo">%s</div>', _s_get_acf_image( $image, 'large' ) );
@@ -113,11 +132,12 @@ if( ! class_exists( 'Home_Why' ) ) {
             }
                       
             $grid = sprintf( '<div class="grid-container">
-                                <div class="grid-x grid-margin-x align-middle">
+                                <div class="grid-x grid-margin-x">
                                     <div class="cell large-auto">%s</div>
                                     <div class="cell large-7 xlarge-6">
                                         <div class="grid-item">
-                                            <header>%s</header>
+                                            <header><div class="show-for-xxlarge">%s</div>%s</header>
+                                            %s
                                             %s
                                             %s
                                         </div>
@@ -125,9 +145,11 @@ if( ! class_exists( 'Home_Why' ) ) {
                                 </div>
                             </div>', 
                             $image,
+                            $this->heading,
                             $heading,
                             $description,
-                            $list
+                            $list,
+                            $this->button
                          );
                          
             

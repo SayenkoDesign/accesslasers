@@ -3,10 +3,14 @@ import $ from 'jquery';
 export default {
 	init() {
 		var fullScreenScrollingSectionVars = {
-          content_break_point: "1024",
+          content_break_point: "1200",
           container_hundred_percent_height_mobile: "0",
           is_sticky_header_ignored: "0"
         };
+        
+        function getStickyHeaderHeight(a) {
+            return $(".site-header.fixed").outerHeight();
+        }
         
         $(window).load(function() {
           // Check if page is already loaded scrolled, without anchor scroll script. If so, move to beginning of correct scrolling section.
@@ -144,9 +148,7 @@ export default {
                 .parents(".full-screen-scroll-section")
                 .find(".full-screen-scroll-section-element")
                 .removeClass("active");
-              
-              console.log(Math.ceil(scrollSection.offset().top) +
-                    $(window).height() * ($(this).data("element") - 1));
+             
               
               // Scroll to correct position of current section.
               $("html, body").animate(

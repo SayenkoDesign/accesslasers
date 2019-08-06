@@ -126,6 +126,32 @@ function onVideoPlayerReady(event) {
 
 /***/ }),
 
+/***/ "./assets/js/modules/fixed-header.js":
+/*!*******************************************!*\
+  !*** ./assets/js/modules/fixed-header.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  init: function init() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on("scroll", function () {
+      if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scrollTop() > 100) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sticky-header .site-header").addClass("fixed");
+      } else {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".sticky-header .site-header").removeClass("fixed");
+      }
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./assets/js/modules/foundation.js":
 /*!*****************************************!*\
   !*** ./assets/js/modules/foundation.js ***!
@@ -296,10 +322,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   init: function init() {
     var fullScreenScrollingSectionVars = {
-      content_break_point: "1024",
+      content_break_point: "1200",
       container_hundred_percent_height_mobile: "0",
       is_sticky_header_ignored: "0"
     };
+
+    function getStickyHeaderHeight(a) {
+      return jquery__WEBPACK_IMPORTED_MODULE_0___default()(".site-header.fixed").outerHeight();
+    }
+
     jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).load(function () {
       // Check if page is already loaded scrolled, without anchor scroll script. If so, move to beginning of correct scrolling section.
       if (jquery__WEBPACK_IMPORTED_MODULE_0___default()("#content").find(".full-screen-scroll-section").length && "undefined" === typeof jquery__WEBPACK_IMPORTED_MODULE_0___default()(".full-screen-page-load-link").attr("href")) {
@@ -367,8 +398,7 @@ __webpack_require__.r(__webpack_exports__);
           } // Add active class to the correct section element.
 
 
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parents(".full-screen-scroll-section").find(".full-screen-scroll-section-element").removeClass("active");
-          console.log(Math.ceil(scrollSection.offset().top) + jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height() * (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("element") - 1)); // Scroll to correct position of current section.
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).parents(".full-screen-scroll-section").find(".full-screen-scroll-section-element").removeClass("active"); // Scroll to correct position of current section.
 
           jquery__WEBPACK_IMPORTED_MODULE_0___default()("html, body").animate({
             scrollTop: Math.ceil(scrollSection.offset().top) + jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).height() * (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).data("element") - 1)
@@ -960,12 +990,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var what_input__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(what_input__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var jquery_match_height__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery-match-height */ "./node_modules/jquery-match-height/dist/jquery.matchHeight.js");
 /* harmony import */ var jquery_match_height__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery_match_height__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _modules_general__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/general */ "./assets/js/modules/general.js");
-/* harmony import */ var _modules_slick__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/slick */ "./assets/js/modules/slick.js");
-/* harmony import */ var _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/smooth-scroll */ "./assets/js/modules/smooth-scroll.js");
-/* harmony import */ var _modules_background_video__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/background-video */ "./assets/js/modules/background-video.js");
-/* harmony import */ var _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/accordion-fix */ "./assets/js/modules/accordion-fix.js");
-/* harmony import */ var _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/full-screen-scrolling-section */ "./assets/js/modules/full-screen-scrolling-section.js");
+/* harmony import */ var _modules_fixed_header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/fixed-header */ "./assets/js/modules/fixed-header.js");
+/* harmony import */ var _modules_general__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/general */ "./assets/js/modules/general.js");
+/* harmony import */ var _modules_slick__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/slick */ "./assets/js/modules/slick.js");
+/* harmony import */ var _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/smooth-scroll */ "./assets/js/modules/smooth-scroll.js");
+/* harmony import */ var _modules_background_video__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/background-video */ "./assets/js/modules/background-video.js");
+/* harmony import */ var _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion-fix */ "./assets/js/modules/accordion-fix.js");
+/* harmony import */ var _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/full-screen-scrolling-section */ "./assets/js/modules/full-screen-scrolling-section.js");
 
  // Foundation
 
@@ -978,7 +1009,7 @@ __webpack_require__.r(__webpack_exports__);
  // Custom Modules
 // import externalLinks from './modules/external-links';
 // import facetWp from './modules/facetwp';
-// import fixedHeader from './modules/fixed-header';
+
 
  // import inlineSvg from './modules/inline-svg';
 // import modalVideo from './modules/modal-video';
@@ -996,19 +1027,19 @@ __webpack_require__.r(__webpack_exports__);
 var modules = new _loader_ModuleLoader__WEBPACK_IMPORTED_MODULE_1__["default"]({
   // externalLinks,
   // facetWp,
-  // fixedHeader,
-  general: _modules_general__WEBPACK_IMPORTED_MODULE_5__["default"],
+  fixedHeader: _modules_fixed_header__WEBPACK_IMPORTED_MODULE_5__["default"],
+  general: _modules_general__WEBPACK_IMPORTED_MODULE_6__["default"],
   // inlineSvg,
   // modalVideo,
   // responsiveVideoEmbed,
   // search,
-  slick: _modules_slick__WEBPACK_IMPORTED_MODULE_6__["default"],
+  slick: _modules_slick__WEBPACK_IMPORTED_MODULE_7__["default"],
   //smoothScroll,
   // superfish
-  backgroundVideo: _modules_background_video__WEBPACK_IMPORTED_MODULE_8__["default"],
+  backgroundVideo: _modules_background_video__WEBPACK_IMPORTED_MODULE_9__["default"],
   //menuToggle,
-  accordionFix: _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_9__["default"],
-  fullScreenScrollingSection: _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_10__["default"]
+  accordionFix: _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_10__["default"],
+  fullScreenScrollingSection: _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_11__["default"]
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();

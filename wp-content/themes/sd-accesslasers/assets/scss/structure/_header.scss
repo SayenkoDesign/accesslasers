@@ -4,15 +4,60 @@ Header
 
 // Fix for sticky header
 .logged-in .site-header.fixed {
-	@include breakpoint(xlarge) {
-		top: 32px;
-	}
-}
 
-@include breakpoint(xlarge) {
-	.sticky-header {
-		// Set sticky header height as needed
-	}
+    @media screen and (min-width: 783px) and #{breakpoint(xlarge down)} {
+        top: 32px!important;
+    } 
+    
+    @media screen and (max-width: 782px) {
+        top: 46px!important;
+    } 
+
+ }
+ 
+
+.site-header {
+        
+    @include breakpoint(xlarge) {
+                        
+        &.fixed {
+            position: fixed!important;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 999;
+            background: linear-gradient(270deg, rgba(#ED4399,.8) 0%, rgba(#F9B02D, .9) 100%);
+                    background: $white;
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
+            
+            
+            .site-branding {
+                @include breakpoint(xlarge) {
+                    padding: rem-calc(10 0);
+                }   
+            }
+            
+            
+            .site-title {
+                width: rem-calc(249);
+            }
+            
+            
+            .nav-primary {
+                .menu .menu-item:not(.button) a {
+                    color: $dark-gray;
+                    
+                    &:after {
+                        background-color: $dark-gray;   
+                    }
+                }
+
+            }
+                
+        }
+            
+    }
 }
 
 .site-header {

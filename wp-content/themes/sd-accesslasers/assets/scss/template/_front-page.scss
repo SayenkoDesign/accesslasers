@@ -268,17 +268,54 @@
     
     
     section.section-home-why {
-        padding: 0!important
-        ;
+        
+        padding-bottom: rem-calc(75);
+        
+        @include breakpoint(xxlarge) {
+            padding: 0!important;
+        }
+        
         background-color: #ffffff!important;
         
         .full-screen-scroll-section-element {
-            padding: rem-calc(75 0);  
+            padding: rem-calc(75 0 0 0);  
+        }
+        
+        .cell {
+            position: relative;   
+            
+            margin-bottom: rem-calc(30);
+            
+            @include breakpoint(xxlarge) {
+                margin-bottom: 0;
+            }
+            
+            h2 {
+                
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 50px;
+                    height: 2px;
+                    background-color: $red;
+                    margin-top: rem-calc(20);
+                       
+                }
+            }
         }
                 
         .grid-item {
-            
+                        
             h2 {
+                
+                @include breakpoint(xxlarge) {
+                    margin-top: rem-calc(60);    
+                }
+                
+                margin-bottom: rem-calc(80);
+            }
+            
+            h3 {
                 margin-bottom: rem-calc(40);  
             }
             
@@ -295,9 +332,23 @@
             li {
                 font-size: rem-calc(18);
             }
+            
         }
         
-        @include breakpoint(xlarge) {
+        @include breakpoint(xxlarge) {
+            
+            .button {
+                display: none;   
+            }
+            
+            .full-screen-scroll-section.active .button {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                right: rem-calc(120); 
+                margin: 0;  
+            }
+            
             .full-screen-scroll-section-element {
                 padding: 0;  
             }
@@ -325,7 +376,85 @@
             
             .grid-item {
                 padding-left: 4vw;
-                padding-right: rem-calc(150);                   
+                padding-right: rem-calc(150);  
+                padding-bottom: rem-calc(100);                 
+            }
+        }
+    }
+    
+    
+    .section-technologies {
+        
+        h2 {
+            text-align: center;   
+        }
+        
+        .grid {
+            margin-top: rem-calc(80);   
+        }
+        
+        header {
+            
+            margin-bottom: rem-calc(40); 
+            padding: rem-calc(0 30 0);            
+        }
+        
+        .description {
+            padding: rem-calc( 0 30 0);
+            
+            p:last-of-type {
+                margin-bottom: 0;   
+            }
+        }
+        
+        .icon {
+            background-color: #fff;  
+            padding: rem-calc(50 50 85 50); 
+            margin-top: rem-calc(80);
+            position: relative;
+            
+            &:after {
+                content: '';
+                display: block;
+                width: 2px;
+                height: 80px;
+                background: $red;
+                position: absolute;
+                top: rem-calc(-40);
+                left: rem-calc(30);   
+            }
+            
+            svg {
+                width: 100%;
+                height: auto;   
+            }
+        }
+        
+        footer {
+            background-color: $red;  
+            padding: rem-calc(30); 
+            margin: rem-calc(-35) auto 0;
+            position: relative;
+            z-index: 3;
+            max-width: calc(100% - 60px);
+            
+            h6 {
+               opacity: 0.8;
+               color: #fff;
+               font-size: rem-calc(12); 
+               line-height: 1.25;
+               text-transform: uppercase;
+               font-weight: 700;
+            }
+            
+            ul {
+                @include bullets(#fff);  
+                margin-top: rem-calc(24); 
+                margin-bottom: 0;
+                
+                li {
+                    color: #fff;   
+                }
             }
         }
     }
