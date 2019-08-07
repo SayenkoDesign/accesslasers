@@ -28,7 +28,7 @@
         
         $navigation = _s_get_the_post_navigation( array( 'prev_text' => $previous, 'next_text' => $next ) );
         
-        printf( '<h3><span>%s</span></h3><div class="wrap text-center">%s%s</div>', 
+        printf( '<h3 class="h5"><span>%s</span></h3><div class="wrap text-center">%s%s</div>', 
                 __( 'Share This', '_s' ),
                 _s_get_addtoany_share_icons(),
                 $navigation  

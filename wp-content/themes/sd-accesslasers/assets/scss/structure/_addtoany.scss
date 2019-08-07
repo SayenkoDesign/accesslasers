@@ -3,7 +3,7 @@
 
 .share-icons {
     
-    $share-icon-size: 45;
+    $share-icon-size: 48;
 
 	margin: 0 auto 40px;
 	vertical-align: middle;
@@ -23,21 +23,29 @@
 			height: #{$share-icon-size}px;
 			display: block;
 			position: relative;
-            background-color: $red;
+            background-color: rgba(#010717, .1);
             border-radius: 50%;
-            color: #fff;
+            transition: 250ms;
 
             &:hover {
-                background-color: $gray;  
-               
-            }
+			    background-color: #010717;
+				border-radius: 50%;
+
+				&:hover {
+					svg {
+						fill: $white;
+					}
+				}
+			}
 		}
 		
 		svg {
             position: absolute;
             top: 50%;
             left: 50%;
-            height: 50%;
+            width: 28px;
+			height: auto;
+			fill: $dark-gray;
             transform: translate(-50%,-50%); 
         }
 	
