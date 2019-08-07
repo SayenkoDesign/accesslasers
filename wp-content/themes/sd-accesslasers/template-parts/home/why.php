@@ -40,7 +40,7 @@ if( ! class_exists( 'Home_Why' ) ) {
     
             $this->add_render_attribute(
                 'wrapper', 'class', [
-                     $this->get_name() . '-home-why'
+                     $this->get_name() . '-why'
                 ]
             ); 
         } 

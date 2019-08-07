@@ -54,12 +54,6 @@ if( ! class_exists( 'Hero_Post' ) ) {
                 }
             }
             
-            $logo = $this->get_fields( 'logo' ); 
-            if( ! empty( $logo ) ) {
-                $this->add_render_attribute( 'wrapper', 'class', 'has-logo' );
-            }
-            
-            
             $this->add_render_attribute( 'wrapper', 'class', 'has-background' );
             $this->add_render_attribute( 'wrapper', 'class', 'background-image' );
             $this->add_render_attribute( 'wrapper', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
@@ -75,19 +69,13 @@ if( ! class_exists( 'Hero_Post' ) ) {
         
         // Add content
         public function render() {
-            
-            $logo = $this->get_fields( 'logo' ); 
-            if( ! empty( $logo ) ) {
-                $logo = sprintf( '<span class="icon hide-for-xxlarge">%s</span>', _s_get_acf_image( $logo, 'thumbnail' ) );
-            }
-            
+                        
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
             $heading = _s_format_string( $heading, 'h1' );
     
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell"><div class="hero-content">%s%s</div></div>
+                                <div class="cell"><div class="hero-content">%s</div></div>
                             </div></div>',
-                            $logo, 
                             $heading
                          );
         }

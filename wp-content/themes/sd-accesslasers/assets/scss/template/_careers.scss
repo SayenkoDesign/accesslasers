@@ -1,0 +1,136 @@
+// Careers
+
+.template-careers {
+    
+    .section-hero {
+        padding: rem-calc(75 0);
+        text-align: center;
+        
+        background-color: $red;
+     
+        &.background-image {        
+            background-color: transparent;
+            background-size: cover;
+            position: relative;
+                    
+            &:after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: rgba( $dark-gray, .5);
+            }
+            
+            .wrap {
+                position: relative;
+                z-index: 3;   
+            }
+        } 
+        
+        .grid-x {
+            min-height: 25vw;   
+        }
+        
+        h1 {
+            color: #fff;    
+        }
+
+    }
+    
+    
+    .site-main {
+        padding-bottom: rem-calc(100);
+        
+        @include breakpoint(xxlarge) {
+            padding-bottom: rem-calc(150);
+        }
+    }
+    
+    
+    .section-benefits {
+        
+        background: $gray;
+        
+        padding-top: rem-calc(75);
+            
+        @include breakpoint(large) {
+            padding-top: rem-calc(150);
+        } 
+        
+        
+        h2 {
+            text-align: center;   
+        }
+        
+        .grid {
+            
+            padding-top: rem-calc(50);
+            
+            @include breakpoint(large) {
+                padding-top: rem-calc(100);
+            } 
+            
+            .cell {
+                
+                background: #fff;
+                
+                margin-bottom: rem-calc(map-get($grid-margin-gutters, small));
+                
+                @include breakpoint(large) {
+                    margin-bottom: rem-calc(map-get($grid-margin-gutters, large));
+                }   
+            }
+                     
+            .grid-item {
+                display: block;
+                position: relative;
+                
+                text-align: center;
+                
+                padding: rem-calc( 75 map-get($grid-margin-gutters, small));
+                padding-bottom: rem-calc(75); 
+                
+                @include breakpoint(large) {
+                    padding: rem-calc( 125 map-get($grid-margin-gutters, large)); 
+                    padding-bottom: rem-calc(75); 
+                }
+                
+                span {
+                    font-size: 20px;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+                    line-height: 24px;
+                    
+                    position: absolute;
+                    top: 50px;
+                    left: 50px
+                }
+                
+                .grid-image {
+                    margin-bottom: rem-calc(70);  
+                    color: $medium-gray;
+                    
+                    img,
+                    svg {
+                        max-width: rem-calc(120);   
+                        height: auto;
+                    }
+                }
+                
+                header {
+                    margin-bottom: rem-calc(40);   
+                }
+                
+                p {
+                    color: $dark-gray;   
+                }
+                
+            }
+            
+        }
+    }
+       
+}

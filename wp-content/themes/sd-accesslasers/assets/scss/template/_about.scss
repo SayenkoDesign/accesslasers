@@ -157,6 +157,12 @@
                 .grid-image {
                     margin-bottom: rem-calc(70);  
                     color: $medium-gray;
+                    
+                    img,
+                    svg {
+                        max-width: rem-calc(120);   
+                        height: auto;
+                    }
                 }
                 
                 header {

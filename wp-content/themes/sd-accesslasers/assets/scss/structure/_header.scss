@@ -27,6 +27,9 @@ Header
             width: rem-calc(249);
         }
     }
+    
+    position: relative;
+    z-index: 999;
         
     @include breakpoint(xlarge) {
                         

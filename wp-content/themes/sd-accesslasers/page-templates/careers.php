@@ -13,19 +13,17 @@ get_header(); ?>
 
 <?php
 _s_get_template_part( 'template-parts/careers', 'hero' );
-
-printf( '<div class="share-container show-for-xxlarge">%s</div>', _s_get_addtoany_share_icons() );
-
 ?>
 
 <div id="primary" class="content-area">
 
 	<main id="main" class="site-main" role="main">
 	<?php
-        _s_get_template_part( 'template-parts/careers', 'collage' );
-        _s_get_template_part( 'template-parts/careers', 'values' );
-        _s_get_template_part( 'template-parts/careers', 'testimonials' );
-        _s_get_template_part( 'template-parts/careers', 'jobs' );
+        _s_get_template_part( 'template-parts/careers', 'why' );
+       _s_get_template_part( 'template-parts/careers', 'benefits' );
+       //_s_get_template_part( 'template-parts/careers', 'jobs' );
+       //_s_get_template_part( 'template-parts/careers', 'testimonials' );
+        
 	?>
 	</main>
 

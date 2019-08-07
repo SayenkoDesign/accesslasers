@@ -1,8 +1,8 @@
 <?php
-// Project - Testimonial
+// Case Study - Testimonial
 
-if( ! class_exists( 'Project_Testimonial_Section' ) ) {
-    class Project_Testimonial_Section extends Element_Section {
+if( ! class_exists( 'Testimonial_Section' ) ) {
+    class Testimonial_Section extends Element_Section {
                         
         public function __construct() {
             parent::__construct();
@@ -42,17 +42,23 @@ if( ! class_exists( 'Project_Testimonial_Section' ) ) {
             $photo = $this->get_fields( 'photo' );
             $photo = _s_get_acf_image( $photo, 'medium' );
             $message = $this->get_fields( 'message' );
-            $name = _s_format_string( $this->get_fields( 'name' ), 'h4' );
+            
+            if( $this->get_fields( 'name' ) ) {
+            $name = _s_format_string( '- ' . $this->get_fields( 'name' ), 'h6' );
+            
+            }
             
             if( empty( $photo ) || empty( $message ) || empty( $name ) ) {
                 return false;
             }
+ 
             
-            $quote_mark = sprintf( '<div class="quote-mark"><span><img src="%sprojects/quote-icon.svg" /></span></div>', trailingslashit( THEME_IMG ) );
+            $quote_mark = sprintf( '<div class="quote-mark"><span><img src="%scase-studies/quote-icon.svg" /></span></div>', trailingslashit( THEME_IMG ) );
             
             $quote = sprintf( '<div class="quote">%s%s%s</div>', $quote_mark, $message, $name );
                 
-            return sprintf( '<div class="row large-unstack"><div class="column column-block">%s</div><div class="column column-block">%s</div></div>', $photo, $quote );
+            return sprintf( '<div class="grid-container fluid"><div class="grid-x grid-margin-x">    
+            <div class="cell large-5">%s</div><div class="cell large-auto">%s</div></div></div>', $photo, $quote );
            
         }
         
@@ -61,4 +67,4 @@ if( ! class_exists( 'Project_Testimonial_Section' ) ) {
     }
 }
    
-new Project_Testimonial_Section;
+new Testimonial_Section;
