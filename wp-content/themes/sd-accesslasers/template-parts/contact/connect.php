@@ -11,7 +11,7 @@ if( ! class_exists( 'Contact_Connect_Section' ) ) {
             $this->set_fields( $fields );
                                     
             // Render the section
-            if( empty( $this->render() ) ) {   
+            if( empty( $this->get_fields( 'form' ) ) ) {   
                 return;
             }
             
@@ -54,8 +54,9 @@ if( ! class_exists( 'Contact_Connect_Section' ) ) {
             
             $form_id = absint( $this->get_fields( 'form' ) ); 
             $form = GFAPI::get_form( $form_id );
+            $out = '';
             if( false !== $form ) {
-               $form = do_shortcode( sprintf( '[gravityform id="%s" title="false" description="false" ajax="false"]', $form_id ) );
+               $out = do_shortcode( sprintf( '[gravityform id="%s" title="false" description="false" ajax="false"]', $form_id ) );
             }
             
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
@@ -63,8 +64,12 @@ if( ! class_exists( 'Contact_Connect_Section' ) ) {
                             </div></div>',
                             $heading,
                             $subheading,
-                            $form
+                            $out
                          );
+            
+        }
+        
+        private function content() {
             
         }
         
