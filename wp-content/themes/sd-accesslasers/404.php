@@ -25,7 +25,7 @@ _s_get_template_part( 'template-parts/404', 'hero' );
                     <?php
                     the_field( 'error_404_content', 'option' );
                     ?>
-                    <p class="button-container"><a href="/" class="button"><?php _e( 'Back to home', '_s' ); ?></a></p>
+                    <p class="button-wrapper"><a href="/" class="button"><?php _e( 'Back to home', '_s' ); ?></a></p>
 				</div><!-- .page-content -->
             </main>
         
