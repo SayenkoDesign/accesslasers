@@ -4,10 +4,12 @@
 if( ! class_exists( 'Leadership_People_Section' ) ) {
     class Leadership_People_Section extends Element_Section {
         
+        private static $section_counter = 0;        
         var $post_type = 'people';
         
         public function __construct() {
-            parent::__construct();      
+            parent::__construct(); 
+            self::$section_counter++;     
         }
               
         // Add default attributes to section        
@@ -24,7 +26,7 @@ if( ! class_exists( 'Leadership_People_Section' ) ) {
 
             $this->add_render_attribute(
                 'wrapper', 'id', [
-                     $this->get_name() . '-people'
+                     $this->get_name() . '-people-' . self::$section_counter
                 ], true
             );            
             
@@ -102,7 +104,7 @@ if( ! class_exists( 'Leadership_People_Section' ) ) {
                array_push( $posts, $cta );
             }
                                                            
-            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
+            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 xlarge-up-3 align-center grid">%s</div>', 
                                     join( '', $posts ) );
         }
         
@@ -110,7 +112,7 @@ if( ! class_exists( 'Leadership_People_Section' ) ) {
         
         private function get_person() {
                      
-            $thumbnail = sprintf( ' style="background-image: url(%s)"', get_the_post_thumbnail_url( get_the_ID(), 'medium' ) );
+            $thumbnail = sprintf( ' style="background-image: url(%s)"', get_the_post_thumbnail_url( get_the_ID(), 'large' ) );
             $thumbnail = sprintf( '<div class="thumbnail"%s></div>', $thumbnail );
             
             $position  = get_field( 'position' );
@@ -121,16 +123,18 @@ if( ! class_exists( 'Leadership_People_Section' ) ) {
                 $linkedin = sprintf( '<a href="%s" class="linkedin">%s</a>', $linkedin, get_svg( 'linkedin' ) );
             }
                         
-            $heading = the_title( '<h4>', '</h4>', false ); 
+            $heading = the_title( '<h3 class="h5">', '</h3>', false ); 
+            
+            $line = '<div class="line"></div>';
                                                              
             return sprintf( '<div class="cell">
                                 <div class="grid-item">
-                                    <div class="grid-image">%s</div>
-                                    <header>%s%s</header>
-                                    <footer>%s</footer>
+                                    <div class="grid-image">%s<header>%s%s%s%s</header></div>
+                                    
                                 </div>
                             </div>', 
                             $thumbnail,
+                            $line,
                             $heading,
                             $position,
                             $linkedin
@@ -169,12 +173,16 @@ if( ! class_exists( 'Leadership_People_Section' ) ) {
 $fields = get_field( 'people' );
 
 if( ! empty( $fields ) ) {
+    
+    echo '<div class="section-people-group">';
+    
     foreach( $fields as $key => $field ) {
         $section = new Leadership_People_Section();
         $section->set_fields( $field );
-        $section->add_render_attribute( 'wrapper', 'class', $section->get_name() . '-people' ); 
         $section->render();
         $section->print_element();  
 
     }
+    
+    echo '</div>';
 }

@@ -5,15 +5,20 @@
 
 body .gform_wrapper {
 
-	* {
-		font-size: rem-calc(14) !important;
-	}
-
 	ul.gform_fields {
 		@include breakpoint(641) {
 			margin-right: -16px !important;
 		}
 	}
+    
+    .gfield_label {
+        color: $dark-gray;
+        font-size: 13px!important;
+        font-weight: 900!important;
+        letter-spacing: 1px;
+        line-height: 16px!important;
+        text-transform: uppercase;
+    }
 
 	// Standard fields
 	input[type='text'],
@@ -25,11 +30,11 @@ body .gform_wrapper {
 	input[type='file'],
 	textarea,
 	select {
-		//background: transparentize(#fff, 0.7);
+		background: transparent;
 		//color: $black !important;
 		//font-size: rem-calc(16);
-		//border: none;
-		padding: rem-calc(5 10) !important;
+		border: 1px solid #CADADE;
+		padding: rem-calc(15 10 15 24) !important;
 	}
 
 	textarea {
@@ -38,19 +43,22 @@ body .gform_wrapper {
 
 
 	select {
-		padding: rem-calc(5 15) !important;
+		padding: rem-calc(14.5 30 12 14.5) !important;
 		-webkit-appearance: none;
 		-webkit-border-radius: 0px;
 		background-image: url("data:image/svg+xml;utf8,<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='24' height='24' viewBox='0 0 24 24'><path fill='%23444444' d='M7.406 7.828l4.594 4.594 4.594-4.594 1.406 1.406-6 6-6-6z'></path></svg>");
 		background-position: 99.8% 50%;
 		background-repeat: no-repeat;
+        background-size: 24px;
 		width: 100%;
 	}
 
 	::placeholder {
-		color: $black;
-		opacity: 1;
-		font-size: rem-calc(14);
+        color: $medium-gray;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 18px;
+        padding-left: 24px;
 	}
 
 	.field_description_below .gfield_description {
@@ -86,7 +94,7 @@ body .gform_wrapper {
 	}
 
 	ul.gform_fields li.gfield.gfield_error + li.gfield.gfield_error {
-		margin-top: 0;
+		//margin-top: 0;
 	}
 
 	.validation_message,
@@ -96,6 +104,12 @@ body .gform_wrapper {
 
 	.button {
 		@include button(false, $primary-color);
+        max-width: 100%;
+        width: 100%;
 	}
+    
+    .gform_footer {
+        
+    }
 
 }

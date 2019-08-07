@@ -41,8 +41,9 @@
                     <?php
                     $site_url = home_url();
                     $logo = sprintf('<img src="%slogo.png" alt="site logo" class="logo" />', trailingslashit( THEME_IMG ) );  
-                    $logo_white = sprintf('<img src="%slogo-white.png" alt="site logo" class="logo-white hide" aria-hidden="true" />', 
+                    $logo_white = sprintf('<img src="%slogo-white.png" alt="site logo" class="logo-white" aria-hidden="true" />', 
                                             trailingslashit( THEME_IMG ) ); 
+
                     printf('<a href="%s" title="%s">%s%s</a>',
                             $site_url, 
                             get_bloginfo( 'name' ), 

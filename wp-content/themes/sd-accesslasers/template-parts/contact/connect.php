@@ -1,13 +1,13 @@
 <?php
-// About - Mission
+// Contact - Connect
 
-if( ! class_exists( 'About_Mission_Section' ) ) {
-    class About_Mission_Section extends Element_Section {
+if( ! class_exists( 'Contact_Connect_Section' ) ) {
+    class Contact_Connect_Section extends Element_Section {
         
         public function __construct() {
             parent::__construct();
                                     
-            $fields = get_field( 'mission' );
+            $fields = get_field( 'connect' );
             $this->set_fields( $fields );
                                     
             // Render the section
@@ -28,13 +28,13 @@ if( ! class_exists( 'About_Mission_Section' ) ) {
     
             $this->add_render_attribute(
                 'wrapper', 'class', [
-                     $this->get_name() . '-mission',
+                     $this->get_name() . '-connect',
                 ]
             ); 
             
             $this->add_render_attribute(
                 'wrapper', 'id', [
-                     $this->get_name() . '-mission',
+                     $this->get_name() . '-connect',
                 ],
                 true
             ); 
@@ -48,13 +48,22 @@ if( ! class_exists( 'About_Mission_Section' ) ) {
             
             $heading = $this->get_fields( 'heading' );
             $heading = _s_format_string( $heading, 'h2' );
-            $content = $this->get_fields( 'content' );
+            
+            $subheading = $this->get_fields( 'subheading' );
+            $subheading = _s_format_string( $subheading, 'p' );
+            
+            $form_id = absint( $this->get_fields( 'form' ) ); 
+            $form = GFAPI::get_form( $form_id );
+            if( false !== $form ) {
+               $form = do_shortcode( sprintf( '[gravityform id="%s" title="false" description="false" ajax="false"]', $form_id ) );
+            }
             
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell"><div class="entry-content">%s%s</div></div>
+                                <div class="cell"><div class="entry-content">%s%s%s</div></div>
                             </div></div>',
                             $heading,
-                            $content
+                            $subheading,
+                            $form
                          );
             
         }
@@ -62,4 +71,4 @@ if( ! class_exists( 'About_Mission_Section' ) ) {
     }
 }
    
-new About_Mission_Section;
+new Contact_Connect_Section;

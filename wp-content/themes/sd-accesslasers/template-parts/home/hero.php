@@ -81,11 +81,14 @@ if( ! class_exists( 'Home_Hero' ) ) {
         
         $this->add_render_attribute( 'container', 'class', 'container' );
         
-        return sprintf( '<%s %s><div %s></div><div %s><div %s>', 
+        $arrow = sprintf( '<a href="#section-what" data-smooth-scroll data-offset="40"><img src="%sicons/arrow-down-white.svg" class="arrow-down" /></a>', trailingslashit( THEME_IMG ) );
+        
+        return sprintf( '<%s %s><div %s></div><div %s>%s<div %s>', 
                         esc_html( $this->get_html_tag() ), 
                         $this->get_render_attribute_string( 'wrapper' ),
                         $this->get_render_attribute_string( 'background' ),
                         $this->get_render_attribute_string( 'wrap' ),
+                        $arrow,
                         $this->get_render_attribute_string( 'container' )
                         );
     }

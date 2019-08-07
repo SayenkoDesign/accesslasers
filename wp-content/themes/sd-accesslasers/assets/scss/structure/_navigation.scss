@@ -81,6 +81,10 @@
                 color: $dark-gray;
                 padding: $global-menu-padding;
             }
+            
+            &:hover {
+                color: $red;   
+            }
 
 		}
 	}

@@ -9,11 +9,65 @@
         background: linear-gradient(to left, #fff 50%, $dark-gray 50%);   
     }
     
+    .copyright {
+        
+        margin-top: rem-calc(75);
+        
+        @include breakpoint(xlarge) {
+            margin-top: rem-calc(300);
+        }
+        
+        
+        p {
+            color: #CADADE;
+            font-size: rem-calc(15);
+            line-height: 1.866666667;  
+            
+            a {
+                text-decoration: underline;
+                color: #CADADE;
+                
+                &:hover {
+                    color: $red;   
+                }
+            }
+            
+            span {
+                display: block;   
+            }
+        }
+    }
+    
+    .hours-phone-directions {
+         margin-top: rem-calc(160);
+         
+         @include breakpoint(xlarge) {
+            
+            li {
+                
+                &:first-child {
+                    margin-right: auto;   
+                }
+                                
+                &:last-child {
+                    margin-left: auto; 
+                    padding-right: 0;  
+                }
+                
+                
+            }
+            
+            
+        }
+    }
+    
     .left {
         padding-top: rem-calc(50); 
+        padding-bottom: rem-calc(50);
         background-color: $dark-gray;  
         
         @include breakpoint(large) {
+            padding-bottom: rem-calc(25);
             padding-top: rem-calc(100);
         }
     }
@@ -21,9 +75,11 @@
     .right {
        background-color: #fff; 
        
-       padding-top: rem-calc(50);   
+       padding-top: rem-calc(50);  
+       padding-bottom: rem-calc(50); 
         
         @include breakpoint(large) {
+            padding-bottom: rem-calc(25);
             padding-top: rem-calc(100);
         }
        
@@ -54,18 +110,23 @@
     }
 
 	.widget {
-		color: $white;
+        
+        margin-bottom: rem-calc(35);
 
 		.widget-title {
             color: $white;
 			font-size: rem-calc(20);
 		}
+        
+        p {
+           color: #CADADE;
+			font-size: rem-calc(15);
+			line-height: 1.2; 
+            margin-bottom: rem-calc(15);
+        }
 	}
 
 	.widget_nav_menu {
-		.widget-title {
-			margin-bottom: 0;
-		}
 
 		.menu {
 			margin: 0;
@@ -75,44 +136,49 @@
 
 		.menu-item {
 			display: block;
+            margin-bottom: rem-calc(14);
 		}
 
 		a {
-			color: $white;
-			font-size: $global-font-size;
-			line-height: 24px;
+			color: #CADADE;
+			font-size: rem-calc(15);
+			line-height: 1.2;
 			padding: 0;
+            
+            &:hover {
+                color: $red;   
+            }
 		}
 	}
 
 	.social-icons {
 
 		@include list-reset;
-		height: 24px;
-		margin-bottom: 30px;
+		height: 48px;
+		margin-bottom: rem-calc(30);
 
 		li {
 			display: inline-block;
-			padding: 0 16px 0 0;
-			height: 24px;
+			padding: rem-calc(0 15 30 0);
+			height: 48px;
 
 			@include breakpoint(large) {
-				padding: 0 0 0 15px;
+				padding: rem-calc(0 30 30 0);
 			}
 
 		}
 
 		a {
 			transition: 250ms;
-			width: 24px;
-			height: 24px;
+			width: 48px;
+			height: 48px;
 			display: block;
-			background-color: $primary-color;
+		    background-color: rgba(#010717, .1);
 			border-radius: 50%;
 			position: relative;
 
 			&:hover {
-				background-color: $primary-color;
+			    background-color: #010717;
 				border-radius: 50%;
 
 				&:hover {
@@ -124,21 +190,13 @@
 		}
 
 		svg {
-			width: 18px;
-			height: 18px;
-			fill: $white;
+			width: 28px;
+			height: auto;
+			fill: $dark-gray;
 			position: absolute;
 			top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
-		}
-
-
-		@include breakpoint(medium) {
-			li {
-				padding: 0 15px 0 0;
-
-			}
 		}
 
 	}

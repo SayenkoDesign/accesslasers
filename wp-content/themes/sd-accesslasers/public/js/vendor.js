@@ -4243,6 +4243,165 @@ Reveal.defaults = {
 
 /***/ }),
 
+/***/ "./node_modules/foundation-sites/js/foundation.smoothScroll.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/foundation-sites/js/foundation.smoothScroll.js ***!
+  \*********************************************************************/
+/*! exports provided: SmoothScroll */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SmoothScroll", function() { return SmoothScroll; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./foundation.core.utils */ "./node_modules/foundation-sites/js/foundation.core.utils.js");
+/* harmony import */ var _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./foundation.core.plugin */ "./node_modules/foundation-sites/js/foundation.core.plugin.js");
+
+
+
+
+/**
+ * SmoothScroll module.
+ * @module foundation.smooth-scroll
+ */
+class SmoothScroll extends _foundation_core_plugin__WEBPACK_IMPORTED_MODULE_2__["Plugin"] {
+  /**
+   * Creates a new instance of SmoothScroll.
+   * @class
+   * @name SmoothScroll
+   * @fires SmoothScroll#init
+   * @param {Object} element - jQuery object to add the trigger to.
+   * @param {Object} options - Overrides to the default plugin settings.
+   */
+    _setup(element, options) {
+        this.$element = element;
+        this.options = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.extend({}, SmoothScroll.defaults, this.$element.data(), options);
+        this.className = 'SmoothScroll'; // ie9 back compat
+
+        this._init();
+    }
+
+    /**
+     * Initialize the SmoothScroll plugin
+     * @private
+     */
+    _init() {
+        const id = this.$element[0].id || Object(_foundation_core_utils__WEBPACK_IMPORTED_MODULE_1__["GetYoDigits"])(6, 'smooth-scroll');
+        this.$element.attr({ id });
+
+        this._events();
+    }
+
+    /**
+     * Initializes events for SmoothScroll.
+     * @private
+     */
+    _events() {
+        this._linkClickListener = this._handleLinkClick.bind(this);
+        this.$element.on('click.zf.smoothScroll', this._linkClickListener);
+        this.$element.on('click.zf.smoothScroll', 'a[href^="#"]', this._linkClickListener);
+    }
+
+    /**
+     * Handle the given event to smoothly scroll to the anchor pointed by the event target.
+     * @param {*} e - event
+     * @function
+     * @private
+     */
+    _handleLinkClick(e) {
+        // Follow the link if it does not point to an anchor.
+        if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.currentTarget).is('a[href^="#"]')) return;
+
+        const arrival = e.currentTarget.getAttribute('href');
+
+        this._inTransition = true;
+
+        SmoothScroll.scrollToLoc(arrival, this.options, () => {
+            this._inTransition = false;
+        });
+
+        e.preventDefault();
+    };
+
+    /**
+     * Function to scroll to a given location on the page.
+     * @param {String} loc - A properly formatted jQuery id selector. Example: '#foo'
+     * @param {Object} options - The options to use.
+     * @param {Function} callback - The callback function.
+     * @static
+     * @function
+     */
+    static scrollToLoc(loc, options = SmoothScroll.defaults, callback) {
+        const $loc = jquery__WEBPACK_IMPORTED_MODULE_0___default()(loc);
+
+        // Do nothing if target does not exist to prevent errors
+        if (!$loc.length) return false;
+
+        var scrollPos = Math.round($loc.offset().top - options.threshold / 2 - options.offset);
+
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').stop(true).animate(
+            { scrollTop: scrollPos },
+            options.animationDuration,
+            options.animationEasing,
+            () => {
+                if (typeof callback === 'function'){
+                    callback();
+                }
+            }
+        );
+    }
+
+    /**
+     * Destroys the SmoothScroll instance.
+     * @function
+     */
+    _destroy() {
+        this.$element.off('click.zf.smoothScroll', this._linkClickListener)
+        this.$element.off('click.zf.smoothScroll', 'a[href^="#"]', this._linkClickListener);
+    }
+}
+
+/**
+ * Default settings for plugin.
+ */
+SmoothScroll.defaults = {
+  /**
+   * Amount of time, in ms, the animated scrolling should take between locations.
+   * @option
+   * @type {number}
+   * @default 500
+   */
+  animationDuration: 500,
+  /**
+   * Animation style to use when scrolling between locations. Can be `'swing'` or `'linear'`.
+   * @option
+   * @type {string}
+   * @default 'linear'
+   * @see {@link https://api.jquery.com/animate|Jquery animate}
+   */
+  animationEasing: 'linear',
+  /**
+   * Number of pixels to use as a marker for location changes.
+   * @option
+   * @type {number}
+   * @default 50
+   */
+  threshold: 50,
+  /**
+   * Number of pixels to offset the scroll of the page on item click if using a sticky nav bar.
+   * @option
+   * @type {number}
+   * @default 0
+   */
+  offset: 0
+}
+
+
+
+
+/***/ }),
+
 /***/ "./node_modules/foundation-sites/js/foundation.tabs.js":
 /*!*************************************************************!*\
   !*** ./node_modules/foundation-sites/js/foundation.tabs.js ***!

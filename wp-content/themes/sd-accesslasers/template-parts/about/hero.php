@@ -86,8 +86,8 @@ if( ! class_exists( 'About_Hero' ) ) {
                 $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
             }
     
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell"><div class="hero-content">%s%s%s</div></div>
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x">
+                                <div class="cell large-8 large-offset-1"><div class="hero-content">%s%s%s</div></div>
                             </div></div>',
                             $heading,
                             $description,

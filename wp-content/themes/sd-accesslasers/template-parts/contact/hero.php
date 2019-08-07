@@ -83,11 +83,11 @@ if( ! class_exists( 'About_Hero' ) ) {
             }
             
             if( ! empty( $hours ) ) {
-                $out .= sprintf( '<li class="hours">%s</li>', $hours );
+                $out .= sprintf( '<li class="hours"><span>%s</span></li>', $hours );
             }
             
             if( ! empty( $out ) ) {
-                $out = sprintf( '<div class="content"><ul class="hours-phone">%s</ul></div>', $out );
+                $out = sprintf( '<div class="content"><ul class="hours-phone-directions">%s</ul></div>', $out );
             }
                 
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">

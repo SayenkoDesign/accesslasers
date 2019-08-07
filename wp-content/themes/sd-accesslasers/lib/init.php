@@ -41,7 +41,7 @@
 
 	include_once( 'functions/menus.php' );
 
-	// include_once( 'functions/gravity-forms.php' );
+	include_once( 'functions/gravity-forms.php' );
 
     include_once( 'functions/blog.php' );
 
@@ -92,7 +92,7 @@ include_once( 'foundation/class-foundation-tabs.php' );
     include_once( 'post-types/cpt-application.php' );
     include_once( 'post-types/cpt-case-study.php' );
     include_once( 'post-types/cpt-history.php' );
-    //include_once( 'post-types/cpt-job.php' );
+    include_once( 'post-types/cpt-testimonial.php' );
     include_once( 'post-types/cpt-people.php' );
     include_once( 'post-types/cpt-product.php' );
     include_once( 'post-types/cpt-faq.php' );

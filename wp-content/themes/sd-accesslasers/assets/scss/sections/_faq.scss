@@ -1,9 +1,29 @@
 // FAQ
 
 .section-faq {
-        background-color: transparent;
-        padding: rem-calc(100 0 100); 
         background: $gray; 
+        
+        padding-top: rem-calc(75);
+            
+        @include breakpoint(xlarge) {
+            padding-top: rem-calc(150);
+        }
+        
+        padding-bottom: rem-calc(100);
+            
+        @include breakpoint(xlarge) {
+            padding-bottom: rem-calc(150);
+        }
+        
+        h2 {
+            text-align: center;
+            
+            margin-bottom: rem-calc(60);  
+            
+            @include breakpoint(xxlarge) {
+                margin-bottom: rem-calc(120);
+            }
+        }
         
         .accordion-filter {
            > .accordion-item {

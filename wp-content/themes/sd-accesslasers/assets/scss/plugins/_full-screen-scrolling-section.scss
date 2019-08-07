@@ -64,8 +64,10 @@
 }
 
 .full-screen-scroll-section.active .full-screen-scroll-section-nav {
-    display: block;
-    opacity: 1;
+    @include breakpoint(xxlarge) {
+        display: block;
+        opacity: 1;   
+    }
 }
 
 .full-screen-scroll-section-nav ul {

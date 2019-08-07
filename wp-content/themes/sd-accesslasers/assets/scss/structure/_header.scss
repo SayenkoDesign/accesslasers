@@ -17,6 +17,16 @@ Header
  
 
 .site-header {
+    
+    .logo-white {
+        display: none;   
+    }
+    
+    @include breakpoint(large down) {
+        .site-title {
+            width: rem-calc(249);
+        }
+    }
         
     @include breakpoint(xlarge) {
                         
@@ -27,15 +37,22 @@ Header
             right: 0;
             width: 100%;
             z-index: 999;
-            background: linear-gradient(270deg, rgba(#ED4399,.8) 0%, rgba(#F9B02D, .9) 100%);
-                    background: $white;
-                    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
+            background: $white!important;
+            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.3);
             
             
             .site-branding {
                 @include breakpoint(xlarge) {
                     padding: rem-calc(10 0);
                 }   
+            }
+            
+            .logo-white {
+                display: none!important;   
+            }
+            
+            .logo {
+                display: block!important;   
             }
             
             
@@ -45,16 +62,77 @@ Header
             
             
             .nav-primary {
-                .menu .menu-item:not(.button) a {
-                    color: $dark-gray;
+                .menu > .menu-item:not(.button) > a {
+                    color: $dark-gray!important;
                     
-                    &:after {
-                        background-color: $dark-gray;   
+                    &:hover {
+                        color: $red!important;   
                     }
                 }
 
             }
                 
+        }
+        
+        .pinned-header & {
+            background: transparent;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            
+            .logo-white {
+                display: block;   
+            }
+            
+            .logo {
+                display: none;   
+            }
+            
+            .nav-primary {
+                .menu > .menu-item:not(.button) > a {
+                    color: #ffffff;
+                    
+                    &:hover {
+                        color: $red;   
+                    }
+                }
+            }
+            
+            #secondary-menu {
+                
+                .menu-item:not(.button) > a {
+                    &:hover {
+                        color: $red;   
+                    }
+                }
+                
+                .menu-item.lets-talk {            
+            
+                    @include breakpoint(xlarge) {
+                        a {
+                            @include button(false, $white, $white, $white, 'hollow');
+                            display: block;
+                            margin-bottom: 0;
+                            padding-top: rem-calc(11.5);
+                            padding-bottom: rem-calc(11.5);
+                            
+                            &:hover {
+                                @include button(false, $red, $red, $white );
+                                color: #fff!important;
+                                display: block;
+                                margin-bottom: 0;
+                                padding-top: rem-calc(11.5);
+                                padding-bottom: rem-calc(11.5);
+                            }
+                        }
+                            
+                    }
+                    
+                }
+                
+           }
         }
             
     }
@@ -113,10 +191,10 @@ Header
 		@include hamburger($black, $black, 28px, 24px, 3px, 3);
 		position: absolute;
 		top: 22px;
-		right: 21px;
+		right: 20px;
 		@include breakpoint(medium) {
-			top: 36px;
-			right: 46px;
+			top: 22px;
+		    right: 20px;
 		}
 
 		@include breakpoint(xlarge) {

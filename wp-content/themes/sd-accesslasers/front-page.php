@@ -9,7 +9,7 @@
 
 add_filter( 'body_class', function ( $classes ) {
 	unset( $classes[ array_search( 'page-template-default', $classes ) ] );
-
+    $classes[] = 'pinned-header';
 	// $classes[] = '';
 	return $classes;
 }, 99 );

@@ -26,7 +26,7 @@ import { ResponsiveMenu } from 'foundation-sites/js/foundation.responsiveMenu';
 import { ResponsiveToggle } from 'foundation-sites/js/foundation.responsiveToggle';
 import { Reveal } from 'foundation-sites/js/foundation.reveal';
 // import { Slider } from 'foundation-sites/js/foundation.slider';
-// import { SmoothScroll } from 'foundation-sites/js/foundation.smoothScroll';
+import { SmoothScroll } from 'foundation-sites/js/foundation.smoothScroll';
 // import { Sticky } from 'foundation-sites/js/foundation.sticky';
 import { Tabs } from 'foundation-sites/js/foundation.tabs';
 import { Toggler } from 'foundation-sites/js/foundation.toggler';
@@ -73,7 +73,7 @@ Foundation.plugin(ResponsiveMenu, 'ResponsiveMenu');
 Foundation.plugin(ResponsiveToggle, 'ResponsiveToggle');
 Foundation.plugin(Reveal, 'Reveal');
 // Foundation.plugin(Slider, 'Slider');
-// Foundation.plugin(SmoothScroll, 'SmoothScroll');
+Foundation.plugin(SmoothScroll, 'SmoothScroll');
 // Foundation.plugin(Sticky, 'Sticky');
 Foundation.plugin(Tabs, 'Tabs');
 Foundation.plugin(Toggler, 'Toggler');
@@ -107,7 +107,7 @@ export {
 	ResponsiveToggle,
 	Reveal,
 	// Slider,
-	// SmoothScroll,
+	SmoothScroll,
 	// Sticky,
 	Tabs,
 	Toggler,

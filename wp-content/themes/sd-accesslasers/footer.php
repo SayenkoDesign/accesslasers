@@ -18,21 +18,7 @@
     
         <div class="grid-container">
           <div class="grid-x grid-padding-x">
-            <div class="left cell large-4 xxlarge-6 xxxlarge-4">
-                <div class="grid-x grid-margin-x">
-                <?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
-					<div class="cell xsmall-12 small-6 large-12 xxlarge-auto sidebar-footer sidebar-footer-1" role="complementary">
-						<?php dynamic_sidebar( 'footer-1' ); ?>
-					</div><!-- #primary-sidebar -->
-				<?php endif; ?>
-                <?php if ( is_active_sidebar( 'footer-2' ) ) : ?>
-					<div class="cell xsmall-12 small-6 large-12 xxlarge-auto sidebar-footer sidebar-footer-2" role="complementary">
-						<?php dynamic_sidebar( 'footer-2' ); ?>
-					</div><!-- #primary-sidebar -->
-				<?php endif; ?>
-                </div>
-            </div>
-            <div class="right cell large-auto">
+            <div class="right cell large-auto large-order-2">
             <?php
             $footer_cta = get_field( 'footer_cta', 'option' );
             $heading = $button = '';
@@ -60,7 +46,7 @@
             $out = '';
             
             if( ! empty( $hours ) ) {
-                $out .= sprintf( '<li class="hours">%s</li>', $hours );
+                $out .= sprintf( '<li class="hours"><span>%s</span></li>', $hours );
             }
             
             if( ! empty( $phone ) ) {
@@ -85,6 +71,54 @@
             ?>
             
             </div>
+            <div class="left cell large-4 xxlarge-5 xxxlarge-5 large-order-1">
+                <div class="grid-x grid-margin-x">
+                <?php if ( is_active_sidebar( 'footer-1' ) ) : ?>
+					<div class="cell xsmall-12 small-6 large-12 xxlarge-auto sidebar-footer sidebar-footer-1" role="complementary">
+						<?php dynamic_sidebar( 'footer-1' ); ?>
+					</div><!-- #primary-sidebar -->
+				<?php endif; ?>
+                <?php if ( is_active_sidebar( 'footer-2' ) ) : ?>
+					<div class="cell xsmall-12 small-6 large-12 xxlarge-auto sidebar-footer sidebar-footer-2" role="complementary">
+						<?php dynamic_sidebar( 'footer-2' ); ?>
+					</div><!-- #primary-sidebar -->
+				<?php endif; ?>
+                </div>
+                <div class="grid-x grid-margin-x">
+                    <div class="cell">
+                    <?php
+                    if( has_nav_menu( 'copyright' ) ) {
+                        $args = array( 
+                        'theme_location'  => 'copyright', 
+                            'container'       => false,
+                            'echo'            => false,
+                            'items_wrap'      => '%3$s',
+                            'link_before'     => '<span>',
+                            'link_after'      => '</span>',
+                            'depth'           => 0,
+                        ); 
+                        
+                        $menu = sprintf( '%s', str_replace('</a>', '</a><i>&nbsp;&nbsp;/&nbsp;&nbsp;</i> ', strip_tags( wp_nav_menu( $args ), '<a>' ) ) );
+                        
+                    }
+                        
+                              
+                    printf( '<div class="copyright"><p>%s %s Access Laser. %s %s <span><a href="%s">Seattle Web Design</a> by <a href="%s">Sayenko Design</a></span></p></div>', 
+                                              date( 'Y' ), 
+                                              __( 'Copyright' ), 
+                                              $menu, 
+                                              __( 'All rights reserved.', '_s' ),
+                                              'https://www.sayenkodesign.com',
+                                              'https://www.sayenkodesign.com'
+                                                   
+                                        );
+                                              
+                    
+                    ?>
+                    </div>
+                </div>
+            </div>
+            
           </div>
         </div>
 	</div>

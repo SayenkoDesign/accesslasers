@@ -70,13 +70,17 @@ export default {
                 fade: true,
                 autoplay: false,
                 infinite: true,
-                adaptiveHeight: false,
-                dots: true,
+                adaptiveHeight: true,
+                arrows: true,
+                dots: false,
+                rows: 0,
+                /*
                 customPaging : function(slider, i) {
                     let number = i+1;
                     number = number.toString().padStart(2, '0');
                     return '<a class="dot">'+number+'</a>';
                 },
+                */
                 speed: 300,
                 nextArrow: $('.slick-next', $historySlider),
                 prevArrow: $('.slick-prev', $historySlider),

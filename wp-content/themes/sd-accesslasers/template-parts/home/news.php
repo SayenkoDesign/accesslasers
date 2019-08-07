@@ -126,13 +126,13 @@ if( ! class_exists( 'Home_News' ) ) {
             $title = get_the_title();
             $title = _s_format_string( $title, 'h4' );
             
-            $excerpt = get_the_excerpt();
-                                 
+            $excerpt = apply_filters( 'the_content', get_the_excerpt() );
+
             if( ! $title && ! $excerpt ) {
                 return false;
             }
             
-            $link = sprintf( '<p><a href="%s"><span>%s</span></a></p>', get_the_permalink( $post_id ), __( 'read more' ) );
+            $link = sprintf( '<p><a href="%s" class="read-more"><span>%s</span></a></p>', get_the_permalink( $post_id ), __( 'read more' ) );
            
             return sprintf( '<div class="post">%s%s%s</div>', 
                                 $title,

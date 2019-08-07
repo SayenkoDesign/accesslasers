@@ -69,6 +69,7 @@
 
 // Colors
 $red: #ED3D4A;
+$dark-red: #D43642;
 $red-hover: #D43642;
 $gray: #ECECEC;
 $light-gray: #F9F9F9;
@@ -173,8 +174,8 @@ $header-styles: (
 		'h2': ('font-size': 60*.6, 'lh': 1.2, 'mb': 40),
 		'h3': ('font-size': 50*.6, 'lh': 1.2, 'mb': 20),
 		'h4': ('font-size': 42*.6, 'lh': 1.2, 'mb': 20),
-		'h5': ('font-size': 30*.6, 'lh': 1.2, 'mb': 20),
-		'h6': ('font-size': 24*.6, 'lh': 1.2, 'mb': 20),
+		'h5': ('font-size': 30*.8, 'lh': 1.2, 'mb': 20),
+		'h6': ('font-size': 24, 'lh': 1.2, 'mb': 20),
 	),
 	medium-large: (
 		'h1': ('font-size': 100*.8),
@@ -182,9 +183,9 @@ $header-styles: (
 		'h3': ('font-size': 50*.8),
 		'h4': ('font-size': 42*.8),
 		'h5': ('font-size': 30*.8),
-		'h6': ('font-size': 24*.8),
+		'h6': ('font-size': 24),
 	),
-    large: (
+    xxlarge: (
 		'h1': ('font-size': 100),
 		'h2': ('font-size': 60),
 		'h3': ('font-size': 50),

@@ -43,7 +43,7 @@ if( ! class_exists( 'About_History' ) ) {
         public function render() {
             
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading = _s_format_string( $heading, 'h1', [ 'class' => 'h6' ] );
+            $heading = _s_format_string( $heading, 'h1', [ 'class' => 'h6 hide-for-large' ] );
                         
             $posts = $this->get_grid();
             
@@ -56,7 +56,7 @@ if( ! class_exists( 'About_History' ) ) {
                                     <div class="cell">%s%s</div>
                                 </div>
                              </div>', 
-                            $heading, 
+                             $heading,
                             $posts 
                           );
                
@@ -122,20 +122,24 @@ if( ! class_exists( 'About_History' ) ) {
                 return false;
             }
             
+            $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
+            $heading = _s_format_string( $heading, 'h1', [ 'class' => 'h6 show-for-large' ] );
+            
             $image = get_the_post_thumbnail( $post_id, 'large' );   
 
-            $heading = _s_format_string( get_the_title( $post_id ), 'h4' ); 
+            $title = _s_format_string( '<span>Year</span> '. get_the_title( $post_id ), 'h4' ); 
             $content = apply_filters( 'the_content', get_the_content( $post_id ) );
             
-            if( ! $image && ! $heading && ! $content ) {
+            if( ! $image && ! $title && ! $content ) {
                 return false;
             }
                        
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
+            return sprintf( '<div class="slide"><div class="grid-x grid-margin-x align-middle">
                                 <div class="cell large-auto">%s</div>
-                                <div class="cell large-6"><div class=""entry-content"><header>%s</header>%s</div></div>
+                                <div class="cell large-6"><div class="entry-content"><header>%s%s</header>%s</div></div>
                              </div></div>', 
                                 $image,
+                                $heading,
                                 $title,
                                 $content
                              );
