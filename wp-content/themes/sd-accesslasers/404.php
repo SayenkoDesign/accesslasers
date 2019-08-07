@@ -10,28 +10,30 @@
 get_header(); ?>
 
 <?php
-get_template_part( 'template-parts/section', 'hero' );
+_s_get_template_part( 'template-parts/404', 'hero' );
+
 ?>
 
-<div id="primary" class="content-area">
+<div class="grid-container">
 
-	<main id="main" class="site-main" role="main">
-	
-		<section class="section-default">
-			<div class="column row">
-	
-				<div class="entry-content">
-					<p><?php echo get_field( 'content_404', 'option' ); ?></p>
+    <div class="grid-x grid-margin-x">    
+  
+        <div id="primary" class="cell content-area">
+    
+            <main id="main" class="site-main" role="main">
+                <div class="entry-content text-center">
+                    <?php
+                    the_field( 'error_404_content', 'option' );
+                    ?>
+                    <p class="button-container"><a href="/" class="button"><?php _e( 'Back to home', '_s' ); ?></a></p>
 				</div><!-- .page-content -->
-				
-				</div>
-		</section>
+            </main>
+        
+        </div>
+    
+    </div>
 
-	</main><!-- #main -->
-
-</div><!-- #primary -->
-
-	
+</div>
 
 <?php
 get_footer();
