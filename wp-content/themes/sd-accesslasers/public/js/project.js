@@ -697,10 +697,8 @@ __webpack_require__.r(__webpack_exports__);
   init: function init() {
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').addClass('window-loaded'); // Frontpage
     // what
+    //$('.section-what .grid .grid-item').matchHeight({row:true});
 
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-what .grid .grid-item').matchHeight({
-      row: true
-    });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-what .grid header').matchHeight({
       row: true
     });

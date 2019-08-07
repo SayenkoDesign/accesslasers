@@ -15,7 +15,7 @@ if( ! class_exists( 'About_Core_Values' ) ) {
                         
             // Render the section
             if( empty( $this->render() ) ) {
-                //return;   
+                return;   
             }
             
             // print the section
@@ -71,21 +71,21 @@ if( ! class_exists( 'About_Core_Values' ) ) {
                                
             $items = '';
                
-            foreach( $rows as $row ) {  
-                $items .= $this->get_item( $row );
+            foreach( $rows as $key => $row ) {  
+                $items .= $this->get_item( $key, $row );
             }
             
-            return sprintf( '<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
+            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
                                     $items );
         }
         
         
-        private function get_item( $row ) {
+        private function get_item( $key, $row ) {
                         
             if( empty( $row ) ) {
                 return false;   
             }
-                                 
+                                             
             $image = $row['grid_image'];
             $image = sprintf( '<div class="icon">%s</div>', _s_get_acf_image( $image, 'thumbnail' ) );                                   
             $heading = _s_format_string( $row['grid_title'], 'h4' ); 
@@ -94,14 +94,18 @@ if( ! class_exists( 'About_Core_Values' ) ) {
             if( $heading && ! $description && ! $image ) {
                 return false;
             }
+            
+            $count = $key + 1;
                       
             return sprintf( '<div class="cell">
                                 <div class="grid-item">
+                                    <span>%s</span>
                                     <div class="grid-image">%s</div>
                                     <header>%s</header>
                                     <div class="description">%s</div>
                                 </div>
                             </div>', 
+                            str_pad( $count, 2, "0", STR_PAD_LEFT ),
                             $image,
                             $heading,
                             $description

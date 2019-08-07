@@ -18,8 +18,17 @@
         }
     }
     
+
     .section-people-group {
-     
+
+        section:first-child {
+            padding-top: rem-calc(75); 
+            
+            @include breakpoint(xxlarge) {
+                padding: rem-calc(125);
+            }
+        }
+        
         section:not(:first-child) {
             padding-top: 0; 
         }
@@ -40,6 +49,9 @@
     
     
     .section-mission {
+        
+        background: $gray;
+        
         .entry-content {
             background-color: $red;
             background-image: url(../images/about/red-bg.jpg);
@@ -58,17 +70,106 @@
             text-align: center;
             
             h2 {
-                margin-bottom: 0;   
+                color: #fff;
+                margin-bottom: rem-calc(50); 
+                
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 50px;
+                    height: 2px;
+                    background-color: $white;
+                    margin: rem-calc(20) auto;
+                    
+                }  
             }
             
             p {
-                color: $medium-gray;
-                font-size: rem-calc(18);
+                color: #fff;
+                font-size: rem-calc(24);
                 font-weight: 500;
-                line-height: 2.444444444;
+                line-height: 1.833333333;
             }
    
         }   
+    }
+    
+    
+    .section-core-values {
+        
+        background: $gray;
+        
+        padding-top: rem-calc(75);
+            
+        @include breakpoint(large) {
+            padding-top: rem-calc(150);
+        } 
+        
+        
+        h2 {
+            text-align: center;   
+        }
+        
+        .grid {
+            
+            padding-top: rem-calc(50);
+            
+            @include breakpoint(large) {
+                padding-top: rem-calc(100);
+            } 
+            
+            .cell {
+                
+                background: #fff;
+                
+                margin-bottom: rem-calc(map-get($grid-margin-gutters, small));
+                
+                @include breakpoint(large) {
+                    margin-bottom: rem-calc(map-get($grid-margin-gutters, large));
+                }   
+            }
+                     
+            .grid-item {
+                display: block;
+                position: relative;
+                
+                text-align: center;
+                
+                padding: rem-calc( 75 map-get($grid-margin-gutters, small));
+                padding-bottom: rem-calc(75); 
+                
+                @include breakpoint(large) {
+                    padding: rem-calc( 125 map-get($grid-margin-gutters, large)); 
+                    padding-bottom: rem-calc(75); 
+                }
+                
+                span {
+                    font-size: 20px;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+                    line-height: 24px;
+                    
+                    position: absolute;
+                    top: 50px;
+                    left: 50px
+                }
+                
+                .grid-image {
+                    margin-bottom: rem-calc(70);  
+                    color: $medium-gray;
+                }
+                
+                header {
+                    margin-bottom: rem-calc(40);   
+                }
+                
+                p {
+                    color: $dark-gray;   
+                }
+                
+            }
+            
+        }
     }
     
 }
@@ -159,6 +260,5 @@
             }
         }
     }
-    
     
 }

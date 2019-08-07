@@ -218,6 +218,9 @@
             } 
             
             .cell {
+                
+                background: #fff;
+                
                 margin-bottom: rem-calc(map-get($grid-margin-gutters, small));
                 
                 @include breakpoint(large) {
@@ -228,7 +231,7 @@
             .grid-item {
                 display: block;
                 position: relative;
-                background: #fff;
+                
                 text-align: center;
                 
                 padding: rem-calc( 75 map-get($grid-margin-gutters, small));
@@ -237,6 +240,18 @@
                 @include breakpoint(large) {
                     padding: rem-calc( 125 map-get($grid-margin-gutters, large)); 
                     padding-bottom: rem-calc(75); 
+                }
+                
+                span {
+                    color: $dark-gray;
+                    font-size: 20px;
+                    font-weight: 900;
+                    letter-spacing: 1px;
+                    line-height: 24px;
+                    
+                    position: absolute;
+                    top: 50px;
+                    left: 50px
                 }
                 
                 .grid-image {

@@ -91,14 +91,14 @@ if( ! class_exists( 'Home_What_Section' ) ) {
             $loop = new WP_Query( $args );
             
             $out = '';
-            
+                        
             if ( $loop->have_posts() ) :                 
                           
                 while ( $loop->have_posts() ) :
     
                     $loop->the_post(); 
                     
-                    $out .= $this->get_item( get_the_ID() );
+                    $out .= $this->get_item( $loop->current_post + 1, get_the_ID() );
     
                 endwhile;
                 
@@ -106,12 +106,12 @@ if( ! class_exists( 'Home_What_Section' ) ) {
             
             wp_reset_postdata();
                         
-            return sprintf( '<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
+            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
                                     $out );
         }
         
         
-        private function get_item( $post_id = false ) {
+        private function get_item( $count, $post_id = false ) {
             
             if( ! absint( $post_id ) ) {
                 return false;
@@ -134,8 +134,16 @@ if( ! class_exists( 'Home_What_Section' ) ) {
             
             $link = sprintf( '<p><span>%s</span></p>', __( 'learn more' ) );
            
-            return sprintf( '<div class="cell"><a href="%s" class="grid-item">%s<header>%s</header><div class="description">%s</div><footer>%s</footer></a></div>', 
+            return sprintf( '<div class="cell">
+                                <a href="%s" class="grid-item">
+                                    <span>%s</span>
+                                    %s<header>%s</header>
+                                    <div class="description">%s</div>
+                                    <footer>%s</footer>
+                                </a>
+                             </div>', 
                                 get_the_permalink( $post_id ),
+                                str_pad( $count, 2, "0", STR_PAD_LEFT ),
                                 $icon, 
                                 $heading,
                                 $description,
