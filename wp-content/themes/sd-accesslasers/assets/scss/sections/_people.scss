@@ -63,61 +63,82 @@
             padding-top: 124%;   
         }
         
-        header {
-            background-color: #fff;
-            position: relative;
-            margin-top: rem-calc(-40);  
-            padding: rem-calc(35 60 35 35);
-            z-index: 2;
-            
-            @include breakpoint(large) {
+        &:not(.join-team) {
+        
+            header {
+                background-color: #fff;
+                position: relative;
+                margin-top: rem-calc(-40);  
+                padding: rem-calc(35 60 35 35);
+                z-index: 2;
                 
-                margin-top: 0;
-                bottom: rem-calc(-40);
-                //padding: rem-calc(35 60 35 35);
-                 
-                width: 100%;
-                position: absolute;
-                //top: 100%; 
-                z-index: 3;
-            }
-            
-            
-            @include breakpoint(xxlarge) {
-                margin-left: rem-calc(40); 
-                padding: rem-calc(35 60 35 60);
-                width: calc(100% - 40px);
-            }
-            
-                  
-            h3  {
-                margin-bottom: rem-calc(5);   
-                font-weight: 700;
-            }
-            
-            p {
-                color: $medium-gray;
-                font-size: rem-calc(18);
-                line-height: 1.2;
-                margin-bottom: 0;
-            } 
-            
-            .linkedin {
-                position: absolute;
-                right: 0;
-                bottom: 0;
-                color: #fff;
-                width: 42px;
-                height: 42px;
-                background-color: #2C2E32;
-                
-                &:hover {
-                    background-color: $red;   
+                @include breakpoint(xlarge) {
+                    
+                    margin-top: 0;
+                    bottom: rem-calc(-40);
+                    //padding: rem-calc(35 60 35 35);
+                     
+                    width: 100%;
+                    position: absolute;
+                    //top: 100%; 
+                    z-index: 3;
                 }
                 
-                svg {
-                    fill: #fff;   
+                
+                @include breakpoint(xxlarge) {
+                    margin-left: rem-calc(40); 
+                    padding: rem-calc(35 60 35 60);
+                    width: calc(100% - 40px);
                 }
+                
+                      
+                h3  {
+                    margin-bottom: rem-calc(5);   
+                    font-weight: 700;
+                }
+                
+                p {
+                    color: $medium-gray;
+                    font-size: rem-calc(18);
+                    line-height: 1.2;
+                    margin-bottom: 0;
+                } 
+                
+                .linkedin {
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    color: #fff;
+                    width: 42px;
+                    height: 42px;
+                    background-color: #2C2E32;
+                    
+                    &:hover {
+                        background-color: $red;   
+                    }
+                    
+                    svg {
+                        fill: #fff;   
+                    }
+                }
+                
+            }
+        }
+        
+        &.join-team {
+            header {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);   
+                width: calc(100% - 20px);
+                text-align: center;
+                padding: 0 10px;
+            }
+            
+            .button {
+                position: absolute;
+                bottom: -50px;
+                right: 0;   
             }
         }
     }

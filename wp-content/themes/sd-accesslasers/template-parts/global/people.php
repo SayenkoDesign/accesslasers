@@ -1,8 +1,8 @@
 <?php
-// Leadership - People
+// Global - People
 
-if( ! class_exists( 'Leadership_People_Section' ) ) {
-    class Leadership_People_Section extends Element_Section {
+if( ! class_exists( 'Global_People_Section' ) ) {
+    class Global_People_Section extends Element_Section {
         
         private static $section_counter = 0;        
         var $post_type = 'people';
@@ -145,30 +145,51 @@ if( ! class_exists( 'Leadership_People_Section' ) ) {
         
         private function get_cta() {
             
-            $cta = $this->get_fields( 'call_to_action' );
+            $cta = $this->get_fields( 'join_team' );
             if( empty( $cta ) ) {
                 return false;
             }
             
-            $cta = array_filter( $cta );
-            if( count( $cta ) < 3 ) {
+            
+            if( empty( $cta['photo'] ) || empty( $cta['text'] ) || empty( $cta['link'] ) ) {
                 return false;
             }
             
-            $icon = sprintf( '<img src="%sfooter/dc-trademark.svg" />', trailingslashit( THEME_IMG ) );
+            $text = $cta['text'];
             
-            return sprintf( '<article class="column cta"><div class="call-to-action"><div class="cta-box">%s<h3>%s</h3><a href="%s" class="button">%s</a></div></div></article>', 
-                            $icon,
-                            $cta['title'], 
-                            $cta['button_url'], 
-                            $cta['button_text'] 
-                          );   
+            $link = $cta['link'];
+            
+            
+                        
+            if( empty( $link['title'] ) || empty( $link['url'] ) ) {
+                return false;
+            }
+                                    
+            $image = _s_get_acf_image( $cta['photo'], 'large', true );
+            
+            $thumbnail = sprintf( ' style="background-image: url(%s)"', $image );
+            $thumbnail = sprintf( '<div class="thumbnail"%s></div>', $thumbnail );
+            
+            $heading = sprintf( '<h4>%s</h4>', $text ); 
+            
+            $button = sprintf( '<a href="%s" class="button">%s</a>', esc_url( $link['url'] ), esc_attr( $link['title'] ) );
+            
+            return sprintf( '<div class="cell">
+                                <div class="grid-item join-team">
+                                    <div class="grid-image">%s<header>%s</header>%s</div>
+                                    
+                                </div>
+                            </div>', 
+                            $thumbnail,
+                            $heading,
+                            $button
+                         );
+  
         
         }
     }
 }
    
-/*new Leadership_People_Section; */
 
 $fields = get_field( 'people' );
 
@@ -177,7 +198,7 @@ if( ! empty( $fields ) ) {
     echo '<div class="section-people-group">';
     
     foreach( $fields as $key => $field ) {
-        $section = new Leadership_People_Section();
+        $section = new Global_People_Section();
         $section->set_fields( $field );
         $section->render();
         $section->print_element();  
