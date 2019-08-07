@@ -17,7 +17,7 @@ function tiny_mce_remove_unused_formats($init) {
 	return $init;
 }
 
-add_filter('tiny_mce_before_init', 'tiny_mce_remove_unused_formats' );
+// add_filter('tiny_mce_before_init', 'tiny_mce_remove_unused_formats' );
 
 
 
@@ -79,4 +79,4 @@ function _s_remove_page_template( $pages_templates ) {
     return $pages_templates;
 }
 
-add_filter( 'theme_page_templates', '_s_remove_page_template', 20 );
+// add_filter( 'theme_page_templates', '_s_remove_page_template', 20 );

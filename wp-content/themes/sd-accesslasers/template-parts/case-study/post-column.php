@@ -33,7 +33,7 @@
             
         printf( '<a href="%s" class="post-hero" style="%s"></a>', get_permalink(), $post_image );
                         
-        printf( '<header class="entry-header">%s%s%s</header>', $post_date, $post_title, $read_more );
+        printf( '<header class="entry-header">%s%s</header>', $post_title, $read_more );
     
         ?>
         

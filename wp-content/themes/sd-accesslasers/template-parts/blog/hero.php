@@ -47,7 +47,7 @@ if( ! class_exists( 'Hero_Section' ) ) {
                 $heading = post_type_archive_title( '', false );
             }*/
             
-            $heading      = sprintf( '%s', _s_format_string( $heading, 'h1', [ 'class' => 'h3' ] ) );
+            $heading      = sprintf( '%s', _s_format_string( $heading, 'h1', [ 'class' => 'h2' ] ) );
             
             $subheading   = $this->get_fields( 'subheading' ) ? '' : _s_format_string( $this->get_fields( 'subheading' ), 'h2' );
             

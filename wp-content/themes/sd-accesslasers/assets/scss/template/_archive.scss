@@ -19,6 +19,31 @@ $nav-arrow-color-hover: $red;
     
 }
 
+.archive {
+    
+    .section-hero {
+        background-color: $red;
+        padding-top: rem-calc(35);
+        
+        h1 {
+            color: #fff;   
+        }
+    }
+    
+    
+    .site-content {
+        background-color: #f9f9f9; 
+    }
+    
+    .site-main {
+        padding-top: rem-calc(75);
+        padding-bottom: rem-calc(45);   
+    }
+    
+    .grid {
+        margin-bottom: rem-calc(40);
+    }
+}
 
 .facetwp-filters {
     
@@ -137,7 +162,7 @@ $nav-arrow-color-hover: $red;
                 //font-family: $header-font-family;
                 font-size: rem-calc(16);
                 line-height: 1.75;
-                color: $gray;
+                color: $dark-gray;
                 margin: rem-calc(0 10 0);
                 
                 @include breakpoint(large) {

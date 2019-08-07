@@ -1,10 +1,12 @@
 // Single
 
 .single {
+    
     .nav-links {
         display: flex;
         justify-content: space-between;
         margin-bottom: rem-calc(40);
+        position: relative;
         
         $color: '#eaeaea';
         $color-hover: '#ED4399';

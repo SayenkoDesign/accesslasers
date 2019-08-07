@@ -27,7 +27,7 @@
     
     include_once( 'functions/svg.php' );
 
-	// include_once( 'functions/theme.php' );
+	include_once( 'functions/theme.php' );
 
     include_once( 'functions/template-tags.php' );
 
@@ -49,6 +49,7 @@
 
     //include_once( 'functions/facetwp.php' );
 
+    include_once( 'functions/case-studies.php' );
 
 /****************************************
 	ACF Custom Fields
