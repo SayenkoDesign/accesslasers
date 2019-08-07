@@ -25,7 +25,7 @@ input[type="search"] {
         @include full-width;
     }
     
-    li {
+    li:not([class]) {
         margin-bottom: rem-calc(10);   
     }
     

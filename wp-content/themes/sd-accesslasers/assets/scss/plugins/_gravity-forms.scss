@@ -113,3 +113,16 @@ body .gform_wrapper {
     }
 
 }
+
+
+body .gform_wrapper ul li.gfield {
+    margin-top: 0!important;
+    padding-top: 17px!important;
+}
+
+
+.gform_wrapper .gfield_checkbox li label, .gform_wrapper .gfield_radio li label {
+    font-size: 15px!important;
+    font-weight: 500;
+    line-height: 18px!important;
+}
