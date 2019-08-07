@@ -3,8 +3,7 @@
 
 // Add modals to footer
 function _s_footer() {
-    _s_get_template_part( 'template-parts/modal', 'video' );   
-    _s_get_template_part( 'template-parts/modal', 'search' );  
+    _s_get_template_part( 'template-parts/modal', 'contact' );   
 }
 add_action( 'wp_footer', '_s_footer' );
 

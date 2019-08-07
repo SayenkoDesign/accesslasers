@@ -1,5 +1,11 @@
 // Modals
 
+
+// fix reveal overflow, we don't want it hidden
+ body.is-reveal-open {
+    //position: fixed; 
+}
+
 .reveal:focus{
     outline: none;
 }
@@ -9,8 +15,26 @@
 }
 
 .reveal {
+	
     background: transparent;  
     border: none;
+    padding-top: 40px;
     
-    .close-button {}
+    .close-button {
+        font-family: sans-serif;
+        font-weight: 300;
+		position: absolute;
+		top: rem-calc(-5)!important; 
+		right: rem-calc(10px);
+		font-size: 40px;
+		outline: none;
+        color: #fff;
+        cursor: pointer;
+        
+        @include breakpoint(large) {
+            top: rem-calc(map-get($grid-column-gutter, large)/2); 
+		    right: rem-calc(map-get($grid-column-gutter, large)/2);
+        }
+  	}
+    
 }
