@@ -719,6 +719,39 @@ __webpack_require__.r(__webpack_exports__);
     });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid footer').matchHeight({
       row: true
+    }); // Blog filters
+
+    var detectWrap = function detectWrap(element) {
+      var wrappedItems = [];
+      var prevItem = {};
+      var currItem = {};
+      var items = jquery__WEBPACK_IMPORTED_MODULE_0___default()(element).children();
+
+      for (var i = 0; i < items.length; i++) {
+        currItem = items[i].getBoundingClientRect();
+
+        if (prevItem && prevItem.top < currItem.top) {
+          wrappedItems.push(items[i]);
+        }
+
+        prevItem = currItem;
+      }
+
+      return wrappedItems;
+    };
+
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).on("load resize", function () {
+      var wrappedItems = detectWrap('.category-filters .menu');
+
+      if (wrappedItems.length) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.category-filters .categories').addClass('mobile');
+      }
+
+      if (!wrappedItems.length) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.category-filters .categories').removeClass('mobile');
+      }
+
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.category-filters').css('visibility', 'visible');
     });
   }
 });

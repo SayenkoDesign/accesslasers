@@ -70,7 +70,8 @@ if ( ! function_exists( '_s_setup' ) ) :
 		register_nav_menus( array(
 			'primary'   => esc_html__( 'Primary Menu', '_s' ),
 			'secondary' => esc_html__( 'Secondary Menu', '_s' ),
-			'copyright'    => esc_html__( 'Copyright Menu', '_s' )
+			'copyright'    => esc_html__( 'Copyright Menu', '_s' ),
+            'resources'    => esc_html__( 'Resources Menu', '_s' )
 		) );
 
 		/**

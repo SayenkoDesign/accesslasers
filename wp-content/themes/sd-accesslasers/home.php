@@ -56,6 +56,8 @@ wp_reset_postdata();
                            
                     <?php
                     // Categories?
+                    
+                    /*
                     $cat_current = false;
                     $categories = get_categories( [ 'exclude' => 1 ] );
                     if( ! empty( $categories ) ) {
@@ -77,6 +79,39 @@ wp_reset_postdata();
                             printf( '<ul class="no-bullet categories">%s</ul>', $out );      
                         }
                     }
+                    */
+                    
+                    $args = array(
+                        'theme_location' => 'resources',
+                        'container' => '',
+                        'container_class' => '',
+                        'container_id' => '',
+                        'menu_id'        => '',
+                        'before' => '',
+                        'after' => '',
+                        'link_before' => '',
+                        'link_after' => '',
+                        'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                        'echo' => false
+                     );
+                     
+                     $menu = wp_nav_menu($args);
+                     
+                     $select = wp_nav_menu( array(
+                        'theme_location' => 'resources',
+                        'container' => '',
+                        'container_class' => '',
+                        'container_id' => '',
+                        'menu_id'        => '',
+                        'before' => '',
+                        'after' => '',
+                        'walker'         => new Walker_Nav_Menu_Dropdown(),
+                        'items_wrap'     => '<select onchange="if (this.value) window.location.href=this.value">%3$s</select>',
+                        'echo' => false
+                    ) );	
+    
+                                      
+                    printf( '<div class="category-filters"><div class="categories">%s%s</div></div>', $menu, $select );
                     
                     $classes[] = 'small-up-1 medium-up-2 large-up-3 xlarge-up-4';
                     
