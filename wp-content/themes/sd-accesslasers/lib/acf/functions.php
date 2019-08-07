@@ -118,7 +118,7 @@ function _s_acf_button( $args = [] ) {
     
     extract( $args );
     
-    $type = strtolower( $type );
+    $type    = strtolower( $type );
 	$title   = $link['title'] ?? '';
     $url     = $link['url'] ?? '';
     $target  = $link['target'] ? sprintf(' %s', $link['target'] ) : '';

@@ -32,7 +32,11 @@
                     'link' => $footer_cta[ 'button' ]['link'],
                     'echo' => false,
                     'classes' => 'button large',
+                    'modal' => 'contact',
+                    'type' => $footer_cta[ 'button' ]['type']
                 ];
+
+                
                 $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
             }
             

@@ -76,7 +76,7 @@ if( ! class_exists( 'Block_Section' ) ) {
                 $args = [
                     'link' => $button['link'],
                     'echo' => false,
-                    'classes' => 'Button' == $button['style'] ? 'button' : '',
+                    'classes' => 'Button' == $button['style'] ? 'button' : 'button',
                 ];
                 $button  = sprintf( '<p class="button-wrapper">%s</p>', _s_acf_button( $args ) );
             }
