@@ -91,7 +91,7 @@ if( ! class_exists( 'Career_Benefits' ) ) {
             $heading = _s_format_string( $row['grid_title'], 'h4' ); 
             //$description = _s_format_string( $row['grid_description'], 'p' );
             
-            if( $heading && ! $description && ! $image ) {
+            if( ! $heading && ! $image ) {
                 return false;
             }
             

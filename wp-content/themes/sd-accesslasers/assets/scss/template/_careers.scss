@@ -40,13 +40,12 @@
 
     }
     
-    
-    .site-main {
-        padding-bottom: rem-calc(100);
+    .site-main section:last-child {
+        padding-bottom: rem-calc(50);
         
         @include breakpoint(xxlarge) {
-            padding-bottom: rem-calc(150);
-        }
+            padding-bottom: rem-calc(100);
+        }   
     }
     
     
@@ -61,6 +60,13 @@
         } 
         
         
+        padding-bottom: rem-calc(50);
+        
+        @include breakpoint(xxlarge) {
+            padding-bottom: rem-calc(100);
+        }   
+                
+        
         h2 {
             text-align: center;   
         }
@@ -72,6 +78,12 @@
             @include breakpoint(large) {
                 padding-top: rem-calc(100);
             } 
+            
+            margin-bottom: rem-calc(map-get($grid-margin-gutters, small) * -1);
+                
+            @include breakpoint(large) {
+                margin-bottom: rem-calc(map-get($grid-margin-gutters, large) * -1);
+            }   
             
             .cell {
                 
@@ -131,6 +143,141 @@
             }
             
         }
+    }
+    
+    
+    .section-jobs {
+        
+        padding-top: rem-calc(75);
+        @include breakpoint(large) {
+            padding-top: rem-calc(150);
+        } 
+        
+        
+        padding-bottom: rem-calc(75);
+        @include breakpoint(xxlarge) {
+            padding-bottom: rem-calc(150);
+        }   
+        
+        
+        h2 {
+            text-align: center;   
+            
+            margin-bottom: rem-calc(100);
+        }
+     
+        .wrap {
+            max-width: rem-calc(1300); 
+            margin: 0 auto;  
+        }
+        
+    }
+    
+    
+    .section-testimonials {
+        
+        .container {
+            position: relative;   
+        }
+        
+        .slider {
+            
+            opacity: 0;
+            visibility: hidden;
+            
+            &.images-loaded {
+                opacity: 1;
+                visibility: visible;
+            }
+        
+        }
+        
+        background: $gray;
+        
+        
+        padding-top: rem-calc(75);
+        @include breakpoint(large) {
+            padding-top: rem-calc(150);
+        } 
+        
+        
+        padding-bottom: rem-calc(75);
+        @include breakpoint(xxlarge) {
+            padding-bottom: rem-calc(150);
+        }   
+        
+                
+        .slider {
+            
+            .cell {
+                                
+                margin-bottom: rem-calc(map-get($grid-margin-gutters, small));
+                
+                @include breakpoint(large) {
+                    margin-bottom: rem-calc(map-get($grid-margin-gutters, large));
+                } 
+            }
+        }
+        
+        .slick-arrows {
+            width: rem-calc(180);
+            display: flex;
+            margin: 0 auto;
+            
+            @include breakpoint(xxlarge) {
+                position: absolute;
+                bottom: rem-calc(map-get($grid-margin-gutters, large));
+                left: calc(50% - 90px - #{map-get($grid-margin-gutters, large)/2});
+            }
+            
+            .slick-prev,
+            .slick-next {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                transform: none;
+            }
+            
+        }
+        
+        .slick-dots {
+            display: none!important;
+                        
+            position: absolute;
+            top: 50%;
+            transform: transtaeY(-50%);
+            right: 0;
+            bottom: auto;
+            width: auto;  
+            
+            li {
+                display: block;   
+            }
+        }
+        
+        .quote-mark {
+            position: relative;
+            margin-bottom: rem-calc(40);
+        }
+        
+        .quote {
+            
+            p {
+                color: #454C54;
+                font-size: rem-calc(22);   
+                line-height: 1.636363636;
+            }
+            
+            h6 {
+               color: #454C54;
+               letter-spacing: 0.7px;
+               line-height: 1.444444444;
+               margin-top: rem-calc(25);
+               font-weight: 500;
+            }
+        }
+        
     }
        
 }

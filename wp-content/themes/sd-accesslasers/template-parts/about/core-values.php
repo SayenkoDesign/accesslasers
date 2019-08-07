@@ -91,7 +91,7 @@ if( ! class_exists( 'About_Core_Values' ) ) {
             $heading = _s_format_string( $row['grid_title'], 'h4' ); 
             $description = _s_format_string( $row['grid_description'], 'p' );
             
-            if( $heading && ! $description && ! $image ) {
+            if( ! $heading && ! $description && ! $image ) {
                 return false;
             }
             

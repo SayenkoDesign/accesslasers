@@ -27,7 +27,7 @@
             $logo = sprintf( '<span class="icon show-for-xxlarge">%s</span>', _s_get_acf_image( $hero['logo'], 'thumbnail' ) );
         }
         
-        $application = $technology = $product;
+        $application = $technology = $product = '';
         
         if( function_exists( '_s_get_relationship_field_list' ) ) {
             $application = _s_get_relationship_field_list( 'application', 'Application', true );

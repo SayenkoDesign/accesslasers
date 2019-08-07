@@ -11,6 +11,11 @@
  * @package _s
  */
 
+add_filter( 'body_class', function ( $classes ) {
+    $classes[] = 'archive';
+	return $classes;
+}, 99 );
+
 get_header(); ?>
 
 <?php

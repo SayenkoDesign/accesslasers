@@ -90,6 +90,44 @@ export default {
         }
         
         
+        // Careers - Testimonials
+        
+        let $testimonialsSlider = $('.section-testimonials .slider');
+        
+        if ( $('.slick', $testimonialsSlider).length ) {
+            
+            $testimonialsSlider.imagesLoaded()
+            
+                .done( function( instance ) {
+            
+                    $('.slick', $testimonialsSlider).slick({
+                        fade: true,
+                        autoplay: false,
+                        infinite: true,
+                        adaptiveHeight: true,
+                        arrows: true,
+                        dots: false,
+                        rows: 0,
+                        /*
+                        customPaging : function(slider, i) {
+                            let number = i+1;
+                            number = number.toString().padStart(2, '0');
+                            return '<a class="dot">'+number+'</a>';
+                        },
+                        */
+                        speed: 300,
+                        nextArrow: $('.slick-next', $testimonialsSlider),
+                        prevArrow: $('.slick-prev', $testimonialsSlider),
+                    });
+                    
+                    $( '.wrap', $testimonialsSlider).append($('.slick', $testimonialsSlider).find('.slick-dots'));
+                    
+                    $testimonialsSlider.addClass('images-loaded');
+                    
+             });
+        }
+        
+        
         if ( $('.product__slider-main .slick').length ) {
             
             $('.product__slider').imagesLoaded()

@@ -5,14 +5,9 @@ Header
 // Fix for sticky header
 .logged-in .site-header.fixed {
 
-    @media screen and (min-width: 783px) and #{breakpoint(xlarge down)} {
+    @include breakpoint(xlarge) {
         top: 32px!important;
     } 
-    
-    @media screen and (max-width: 782px) {
-        top: 46px!important;
-    } 
-
  }
  
 

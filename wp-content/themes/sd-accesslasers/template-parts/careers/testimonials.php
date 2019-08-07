@@ -1,22 +1,19 @@
 <?php
 
 /*
-Service - Testimonials
+Careers - Testimonials
 		
 */    
     
-if( ! class_exists( 'Service_Testimonials_Section' ) ) {
-    class Service_Testimonials_Section extends Element_Section {
+if( ! class_exists( 'Careers_Testimonials_Section' ) ) {
+    class Careers_Testimonials_Section extends Element_Section {
         
         public function __construct() {
             parent::__construct();
             
-            $fields = get_field( 'service_testimonials', 'options' );            
+            $fields['testimonials'] = get_field( 'testimonials' );
             $this->set_fields( $fields );
-
-            // Render the section
-            $this->render();
-            
+                        
             // print the section
             $this->print_element();        
         }
@@ -34,23 +31,6 @@ if( ! class_exists( 'Service_Testimonials_Section' ) ) {
                 ]
             );
             
-            $background_image       = $this->get_fields( 'background_image' );
-            $background_position_x  = strtolower( $this->get_fields( 'background_position_x' ) );
-            $background_position_y  = strtolower( $this->get_fields( 'background_position_y' ) );
-            $background_overlay     = $this->get_fields( 'background_overlay' );
-            
-            if( ! empty( $background_image ) ) {
-                $background_image = _s_get_acf_image( $background_image, 'hero', true );
-                                
-                $this->add_render_attribute( 'wrapper', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
-                $this->add_render_attribute( 'wrapper', 'style', sprintf( 'background-position: %s %s;', 
-                                                                          $background_position_x, $background_position_y ) );
-                
-                if( true == $background_overlay ) {
-                     $this->add_render_attribute( 'wrapper', 'class', 'background-overlay' ); 
-                }
-                                                                          
-            }  
         }
         
         // Add content
@@ -61,27 +41,31 @@ if( ! class_exists( 'Service_Testimonials_Section' ) ) {
             if( empty( $testimonials ) ) {
                 return false;
             }
-            
-            // split testimonials into 2's
-            $columns = array_chunk( $testimonials, 2 );
-                        
-            $rows = array_map( array( $this, 'wrap_columns' ), $columns );
-                                       
-            return sprintf( '<div class="row align-middle"><div class="column"><header><h2><span>Reviews</span></h2></header><div class="slick">%s</div></div></div>', 
-                            join( '', $rows ) );
+                                                   
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x">    
+            <div class="cell">%s</div></div>', $testimonials );
         }
         
         private function get_testimonials() {
             
-            $slides = [];
+            $posts = [];
+                        
+            $post_ids = $this->get_fields( 'testimonials' );
             
-            $stars = sprintf('<div class="stars"><img src="%sservice/stars.png" alt="5 stars" /></div>', trailingslashit( THEME_IMG ) ); 
+            if( empty( $post_ids ) ) {
+                return false;
+            }
             
-            // arguments, adjust as needed
             $args = array(
-                'post_type'      => 'testimonial',
-                'posts_per_page' => 100,
-                'post_status'    => 'publish'
+                'post_type' => 'testimonial',
+                'order' => 'ASC',
+                'orderby' => 'post__in',
+                'post__in' => $post_ids,
+                'posts_per_page' => count( $post_ids ),
+                'no_found_rows' => true,
+                'update_post_meta_cache' => false,
+                'update_post_term_cache' => false,
+                'fields' => 'ids'
             );
         
             // Use $loop, a custom variable we made up, so it doesn't overwrite anything
@@ -92,31 +76,57 @@ if( ! class_exists( 'Service_Testimonials_Section' ) ) {
             if ( $loop->have_posts() ) :                 
             
                  while ( $loop->have_posts() ) : $loop->the_post(); 
-        
-                    $cite =  _s_format_string( get_the_title(), 'h3' );
-                                                    
-                    $blockquote = sprintf( '<blockquote>%s%s%s</blockquote>', 
-                                           $stars, apply_filters( 'pb_the_content', get_the_content() ), $cite );
                     
-                    $slides[] = sprintf( '<div class="column">%s</div>', $blockquote );
+                    $posts[] = $this->get_testimonial();
         
                 endwhile;
             endif;
             wp_reset_postdata();  
             
-            return $slides; 
+            $buttons = '<div class="slick-arrows">
+                            <button class="slick-prev slick-arrow" aria-label="Previous" type="button">Previous</button>
+                            <button class="slick-next slick-arrow" aria-label="Next" type="button">Previous</button>
+                        </div>';
+            
+            if( ! empty( $posts ) ) {
+                return sprintf( '<div class="slider"><div class="wrap"><div class="slick">%s</div>
+                                    %s
+                                </div></div>', join( '', $posts ), $buttons );
+            }
         }
         
         
-        private function wrap_columns( $columns ) {
-            if( ! empty( $columns ) ) {
-                return sprintf( '<div class="slide"><div class="row large-unstack align-middle">%s</div></div>', join( '', $columns ) );
+        private function get_testimonial() {
+            
+            $post_id = get_the_ID();
+                                  
+            $photo = get_the_post_thumbnail( $post_id, 'large' );
+            
+            $quote = get_field( 'quote', $post_id );
+            
+            $name = get_field( 'name', $post_id );
+            
+            if( $name ) {
+                $name = _s_format_string( '- ' . $name, 'h6' );
             }
+            
+            if( empty( $photo ) || empty( $quote )  ) {
+                return false;
+            }
+ 
+            
+            $quote_mark = sprintf( '<div class="quote-mark"><span><img src="%scase-studies/quote-icon.svg" /></span></div>', 
+                                    trailingslashit( THEME_IMG ) );
+            
+            $quote = sprintf( '<div class="quote">%s%s%s</div>', $quote_mark, $quote, $name );
+                
+            return sprintf( '<div class="slide"><div class="grid-x grid-margin-x">    
+            <div class="cell large-5">%s</div><div class="cell large-auto">%s</div></div></div>', $quote, $photo );   
         }
       
     }
 }
    
-new Service_Testimonials_Section;
+new Careers_Testimonials_Section;
 
     

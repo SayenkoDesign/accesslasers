@@ -822,6 +822,36 @@ __webpack_require__.r(__webpack_exports__);
         prevArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-prev', $historySlider)
       });
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.wrap', $historySlider).append(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).find('.slick-dots'));
+    } // Careers - Testimonials
+
+
+    var $testimonialsSlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-testimonials .slider');
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $testimonialsSlider).length) {
+      $testimonialsSlider.imagesLoaded().done(function (instance) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $testimonialsSlider).slick({
+          fade: true,
+          autoplay: false,
+          infinite: true,
+          adaptiveHeight: true,
+          arrows: true,
+          dots: false,
+          rows: 0,
+
+          /*
+          customPaging : function(slider, i) {
+              let number = i+1;
+              number = number.toString().padStart(2, '0');
+              return '<a class="dot">'+number+'</a>';
+          },
+          */
+          speed: 300,
+          nextArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-next', $testimonialsSlider),
+          prevArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-prev', $testimonialsSlider)
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.wrap', $testimonialsSlider).append(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $testimonialsSlider).find('.slick-dots'));
+        $testimonialsSlider.addClass('images-loaded');
+      });
     }
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-main .slick').length) {

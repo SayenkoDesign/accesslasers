@@ -7,7 +7,7 @@ if( ! class_exists( 'Testimonial_Section' ) ) {
         public function __construct() {
             parent::__construct();
                         
-            $fields = get_field( 'testimonial' );
+            $fields['testimonial'] = get_field( 'testimonial' );
             $this->set_fields( $fields );
             
             if( empty( $this->render() ) ) {
@@ -37,25 +37,31 @@ if( ! class_exists( 'Testimonial_Section' ) ) {
         // Add content
         public function render() {
                         
-            $fields = $this->get_fields();  
+            $post_id = $this->get_fields( 'testimonial' );  
+                        
+            if( empty( $post_id ) ) {
+                return false;
+            }
                                         
-            $photo = $this->get_fields( 'photo' );
-            $photo = _s_get_acf_image( $photo, 'medium' );
-            $message = $this->get_fields( 'message' );
+            $photo = get_the_post_thumbnail( $post_id, 'large' );
             
-            if( $this->get_fields( 'name' ) ) {
-            $name = _s_format_string( '- ' . $this->get_fields( 'name' ), 'h6' );
+            $quote = get_field( 'quote', $post_id );
             
+            $name = get_field( 'name', $post_id );
+            
+            if( $name ) {
+                $name = _s_format_string( '- ' . $name, 'h6' );
             }
             
-            if( empty( $photo ) || empty( $message ) || empty( $name ) ) {
+            if( empty( $photo ) || empty( $quote )  ) {
                 return false;
             }
  
             
-            $quote_mark = sprintf( '<div class="quote-mark"><span><img src="%scase-studies/quote-icon.svg" /></span></div>', trailingslashit( THEME_IMG ) );
+            $quote_mark = sprintf( '<div class="quote-mark"><span><img src="%scase-studies/quote-icon.svg" /></span></div>', 
+                                    trailingslashit( THEME_IMG ) );
             
-            $quote = sprintf( '<div class="quote">%s%s%s</div>', $quote_mark, $message, $name );
+            $quote = sprintf( '<div class="quote">%s%s%s</div>', $quote_mark, $quote, $name );
                 
             return sprintf( '<div class="grid-container fluid"><div class="grid-x grid-margin-x">    
             <div class="cell large-5">%s</div><div class="cell large-auto">%s</div></div></div>', $photo, $quote );

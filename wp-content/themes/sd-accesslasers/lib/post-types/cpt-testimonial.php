@@ -37,14 +37,33 @@ class CPT_Testimonial extends CPT_Core {
 				'show_in_nav_menus'   => false,
 				'exclude_from_search' => false,
 				'rewrite'             => false,
-				'supports' => array( 'title', 'editor', 'thumbnail', 'revisions' ),
+				'supports' => array( 'title', 'thumbnail', 'revisions' ),
                 'template'            => array( array( 'core/quote' ) ),
 			    'template_lock'      => 'all',
 			)
 
         );
+        
+        
+        // add_filter( 'wp_insert_post_data', array( $this, 'set_testimonial_title' ), 99, 2 );
 		        
      }
+     
+     
+     /**
+	 * Set testimonial title
+	 *
+	 */
+	public function set_testimonial_title( $data, $postarr ) {
+		if( 'testimonial' == $data['post_type'] ) {
+			$title = get_post_meta( $postarr['ID'], 'name', true );
+			if( empty( $title ) ) {
+				$title = 'Testimonial ' . $postarr['ID'];
+            }
+			$data['post_title'] = $title;
+		}
+		return $data;
+	}
  
 }
 
