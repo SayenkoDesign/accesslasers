@@ -99,7 +99,7 @@ if( ! class_exists( 'About_Core_Values' ) ) {
                       
             return sprintf( '<div class="cell">
                                 <div class="grid-item">
-                                    <span>%s</span>
+                                    <span class="number">%s</span>
                                     <div class="grid-image">%s</div>
                                     <header>%s</header>
                                     <div class="description">%s</div>

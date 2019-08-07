@@ -136,7 +136,7 @@ if( ! class_exists( 'Home_What_Section' ) ) {
            
             return sprintf( '<div class="cell">
                                 <a href="%s" class="grid-item">
-                                    <span>%s</span>
+                                    <span class="number">%s</span>
                                     %s<header>%s</header>
                                     <div class="description">%s</div>
                                     <footer>%s</footer>

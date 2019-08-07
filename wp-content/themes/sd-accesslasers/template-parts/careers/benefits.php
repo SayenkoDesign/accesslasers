@@ -99,7 +99,7 @@ if( ! class_exists( 'Career_Benefits' ) ) {
                       
             return sprintf( '<div class="cell">
                                 <div class="grid-item">
-                                    <span>%s</span>
+                                    <span class="number">%s</span>
                                     <div class="grid-image">%s</div>
                                     <header>%s</header>
                                 </div>
