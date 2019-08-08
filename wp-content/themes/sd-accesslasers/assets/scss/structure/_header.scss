@@ -110,7 +110,7 @@ Header
             
                     @include breakpoint(xlarge) {
                         a {
-                            @include button(false, $white, $white, $white, 'hollow');
+                            @include button(false, $dark-gray, $white, $white, 'hollow');
                             display: block;
                             margin-bottom: 0;
                             padding-top: rem-calc(11.5);
