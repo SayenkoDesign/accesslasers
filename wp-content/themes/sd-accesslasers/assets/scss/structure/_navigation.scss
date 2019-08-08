@@ -148,7 +148,7 @@
                     
                     
                     &:hover {
-                        @include button(false, $dark-gray, $dark-gray, $white );
+                        @include button(false, $red, $red, $white );
                         display: block;
                         margin-bottom: 0;
                         padding-top: rem-calc(11.5);
