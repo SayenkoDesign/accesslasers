@@ -48,7 +48,8 @@ if( ! class_exists( 'Product_Details' ) ) {
         // Add content
         public function render() {
                      
-            $heading = sprintf( '<header>%s</header>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h2' ] ) );
+            $heading_large = sprintf( '<header class="show-for-large">%s</header>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h2' ] ) );
+            $heading_small = sprintf( '<div class="cell hide-for-large no-margin"><header>%s</header></div>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h2' ] ) );
             
             $classes = [ 'auto' ];
             $photos = $this->get_photos();
@@ -63,12 +64,12 @@ if( ! class_exists( 'Product_Details' ) ) {
             $group = '';
             $application = $this->get_application();
             if( ! empty( $application ) ) {
-                $group .= sprintf( '<div class="cell large-shrink">%s</div>', $application );
+                $group .= sprintf( '<div class="cell small-12 medium-6 large-12 xxlarge-shrink">%s</div>', $application );
             }
             
             $technology = $this->get_technology();
             if( ! empty( $technology ) ) {
-                $group .= sprintf( '<div class="cell large-auto">%s</div>', $technology );
+                $group .= sprintf( '<div class="cell small-12 medium-6 large-12 xxlarge-auto">%s</div>', $technology );
             }
             
             if( ! empty( $group ) ) {
@@ -79,10 +80,11 @@ if( ! class_exists( 'Product_Details' ) ) {
             
             $downloads = $this->get_downloads();
             
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-x-margin">%s<div class="cell %s">%s%s%s%s%s</div></div></div>',
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-x-margin grid-margin-bottom">%s%s<div class="cell %s">%s%s%s%s%s</div></div></div>',
+                            $heading_small,
                             $photos,
                             join( '', $classes ),
-                            $heading,
+                            $heading_large,
                             $buttons,
                             $group, 
                             $description,
@@ -97,7 +99,7 @@ if( ! class_exists( 'Product_Details' ) ) {
             $request = sprintf( '<a data-open"request-product" class="button">%s</a>', __( 'request product' ) );
             $phone = get_field( 'phone', 'option' );
             if( ! empty( $phone ) ) {
-                $phone = sprintf( '<a href="%s" class="button phone">%s</a>', _s_format_telephone_url( $phone ), $phone );
+                $phone = sprintf( '<a href="%s" class="button phone"><span>%s</span></a>', _s_format_telephone_url( $phone ), $phone );
             }            
             
             return sprintf( '<div class="stacked-for-medium expanded button-group">%s%s</div>', $request, $phone );
@@ -121,6 +123,10 @@ if( ! class_exists( 'Product_Details' ) ) {
                 return sprintf( '<div class="slide"><div class="vertical-center">%s</div></div>', wp_get_attachment_image( $id, 'large' ) );
             }, $photos );
             
+            $thumbnails = array_map( function ( $id ) {
+                return sprintf( '<div class="slide"><div class="thumbnail" style="background-image: url(%s);"></div></div>', _s_get_acf_image( $id, 'thumbnail', true ) );
+            }, $photos );
+            
             $buttons = '<div class="slick-arrows">
                             <button class="slick-prev slick-arrow" aria-label="Previous" type="button">Previous</button>
                             <button class="slick-next slick-arrow" aria-label="Next" type="button">Previous</button>
@@ -128,7 +134,7 @@ if( ! class_exists( 'Product_Details' ) ) {
             
             if( ! empty( $slides ) ) {
                 $main = sprintf( '<div class="product__slider-main"><div class="slick">%s</div></div>', join( '', $slides ) ); 
-                $thumbs = sprintf( '<div class="product__slider-thumbs"><div class="slick">%s</div></div>', join( '', $slides ) ); 
+                $thumbs = sprintf( '<div class="product__slider-thumbs"><div class="slick">%s</div></div>', join( '', $thumbnails ) ); 
                 
                 return sprintf( '<div class="product__slider">%s%s</div>', $main, $thumbs );
             }
@@ -143,7 +149,7 @@ if( ! class_exists( 'Product_Details' ) ) {
                 return false;
             }
             
-            $heading = _s_format_string( $field[ 'heading' ], 'h3', [ 'class' => 'h6' ] );
+            $heading = _s_format_string( $field[ 'heading' ], 'h3' );
             
             $rows = $field[ 'applications' ];
             $list = '';
@@ -165,7 +171,7 @@ if( ! class_exists( 'Product_Details' ) ) {
                 return false;
             }
             
-            $heading = _s_format_string( $field[ 'heading' ], 'h3', [ 'class' => 'h6' ] );
+            $heading = _s_format_string( $field[ 'heading' ], 'h3' );
             
             $rows = $field[ 'list' ];
             $list = '';
@@ -210,7 +216,7 @@ if( ! class_exists( 'Product_Details' ) ) {
                     }
                 }
                 
-                $buttons = sprintf( '<div class="downloads">%s</div>', $buttons );
+                $buttons = sprintf( '<div class="downloads"><h3>Downloads</h3>%s</div>', $buttons );
             }
             
             return $buttons;

@@ -173,7 +173,7 @@ export default {
                         rows: 0,
                         responsive: [
                             {
-                              breakpoint: 979,
+                              breakpoint: 991,
                               settings: {
                                 slidesToShow: 6,
                                 slidesToScroll: 1,

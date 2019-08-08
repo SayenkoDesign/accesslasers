@@ -923,7 +923,7 @@ __webpack_require__.r(__webpack_exports__);
           focusOnSelect: true,
           rows: 0,
           responsive: [{
-            breakpoint: 979,
+            breakpoint: 991,
             settings: {
               slidesToShow: 6,
               slidesToScroll: 1,
