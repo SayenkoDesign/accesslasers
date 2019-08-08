@@ -86,9 +86,12 @@
             
             p {
                 color: #fff;
-                font-size: rem-calc(24);
-                font-weight: 500;
-                line-height: 1.833333333;
+                
+                @include breakpoint(large) {
+                    font-size: rem-calc(24);
+                    font-weight: 500;
+                    line-height: 1.833333333;
+                }
             }
    
         }   
