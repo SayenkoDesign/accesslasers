@@ -123,7 +123,7 @@ if( ! class_exists( 'Global_People_Section' ) ) {
                 $linkedin = sprintf( '<a href="%s" class="linkedin">%s</a>', $linkedin, get_svg( 'linkedin' ) );
             }
                         
-            $heading = the_title( '<h3 class="h5">', '</h3>', false ); 
+            $heading = the_title( '<h3>', '</h3>', false ); 
             
             $line = '<div class="line"></div>';
                                                              
