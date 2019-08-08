@@ -148,9 +148,9 @@
     
     .section-jobs {
         
-        padding-top: rem-calc(75);
+        padding-top: rem-calc(45);
         @include breakpoint(large) {
-            padding-top: rem-calc(150);
+            padding-top: rem-calc(120);
         } 
         
         
@@ -169,6 +169,28 @@
         .wrap {
             max-width: rem-calc(1300); 
             margin: 0 auto;  
+        }
+        
+        #BambooHR {
+            h2 {
+                display: none;   
+            }
+            
+            ul > li > div {
+                font-size: rem-calc(30);  
+                color: $dark-gray;
+                font-weight: 700; 
+                margin-top: rem-calc(30);
+                margin-bottom: rem-calc(30);
+            }
+            
+            ul > li > ul {
+                padding-bottom: rem-calc(30);   
+            }
+            
+            ul > li > ul > li {
+                font-size: rem-calc(18);   
+            }
         }
         
     }
