@@ -96,4 +96,5 @@ include_once( 'foundation/class-foundation-tabs.php' );
     include_once( 'post-types/cpt-testimonial.php' );
     include_once( 'post-types/cpt-people.php' );
     include_once( 'post-types/cpt-product.php' );
+    include_once( 'post-types/cpt-technology.php' );
     include_once( 'post-types/cpt-faq.php' );

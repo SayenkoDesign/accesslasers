@@ -125,7 +125,7 @@ if( ! class_exists( 'Home_What_Section' ) ) {
                                                                     
             $icon = $row['icon'];
             $icon = sprintf( '<div class="grid-image">%s</div>', _s_get_acf_image( $icon, 'thumbnail' ) );
-            $heading = _s_format_string( $row['heading'], 'h3', [ 'class' => 'h5' ] ); 
+            $heading = _s_format_string( $row['heading'], 'h3' ); 
             $description = _s_format_string( $row['description'], 'p' ); 
             
             if( ! $icon && ! $heading && ! $description ) {
