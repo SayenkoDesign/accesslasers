@@ -87,6 +87,13 @@
             }
 
 		}
+        
+        &.current-menu-ancestor,
+        &.current_page_parent {
+            a {
+                color: $red;   
+            }
+        }
 	}
     
     .sub-menu {
