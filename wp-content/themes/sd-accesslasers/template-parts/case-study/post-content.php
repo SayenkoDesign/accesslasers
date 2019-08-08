@@ -31,7 +31,7 @@
         
         if( function_exists( '_s_get_relationship_field_list' ) ) {
             $application = _s_get_relationship_field_list( 'application', 'Application', true );
-            $technology = _s_get_relationship_field_list( 'application', 'Technology' );
+            $technology = _s_get_relationship_field_list( 'technology', 'Technology' );
             $product = _s_get_relationship_field_list( 'product', 'Product', true );
         }
         
