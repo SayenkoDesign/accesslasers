@@ -90,7 +90,7 @@
         
         &.current-menu-ancestor,
         &.current_page_parent {
-            a {
+            > a {
                 color: $red;   
             }
         }
