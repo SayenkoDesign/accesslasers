@@ -73,6 +73,14 @@
         
         max-width: rem-calc(1300);
         margin: 0 auto;
+        padding-top: rem-calc(30);
+        
+        .panels {
+            background: #fff;
+            box-shadow: $box-shadow;
+            border: 1px solid $light-gray;
+            padding: rem-calc(30 30 30 30);   
+        }
         
         .icon img {
             border: 1px solid $gray;
@@ -85,7 +93,7 @@
         @include breakpoint(xxlarge) {
             .icon {
                 display: block;
-                margin-top: rem-calc(-250);  
+                margin-top: rem-calc(-280);  
                 margin-bottom: rem-calc(75); 
                 position: relative;
                 z-index: 3; 
@@ -102,7 +110,11 @@
             }   
         }  
         
-        
+        .panel {
+            h5 {
+                margin-top: rem-calc(30);   
+            }
+        }
     }
     
     

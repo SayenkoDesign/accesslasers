@@ -3,10 +3,32 @@
 .single-post {
         
     .section-hero {
-        margin-bottom: rem-calc(45);   
+        margin-bottom: rem-calc(75);   
         padding: rem-calc(75 0);
         text-align: center;
         background-color: $gray;
+        
+        &.background-image {        
+            background-color: transparent;
+            background-size: cover;
+            position: relative;
+                    
+            &:after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+                left: 0;
+                background: rgba( $dark-gray, .5);
+            }
+            
+            .wrap {
+                position: relative;
+                z-index: 3;   
+            }
+        } 
         
         .grid-x {
             min-height: 25vw;   
@@ -44,6 +66,10 @@
                     }
                 }
             }
+        }
+        
+        h1 {
+            color: #fff;   
         }
         
         .posted-on {

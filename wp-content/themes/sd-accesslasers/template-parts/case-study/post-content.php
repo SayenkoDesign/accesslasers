@@ -36,7 +36,7 @@
         }
         
         if( $logo || $application || $technology || $product ) {
-            printf( '<div class="cell large-3 large-offset-1">%s%s%s%s</div>', 
+            printf( '<div class="cell large-3 large-offset-1"><div class="panels">%s%s%s%s</div></div>', 
                 $logo,
                 $application,
                 $technology,

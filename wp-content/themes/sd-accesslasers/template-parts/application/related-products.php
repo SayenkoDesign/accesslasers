@@ -78,7 +78,7 @@ if( ! class_exists( 'Related_Products' ) ) {
                 return false;
             }
             
-            return sprintf( '<header class="text-center">%s</header><div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 xlarge-up-4 align-center grid">%s</div>', $heading, join( '', $posts ) );            
+            return sprintf( '<header class="text-center">%s</header><div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 xxlarge-up-4 align-center grid">%s</div>', $heading, join( '', $posts ) );            
         }
         
     }
