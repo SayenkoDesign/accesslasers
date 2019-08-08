@@ -21,6 +21,7 @@ export default {
             $('.section-technologies .grid .grid-image').matchHeight({row:true});
             $('.section-technologies .grid footer').matchHeight({row:true});
             
+            $('.archive .grid article').matchHeight({row:true});
             
             // Blog filters
             var detectWrap = function(element) {

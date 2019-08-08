@@ -66,27 +66,35 @@ export default {
         
         if ( $('.slick', $historySlider).length ) {
             
-            $('.slick', $historySlider).slick({
-                fade: true,
-                autoplay: false,
-                infinite: true,
-                adaptiveHeight: true,
-                arrows: true,
-                dots: false,
-                rows: 0,
-                /*
-                customPaging : function(slider, i) {
-                    let number = i+1;
-                    number = number.toString().padStart(2, '0');
-                    return '<a class="dot">'+number+'</a>';
-                },
-                */
-                speed: 300,
-                nextArrow: $('.slick-next', $historySlider),
-                prevArrow: $('.slick-prev', $historySlider),
-            });
+            $historySlider.imagesLoaded()
             
-            $( '.wrap', $historySlider).append($('.slick', $historySlider).find('.slick-dots'));
+                .done( function( instance ) {
+            
+                $('.slick', $historySlider).slick({
+                    fade: true,
+                    autoplay: false,
+                    infinite: true,
+                    adaptiveHeight: true,
+                    arrows: true,
+                    dots: false,
+                    rows: 0,
+                    /*
+                    customPaging : function(slider, i) {
+                        let number = i+1;
+                        number = number.toString().padStart(2, '0');
+                        return '<a class="dot">'+number+'</a>';
+                    },
+                    */
+                    speed: 300,
+                    nextArrow: $('.slick-next', $historySlider),
+                    prevArrow: $('.slick-prev', $historySlider),
+                });
+                
+                $( '.wrap', $historySlider).append($('.slick', $historySlider).find('.slick-dots'));
+                
+                $historySlider.addClass('images-loaded');
+                    
+             });
         }
         
         
@@ -196,22 +204,32 @@ export default {
 
 
 		if ( $('.section-product-slideshow .slider .slick').length ) {
-            $(".section-product-slideshow .slider .slick").slick({
-                fade: true,
-                autoplay: false,
-                infinite: true,
-                adaptiveHeight: true,
-                dots: true,
-                speed: 300,
-                customPaging : function(slider, i) {
-                    let number = i+1;
-                    number = number.toString().padStart(2, '0');
-                    let thumb = $(slider.$slides[i]).data();
-                    return '<a class="dot">'+number+'</a>';
-                },
-                nextArrow: '.section-product-slideshow .slider .slick-next',
-                prevArrow: '.section-product-slideshow .slider .slick-prev',
-            });
+            
+            $('.section-product-slideshow .slider').imagesLoaded()
+            
+                .done( function( instance ) {
+            
+            
+                $(".section-product-slideshow .slider .slick").slick({
+                    fade: true,
+                    autoplay: false,
+                    infinite: true,
+                    adaptiveHeight: true,
+                    dots: true,
+                    speed: 300,
+                    customPaging : function(slider, i) {
+                        let number = i+1;
+                        number = number.toString().padStart(2, '0');
+                        let thumb = $(slider.$slides[i]).data();
+                        return '<a class="dot">'+number+'</a>';
+                    },
+                    nextArrow: '.section-product-slideshow .slider .slick-next',
+                    prevArrow: '.section-product-slideshow .slider .slick-prev',
+                });
+                
+                $('.section-product-slideshow .slider').addClass('images-loaded');
+                
+             });
         }
 		 
 	},

@@ -113,7 +113,7 @@ wp_reset_postdata();
                                       
                     printf( '<div class="category-filters"><div class="categories">%s%s</div></div>', $menu, $select );
                     
-                    $classes[] = 'small-up-1 medium-up-2 large-up-3 xlarge-up-4';
+                    $classes[] = 'small-up-1 medium-up-2 large-up-3 xxlarge-up-4';
                     
                     printf( '<div class="grid-x grid-margin-x %s grid" data-equalizer data-equalize-on="medium" data-equalize-by-row="true">', join( ' ', $classes ) );
                      

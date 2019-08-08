@@ -719,6 +719,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid footer').matchHeight({
       row: true
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.archive .grid article').matchHeight({
+      row: true
     }); // Blog filters
 
     var detectWrap = function detectWrap(element) {
@@ -834,27 +837,30 @@ __webpack_require__.r(__webpack_exports__);
     var $historySlider = jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-about-history .slider');
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).length) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).slick({
-        fade: true,
-        autoplay: false,
-        infinite: true,
-        adaptiveHeight: true,
-        arrows: true,
-        dots: false,
-        rows: 0,
+      $historySlider.imagesLoaded().done(function (instance) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).slick({
+          fade: true,
+          autoplay: false,
+          infinite: true,
+          adaptiveHeight: true,
+          arrows: true,
+          dots: false,
+          rows: 0,
 
-        /*
-        customPaging : function(slider, i) {
-            let number = i+1;
-            number = number.toString().padStart(2, '0');
-            return '<a class="dot">'+number+'</a>';
-        },
-        */
-        speed: 300,
-        nextArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-next', $historySlider),
-        prevArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-prev', $historySlider)
+          /*
+          customPaging : function(slider, i) {
+              let number = i+1;
+              number = number.toString().padStart(2, '0');
+              return '<a class="dot">'+number+'</a>';
+          },
+          */
+          speed: 300,
+          nextArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-next', $historySlider),
+          prevArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-prev', $historySlider)
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.wrap', $historySlider).append(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).find('.slick-dots'));
+        $historySlider.addClass('images-loaded');
       });
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.wrap', $historySlider).append(jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick', $historySlider).find('.slick-dots'));
     } // Careers - Testimonials
 
 
@@ -943,21 +949,24 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     if (jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-product-slideshow .slider .slick').length) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(".section-product-slideshow .slider .slick").slick({
-        fade: true,
-        autoplay: false,
-        infinite: true,
-        adaptiveHeight: true,
-        dots: true,
-        speed: 300,
-        customPaging: function customPaging(slider, i) {
-          var number = i + 1;
-          number = number.toString().padStart(2, '0');
-          var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
-          return '<a class="dot">' + number + '</a>';
-        },
-        nextArrow: '.section-product-slideshow .slider .slick-next',
-        prevArrow: '.section-product-slideshow .slider .slick-prev'
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-product-slideshow .slider').imagesLoaded().done(function (instance) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(".section-product-slideshow .slider .slick").slick({
+          fade: true,
+          autoplay: false,
+          infinite: true,
+          adaptiveHeight: true,
+          dots: true,
+          speed: 300,
+          customPaging: function customPaging(slider, i) {
+            var number = i + 1;
+            number = number.toString().padStart(2, '0');
+            var thumb = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data();
+            return '<a class="dot">' + number + '</a>';
+          },
+          nextArrow: '.section-product-slideshow .slider .slick-next',
+          prevArrow: '.section-product-slideshow .slider .slick-prev'
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-product-slideshow .slider').addClass('images-loaded');
       });
     }
   }

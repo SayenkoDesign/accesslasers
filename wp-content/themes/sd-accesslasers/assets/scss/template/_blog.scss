@@ -61,6 +61,71 @@
             
             .more {
                 font-size: rem-calc(18);
+                display: inline-block;
+                text-transform: capitalize;
+                
+                &:after {
+                    content: '';
+                    display: block;
+                    width: rem-calc(32);
+                    height: rem-calc(2);
+                    background-color: $red;  
+                    transition: width .3s; 
+                    margin-top: 5px;
+                }
+                
+                &.center {
+                    &:after {
+                        width: rem-calc(74);
+                        position: relative;
+                        left: 50%;
+                        transform: translateX(-50%);
+                    }
+                }
+                
+                .no-touchevents & {  
+                    &:hover:after {
+                        width: 100%;   
+                    }   
+                }
+            }
+            
+            
+            &.sticky {
+                
+                @include breakpoint(medium) {
+                    width: calc(100% - #{rem-calc(map-get($grid-margin-gutters, medium))}); 
+                }
+                
+                @include breakpoint(large) {
+                    width: calc(100% - #{rem-calc(map-get($grid-margin-gutters, large))}); 
+                }
+                
+                display: flex;
+                
+                .post-hero {
+                    padding-top: 33%;
+                    width: 50%;   
+                }
+                
+                header {
+                    @include breakpoint(medium) {
+                        padding: rem-calc(map-get($grid-margin-gutters, medium)); 
+                    }
+                    
+                    @include breakpoint(large) {
+                        padding: rem-calc(map-get($grid-margin-gutters, large)); 
+                    }
+                }
+                
+                h3 {
+                    font-size: rem-calc(42);
+                    margin-bottom: 15%;
+                }
+                
+                .read-more {
+                    display: block;   
+                }
             }
             
         }

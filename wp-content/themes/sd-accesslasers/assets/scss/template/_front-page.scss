@@ -484,6 +484,11 @@
             
             opacity: 0;
             visibility: hidden;
+
+            &.images-loaded {
+                opacity: 1;
+                visibility: visible;
+            }
             
             margin: -5% auto 0;    
                     

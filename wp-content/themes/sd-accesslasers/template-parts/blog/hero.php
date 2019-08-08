@@ -39,13 +39,13 @@ if( ! class_exists( 'Hero_Section' ) ) {
             
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
             
-            if( is_category() ) {
+            /*if( is_category() ) {
                 $heading = single_cat_title( '', false );
             }
             
             if( is_post_type_archive() ) {
                 $heading = post_type_archive_title( '', false );
-            }
+            }*/
             
             $heading      = sprintf( '%s', _s_format_string( $heading, 'h1', [ 'class' => 'h2' ] ) );
             
