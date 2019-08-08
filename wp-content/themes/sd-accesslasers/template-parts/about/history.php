@@ -127,7 +127,7 @@ if( ! class_exists( 'About_History' ) ) {
             
             $image = get_the_post_thumbnail( $post_id, 'large' );   
 
-            $title = _s_format_string( '<span>Year</span> '. get_the_title( $post_id ), 'h4' ); 
+            $title = _s_format_string( '<span>Year</span> '. get_the_title( $post_id ), 'h3' ); 
             $content = apply_filters( 'the_content', get_the_content( $post_id ) );
             
             if( ! $image && ! $title && ! $content ) {

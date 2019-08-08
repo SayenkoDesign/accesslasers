@@ -88,7 +88,7 @@ if( ! class_exists( 'About_Core_Values' ) ) {
                                              
             $image = $row['grid_image'];
             $image = sprintf( '<div class="icon">%s</div>', _s_get_acf_image( $image, 'thumbnail' ) );                                   
-            $heading = _s_format_string( $row['grid_title'], 'h4' ); 
+            $heading = _s_format_string( $row['grid_title'], 'h3' ); 
             $description = _s_format_string( $row['grid_description'], 'p' );
             
             if( ! $heading && ! $description && ! $image ) {

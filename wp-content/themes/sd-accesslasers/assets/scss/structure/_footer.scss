@@ -93,15 +93,6 @@
             }
             
             h2 {
-                font-size: rem-calc(72*.6);
-                
-                @include breakpoint(medium) {
-                    font-size: rem-calc(72*.8);
-                }
-                
-                @include breakpoint(large) {
-                    font-size: rem-calc(72);
-                }
                 
                 line-height: 1.138888889;   
                 margin-bottom: rem-calc(60);

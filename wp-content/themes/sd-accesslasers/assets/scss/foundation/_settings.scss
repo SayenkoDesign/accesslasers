@@ -172,7 +172,7 @@ $header-styles: (
 	small: (
 		'h1': ('font-size': 48, 'lh': 1.2, 'mb': 30 ),
 		'h2': ('font-size': 40, 'lh': 1.2, 'mb': 40),
-		'h3': ('font-size': 30, 'lh': 1.2, 'mb': 20),
+		'h3': ('font-size': 24, 'lh': 1.2, 'mb': 20),
 		'h4': ('font-size': 24, 'lh': 1.2, 'mb': 20),
 		'h5': ('font-size': 20, 'lh': 1.2, 'mb': 20),
 		'h6': ('font-size': 18, 'lh': 1.2, 'mb': 20),
@@ -180,9 +180,17 @@ $header-styles: (
     large: (
 		'h1': ('font-size': 60),
 		'h2': ('font-size': 48),
-		'h3': ('font-size': 30),
+		'h3': ('font-size': 24),
 		'h4': ('font-size': 24),
 		'h5': ('font-size': 20),
+		'h6': ('font-size': 18),
+	),
+    xxxlarge: (
+		'h1': ('font-size': 60),
+		'h2': ('font-size': 48),
+		'h3': ('font-size': 30),
+		'h4': ('font-size': 30),
+		'h5': ('font-size': 24),
 		'h6': ('font-size': 18),
 	),
 

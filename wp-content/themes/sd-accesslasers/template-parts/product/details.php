@@ -48,7 +48,7 @@ if( ! class_exists( 'Product_Details' ) ) {
         // Add content
         public function render() {
                      
-            $heading = sprintf( '<header>%s</header>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h4' ] ) );
+            $heading = sprintf( '<header>%s</header>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h2' ] ) );
             
             $classes = [ 'auto' ];
             $photos = $this->get_photos();

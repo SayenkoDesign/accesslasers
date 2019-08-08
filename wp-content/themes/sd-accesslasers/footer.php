@@ -23,7 +23,7 @@
             $footer_cta = get_field( 'footer_cta', 'option' );
             $heading = $button = '';
             if( ! empty( $footer_cta[ 'heading' ] ) ) {
-                $heading = sprintf( '<h2>%s</h2>', $footer_cta[ 'heading' ] );
+                $heading = sprintf( '<h2 class="h1">%s</h2>', $footer_cta[ 'heading' ] );
             }
             
             if( ! empty( $footer_cta[ 'button' ]['link'] ) ) {

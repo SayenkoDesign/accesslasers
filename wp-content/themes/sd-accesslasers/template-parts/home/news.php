@@ -124,7 +124,7 @@ if( ! class_exists( 'Home_News' ) ) {
             }
             
             $title = get_the_title();
-            $title = _s_format_string( $title, 'h4' );
+            $title = _s_format_string( $title, 'h3' );
             
             $excerpt = apply_filters( 'the_content', get_the_excerpt() );
 

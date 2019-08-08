@@ -104,7 +104,7 @@ if( ! class_exists( 'Global_People_Section' ) ) {
                array_push( $posts, $cta );
             }
                                                            
-            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 xlarge-up-3 align-center grid">%s</div>', 
+            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 xxxlarge-up-3 align-center grid">%s</div>', 
                                     join( '', $posts ) );
         }
         
@@ -123,7 +123,7 @@ if( ! class_exists( 'Global_People_Section' ) ) {
                 $linkedin = sprintf( '<a href="%s" class="linkedin">%s</a>', $linkedin, get_svg( 'linkedin' ) );
             }
                         
-            $heading = the_title( '<h3>', '</h3>', false ); 
+            $heading = the_title( '<h3 class="h4">', '</h3>', false ); 
             
             $line = '<div class="line"></div>';
                                                              
@@ -170,7 +170,7 @@ if( ! class_exists( 'Global_People_Section' ) ) {
             $thumbnail = sprintf( ' style="background-image: url(%s)"', $image );
             $thumbnail = sprintf( '<div class="thumbnail"%s></div>', $thumbnail );
             
-            $heading = sprintf( '<h4>%s</h4>', $text ); 
+            $heading = sprintf( '<h3>%s</h3>', $text ); 
             
             $button = sprintf( '<a href="%s" class="button">%s</a>', esc_url( $link['url'] ), esc_attr( $link['title'] ) );
             
