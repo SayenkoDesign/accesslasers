@@ -98,7 +98,7 @@ if( ! class_exists( 'Home_Hero' ) ) {
         public function render() {
             
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
-            $heading = _s_format_string( $heading, 'h1' );
+            $heading = _s_format_string( $heading, 'h1', ['class' => 'h2'] );
             
             $description = empty( $this->get_fields( 'description' ) ) ? '' : _s_format_string( $this->get_fields( 'description' ), 'p' );
             
