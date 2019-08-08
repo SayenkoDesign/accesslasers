@@ -18,7 +18,7 @@
     
         <div class="grid-container">
           <div class="grid-x grid-padding-x">
-            <div class="right cell large-auto large-order-2">
+            <div class="right white cell large-auto large-order-2">
             <?php
             $footer_cta = get_field( 'footer_cta', 'option' );
             $heading = $button = '';
@@ -70,7 +70,7 @@
             }
             
             if( _s_get_social_icons() ) {
-                printf( '<div class="content">%s</div>',  _s_get_social_icons() );
+                printf( '<div class="content hide-for-large">%s</div>',  _s_get_social_icons() );
             }
             ?>
             
@@ -107,7 +107,7 @@
                     }
                         
                               
-                    printf( '<div class="copyright"><p>%s %s Access Laser. %s %s <span><a href="%s">Seattle Web Design</a> by <a href="%s">Sayenko Design</a></span></p></div>', 
+                    printf( '<div class="copyright hide-for-large"><p>%s %s Access Laser. %s %s <span><a href="%s">Seattle Web Design</a> by <a href="%s">Sayenko Design</a></span></p></div>', 
                                               date( 'Y' ), 
                                               __( 'Copyright' ), 
                                               $menu, 
@@ -125,6 +125,36 @@
             
           </div>
         </div>
+        
+        
+        <div class="grid-container">
+          <div class="grid-x grid-padding-x">
+          
+            <div class="cell large-4 xxlarge-5 xxxlarge-5">
+                <?php
+                    printf( '<div class="copyright show-for-large"><p>%s %s Access Laser. %s %s <span><a href="%s">Seattle Web Design</a> by <a href="%s">Sayenko Design</a></span></p></div>', 
+                              date( 'Y' ), 
+                              __( 'Copyright' ), 
+                              $menu, 
+                              __( 'All rights reserved.', '_s' ),
+                              'https://www.sayenkodesign.com',
+                              'https://www.sayenkodesign.com'
+                                   
+                        );
+                ?>
+            </div>
+        
+            <div class="cell white large-auto">
+                <?php
+                    if( _s_get_social_icons() ) {
+                        printf( '<div class="content show-for-large">%s</div>',  _s_get_social_icons() );
+                    }
+                ?>
+            </div>
+            
+          </div>
+        </div>
+        
 	</div>
 
 </footer><!-- #colophon -->

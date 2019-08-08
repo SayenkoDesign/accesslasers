@@ -145,7 +145,7 @@
     
     .section-product-options {
         
-        padding: rem-calc(100 0 25);
+        padding: rem-calc(100 0 75);
         
         ul {
            @include bullets($red);  
@@ -164,7 +164,7 @@
                column-gap: rem-calc(50);
                
                span {
-                    padding-bottom: rem-calc(75);   
+                    padding-bottom: rem-calc(35);   
                }
                
            }

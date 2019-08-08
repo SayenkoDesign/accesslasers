@@ -11,12 +11,6 @@
     
     .copyright {
         
-        margin-top: rem-calc(75);
-        
-        @include breakpoint(xlarge) {
-            margin-top: rem-calc(300);
-        }
-        
         
         p {
             color: #CADADE;
@@ -39,7 +33,12 @@
     }
     
     .hours-phone-directions {
-         margin-top: rem-calc(160);
+         margin-top: rem-calc(80);
+         
+         @include breakpoint(large) {
+             margin-top: rem-calc(160);
+             margin-bottom: 0;
+         }
          
          @include breakpoint(xlarge) {
             
@@ -61,6 +60,16 @@
         }
     }
     
+    .content {
+        @include breakpoint(large) {
+            padding-left: 10%;
+        }
+        
+        @include breakpoint(xxxlarge) {
+            padding-left: rem-calc(145);
+        }
+    }
+    
     .left {
         padding-top: rem-calc(50); 
         padding-bottom: rem-calc(50);
@@ -73,8 +82,7 @@
     }
     
     .right {
-       background-color: #fff; 
-       
+               
        padding-top: rem-calc(50);  
        padding-bottom: rem-calc(50); 
         
@@ -84,13 +92,6 @@
         }
        
        .content {
-            @include breakpoint(large) {
-                padding-left: 10%;
-            }
-            
-            @include breakpoint(xxxlarge) {
-                padding-left: rem-calc(145);
-            }
             
             h2 {
                 
@@ -98,6 +99,10 @@
                 margin-bottom: rem-calc(60);
             }
        }
+    }
+    
+    .white{
+        background: #fff;   
     }
 
 	.widget {
@@ -191,6 +196,14 @@
 		}
 
 	}
+    
+    
+    @include breakpoint(large) {
+        .copyright,
+        .social-icons {
+            margin-bottom: rem-calc(50);   
+        }
+    }
 
 
 }
