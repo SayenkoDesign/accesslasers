@@ -51,7 +51,7 @@ wp-content/mysql.sql
 
 # wp core (as of 4.9.5)
 /db-config.php
-/index.php
+#/index.php
 /license.txt
 /readme.html
 /wp-activate.php
