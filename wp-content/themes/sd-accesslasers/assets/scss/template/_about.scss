@@ -25,7 +25,7 @@
             padding-top: rem-calc(75); 
             
             @include breakpoint(xxlarge) {
-                padding: rem-calc(125);
+                padding-top: rem-calc(125);
             }
         }
         
