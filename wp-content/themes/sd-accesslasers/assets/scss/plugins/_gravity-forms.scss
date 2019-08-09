@@ -111,7 +111,24 @@ body .gform_wrapper {
     .gform_footer {
         
     }
+    
+    .gfield_radio input[type=radio]+input[type=text] {
+        
+    }
 
+}
+
+body #gform_wrapper_1,
+body #gform_wrapper_2,
+body #gform_wrapper_3,
+body #gform_wrapper_4,
+body #gform_wrapper_5,
+body #gform_wrapper_6,
+body #gform_wrapper_7 {
+    li.gfield ul.gfield_radio li input[type=radio]+input[type=text] {
+        width: auto!important;
+        padding: rem-calc(10 10 10 10) !important;
+    }
 }
 
 

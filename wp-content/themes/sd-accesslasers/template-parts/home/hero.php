@@ -109,6 +109,8 @@ if( ! class_exists( 'Home_Hero' ) ) {
                     'link' => $button['link'],
                     'echo' => false,
                     'classes' => 'button large',
+                    'modal' => 'contact',
+                    'type' => $button['type']
                 ];
                 $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
             }
