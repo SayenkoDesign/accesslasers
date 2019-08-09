@@ -165,11 +165,22 @@
             padding-top: rem-calc(30);   
         }
         
+        .download-group {
+            padding-top: rem-calc(20);
+            
+            h6 {
+                margin: rem-calc(0 0 20 0);   
+            }
+        }
+        
         .downloads {
-            padding-top: rem-calc(20);            
+                        
+            margin-bottom: rem-calc(20);
             
             @include mui-animation(fade);
-            animation-duration: 1s;  
+            animation-duration: 1s; 
+            
+            
             
             a {
                 display: inline-block;

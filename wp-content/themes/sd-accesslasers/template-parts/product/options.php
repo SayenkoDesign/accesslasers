@@ -70,7 +70,11 @@ if( ! class_exists( 'Product_Options' ) ) {
             $list = '';
             foreach( $rows as $row ) {
                 $item = $row['item'];
+                $link = $row['link'];
                 if( ! empty( $item ) ) {
+                    if( $link ) {
+                        $item = sprintf( '<a href="%s" target="_blank">%s</a>', $link, $item );
+                    } 
                     $list .= sprintf( '<li><span>%s</span></li>', $item );
                 }
             }

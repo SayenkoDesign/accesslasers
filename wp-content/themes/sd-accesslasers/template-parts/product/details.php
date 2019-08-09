@@ -15,7 +15,7 @@ if( ! class_exists( 'Product_Details' ) ) {
             $fields['application'] = get_field( 'application' );
             $fields['technology'] = get_field( 'technology' );
             $fields['description'] = get_field( 'description' );
-            $fields['downloads'] = get_field( 'downloads' );          
+            $fields['download_group'] = get_field( 'download_group' );          
             $this->set_fields( $fields );
             
             $settings = [];
@@ -199,27 +199,49 @@ if( ! class_exists( 'Product_Details' ) ) {
         
         
         private function get_downloads() {
-            $rows = $this->get_fields( 'downloads' );
             
-            $buttons = '';
-            
-            if( ! empty( $rows ) ) {
-                foreach( $rows as $row ) {                    
-                    if( ! empty( $row  ) ) {
-                        $icon = strtolower( $row['icon'] );
-                        $icon = sprintf( '<i><img src="%s" /></i>', _s_asset_path( sprintf( 'images/product/icons/%s.svg', $icon ) ) );
+            $groups = $this->get_fields( 'download_group' );
                         
-                        $label = $row['label'];
-                        $file = $row['file'];
-                        
-                        $buttons .= sprintf( '<a href="%s" class="button"><span>%s%s</span></a>', $file, $icon, $label );
-                    }
-                }
-                
-                $buttons = sprintf( '<div class="downloads"><h3>Downloads</h3>%s</div>', $buttons );
+            if( empty( $groups ) ) {
+               return false; 
             }
             
-            return $buttons;
+            $out = '';
+            
+            foreach( $groups as $group ) {
+                $heading = $group['heading'];
+                $rows = $group['downloads'];
+                                
+                if( ! empty( $heading ) ) {
+                    $out .= sprintf( '<h6>%s</h6>', $heading );
+                }
+                
+                $buttons = '';
+            
+                if( ! empty( $rows ) ) {
+                    foreach( $rows as $row ) {                    
+                        if( ! empty( $row  ) ) {
+                            $icon = strtolower( $row['icon'] );
+                            $icon = sprintf( '<i><img src="%s" /></i>', _s_asset_path( sprintf( 'images/product/icons/%s.svg', $icon ) ) );
+                            
+                            $label = $row['label'];
+                            $file = $row['file'];
+                            
+                            $buttons .= sprintf( '<a href="%s" class="button"><span>%s%s</span></a>', $file, $icon, $label );
+                        }
+                    }
+                    
+                    $buttons = sprintf( '<div class="downloads">%s</div>', $buttons );
+                }
+                
+                $out .= $buttons;
+            }
+            
+            if( empty( $out ) ) {
+                return false;
+            }
+            
+            return sprintf( '<div class="download-group"><h3>Downloads</h3>%s</div>', $out );
         }
         
     }
