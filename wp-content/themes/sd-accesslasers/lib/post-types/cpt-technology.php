@@ -26,7 +26,7 @@ class CPT_Technology extends CPT_Core {
 			),
 			array( 
 				'public'              => false,
-				'publicly_queryable'  => true,
+				'publicly_queryable'  => false,
 				'show_ui'             => true,
 				'query_var'           => true,
 				'capability_type'     => 'post',
@@ -37,7 +37,7 @@ class CPT_Technology extends CPT_Core {
 				'show_in_nav_menus'   => false,
 				'exclude_from_search' => true,
 				//'rewrite'             => array( 'slug' => 'teams' ),
-				'supports' => array( 'title', 'revisions' )
+				'supports' => array( 'title', 'revisions', 'page-attributes' )
 			)
 
         );
@@ -47,3 +47,18 @@ class CPT_Technology extends CPT_Core {
 }
 
 new CPT_Technology();
+
+
+$cpt_technology_categories = array(
+    __( 'Technology Category', CPT_Technology::TEXTDOMAIN, '_s' ), // Singular
+    __( 'Technologies Categories', CPT_Technology::TEXTDOMAIN, '_s' ), // Plural
+    'technology_cat' // Registered name
+);
+
+register_via_taxonomy_core( $cpt_technology_categories, 
+	array(
+		'public' => false,
+        'rewrite' => false,
+	), 
+	array( CPT_Technology::POST_TYPE ) 
+);

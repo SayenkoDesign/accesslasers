@@ -26,7 +26,7 @@ class CPT_People extends CPT_Core {
 			),
 			array( 
 				'public'              => false,
-				'publicly_queryable'  => true,
+				'publicly_queryable'  => false,
 				'show_ui'             => true,
 				'query_var'           => true,
 				'capability_type'     => 'post',

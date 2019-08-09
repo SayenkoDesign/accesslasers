@@ -25,7 +25,7 @@ class CPT_History extends CPT_Core {
 				self::POST_TYPE // Registered name/slug
 			),
 			array( 
-				'public'              => true,
+				'public'              => false,
 				'publicly_queryable'  => false,
 				'show_ui'             => true,
 				'query_var'           => true,

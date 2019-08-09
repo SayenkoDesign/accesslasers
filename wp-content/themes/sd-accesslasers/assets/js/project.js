@@ -38,7 +38,7 @@ const modules = new ModuleLoader( {
 	// responsiveVideoEmbed,
 	// search,
 	slick,
-	//smoothScroll,
+	smoothScroll,
 	// superfish
 	backgroundVideo,
 	//menuToggle,

@@ -991,57 +991,32 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jquery_smooth_scroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery-smooth-scroll */ "./node_modules/jquery-smooth-scroll/jquery.smooth-scroll.js");
-/* harmony import */ var jquery_smooth_scroll__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery_smooth_scroll__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var foundation_sites_js_foundation_smoothScroll__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! foundation-sites/js/foundation.smoothScroll */ "./node_modules/foundation-sites/js/foundation.smoothScroll.js");
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   init: function init() {
-    function hide_header_menu(menu) {
-      var mainMenuButtonClass = 'menu-toggle',
-          responsiveMenuClass = 'genesis-responsive-menu';
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(menu + ' .' + mainMenuButtonClass + ',' + menu + ' .' + responsiveMenuClass + ' .sub-menu-toggle').removeClass('activated').attr('aria-expanded', false).attr('aria-pressed', false);
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()(menu + ' .' + responsiveMenuClass + ',' + menu + ' .' + responsiveMenuClass + ' .sub-menu').attr('style', '');
-    }
-
-    var scrollnow = function scrollnow(e) {
-      var target; // if scrollnow()-function was triggered by an event
-
-      if (e) {
-        e.preventDefault();
-        target = this.hash;
-      } // else it was called when page with a #hash was loaded
-      else {
-          target = location.hash;
-        } // same page scroll
-
-
-      jquery__WEBPACK_IMPORTED_MODULE_0___default.a.smoothScroll({
-        scrollTarget: target,
-        beforeScroll: function beforeScroll() {
-          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.site-header').addClass('nav-up');
-        }
-      });
-    }; // if page has a #hash
-
-
-    if (location.hash) {
-      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').scrollTop(0).show(); // smooth-scroll to hash
-
-      scrollnow();
-    } // for each <a>-element that contains a "/" and a "#"
-
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('a[href*="/"][href*=#]').each(function () {
-      // if the pathname of the href references the same page
-      if (this.pathname.replace(/^\//, '') === location.pathname.replace(/^\//, '') && this.hostname === location.hostname) {
-        // only keep the hash, i.e. do not keep the pathname
-        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('href', this.hash);
-      }
-    }); // select all href-elements that start with #
-    // including the ones that were stripped by their pathname just above
-
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('body').on('click', 'a[href^=#]:not([href=#])', scrollnow);
+    /* window.addEventListener('load', function () {
+         
+         
+         // if page has a #hash
+         if ( location.hash ) {
+             
+             let element = location.hash + '-anchor';
+             
+             if( $(element).length ) {
+                 setTimeout(function(){ 
+                     Foundation.SmoothScroll.scrollToLoc( element, {offset: 100} );
+                  }, 3000);
+                 
+             }
+             
+             console.log('scrolled');
+             
+         }
+     }, false);
+     
+     */
   }
 });
 
@@ -1108,7 +1083,7 @@ var modules = new _loader_ModuleLoader__WEBPACK_IMPORTED_MODULE_1__["default"]({
   // responsiveVideoEmbed,
   // search,
   slick: _modules_slick__WEBPACK_IMPORTED_MODULE_7__["default"],
-  //smoothScroll,
+  smoothScroll: _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_8__["default"],
   // superfish
   backgroundVideo: _modules_background_video__WEBPACK_IMPORTED_MODULE_9__["default"],
   //menuToggle,

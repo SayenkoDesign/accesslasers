@@ -61,14 +61,70 @@ if( ! class_exists( 'Home_Technologies_Section' ) ) {
         }
         
         
+        
         private function get_grid() {
             
-            $post_ids = $this->get_fields( 'posts' );
+            $rows = $this->get_fields( 'grid' );
             
+            if( empty( $rows ) ) {
+                return false;
+            }
+                               
+            $items = '';
+               
+            foreach( $rows as $key => $row ) {  
+                $items .= $this->get_item( $row );
+            }
+            
+            return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
+                                    $items );
+        }
+        
+        
+        private function get_item( $row ) {
+                                                                                            
+            $term = $row['category'];
+            
+            if ( ! $term instanceof WP_Term ) {
+                return false;
+            }
+                        
+            $heading = _s_format_string( $term->name, 'h3' ); 
+            $description = _s_format_string( $term->description, 'p' );
+            $image = get_field( 'image', $term );
+            $image = sprintf( '<div class="icon">%s</div>', _s_get_acf_image( $image, 'thumbnail' ) );
+            
+            $posts = $row['posts'];
+            $list = $this->get_posts( $posts );
+            
+            if( $heading && ! $description && ! $image && ! $list ) {
+                return false;
+            }
+                      
+            return sprintf( '<div id="%s" class="cell">
+                                <div class="grid-item">
+                                    <header>%s</header>
+                                    <div class="description">%s</div>
+                                    <div class="grid-image">%s</div>
+                                    <footer>%s</footer>
+                                </div>
+                            </div>', 
+                            $term->slug,
+                            $heading,
+                            $description,
+                            $image, 
+                            $list
+                         );
+        }
+        
+        
+        
+        private function get_posts( $post_ids = [] ) {
+                        
             if( empty( $post_ids ) ) {
                 return false;
             }
-        
+            
             $args = array(
                 'post_type' => 'technology',
                 'order' => 'ASC',
@@ -83,7 +139,7 @@ if( ! class_exists( 'Home_Technologies_Section' ) ) {
             
             $loop = new WP_Query( $args );
             
-            $out = '';
+            $list_items = '';
                         
             if ( $loop->have_posts() ) :                 
                           
@@ -91,61 +147,20 @@ if( ! class_exists( 'Home_Technologies_Section' ) ) {
     
                     $loop->the_post(); 
                     
-                    $out .= $this->get_item();
+                    $list_items .= sprintf( '<li>%s</li>', get_the_title() );
     
                 endwhile;
                 
             endif; 
-            
+                        
             wp_reset_postdata();
             
-            return sprintf( '<div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3 align-center grid">%s</div>', 
-                                    $out );
-        }
-        
-        
-        private function get_item() {
-                                                                                            
-            $heading = _s_format_string( get_the_title(), 'h3' ); 
-            $description = get_field( 'grid_description' );
-            $description = _s_format_string( $description, 'p' );
-            $image = get_field( 'grid_image' );
-            $image = sprintf( '<div class="icon">%s</div>', _s_get_acf_image( $image, 'thumbnail' ) );
-            $list = get_field( 'grid_list' );
-            if( ! empty( $list ) ) {
-                
-                $list_items = '';
-                
-                foreach( $list as $item ) {
-                    $list_items .= sprintf( '<li>%s</li>', $item['item'] );
-                }
-                
-                if( ! empty( $list_items ) ) {
-                    $list = sprintf( '<div class="options"><h6>%s</h6><ul>%s</ul></div>', __( 'Technologies Covered:' ), $list_items  );
-                } else {
-                    $list = false;
-                }             
-            }
-            
-            if( $heading && ! $description && ! $image && ! $list ) {
+            if( empty( $list_items ) ) {
                 return false;
             }
-                      
-            return sprintf( '<div class="cell">
-                                <div class="grid-item">
-                                    <header>%s</header>
-                                    <div class="description">%s</div>
-                                    <div class="grid-image">%s</div>
-                                    <footer>%s</footer>
-                                </div>
-                            </div>', 
-                            $heading,
-                            $description,
-                            $image, 
-                            $list
-                         );
-        }
-        
+            
+            return sprintf( '<div class="options"><h6>%s</h6><ul>%s</ul></div>', __( 'Technologies Covered:' ), $list_items  );
+        }        
     }
 }
    

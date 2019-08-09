@@ -362,6 +362,19 @@
                     margin-bottom: rem-calc(map-get($grid-margin-gutters, large));
                 }   
             }
+            
+            
+            .cell {
+                &:before {
+                    content:"";
+                    display:block;
+
+                    @include breakpoint(large) {
+                        height: 150px;
+                        margin-top: -150px;   
+                    }
+                }   
+            }
         }
         
         header {

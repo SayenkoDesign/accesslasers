@@ -151,42 +151,21 @@ if( ! class_exists( 'Product_Details' ) ) {
             
             $heading = _s_format_string( $field[ 'heading' ], 'h3' );
             
-            $rows = $field[ 'applications' ];
-            $list = '';
-            foreach( $rows as $row => $post_id ) {
-                $list .= sprintf( '<li><a href="%s">%s</a></li>', get_permalink( $post_id ), get_the_title( $post_id ) );
-            }
-            
-            if( ! empty( $list ) ) {
-                $list = sprintf( '<ul>%s</ul>', $list );
-            }
-            
-            return sprintf( '%s%s', $heading, $list );
+            $posts = $field[ 'applications' ];
+            return _s_get_relationship_field_list( $posts, $heading, true );
         }
         
         
         private function get_technology() {
-             $field = $this->get_fields( 'technology' );
-            if( empty( $field[ 'heading' ] ) || empty( $field[ 'list' ] )  ) {
+            $field = $this->get_fields( 'technology' );
+            if( empty( $field[ 'heading' ] ) || empty( $field[ 'posts' ] )  ) {
                 return false;
             }
             
             $heading = _s_format_string( $field[ 'heading' ], 'h3' );
             
-            $rows = $field[ 'list' ];
-            $list = '';
-            foreach( $rows as $row ) {
-                $item = $row['item'];
-                if( ! empty( $item ) ) {
-                    $list .= sprintf( '<li><span>%s</span></li>', $item );
-                }
-            }
-            
-            if( ! empty( $list ) ) {
-                $list = sprintf( '<ul>%s</ul>', $list );
-            }
-            
-            return sprintf( '%s%s', $heading, $list );
+            $posts = $field[ 'posts' ];
+            return _s_get_relationship_field_list( $posts, $heading, true, 'technology' );
         }
         
         
