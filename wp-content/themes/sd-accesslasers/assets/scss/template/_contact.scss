@@ -128,6 +128,13 @@
     
     .section-people {
         padding-bottom: 0;
+        
+        @include breakpoint(large) {
+            .grid {
+                width: calc(66.6666667% - #{rem-calc(map-get($grid-margin-gutters, large))}); 
+                margin: 0 auto;
+            }
+        }
     }
     
 }
