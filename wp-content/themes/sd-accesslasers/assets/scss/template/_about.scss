@@ -13,7 +13,7 @@
         }
         
         @include breakpoint(xlarge) {
-            height: 100vh;
+            height: calc(60vh + 150px);
             padding: rem-calc(150) 0 0;
         }
     }
@@ -52,16 +52,34 @@
         
         background: $gray;
         
+        @include breakpoint(medium-large down) {
+            
+            .grid-container {
+                padding: 0;
+                
+                .grid-margin-x {
+                    margin: 0;
+                    
+                    .cell {
+                        width: 100%;
+                        margin: 0 auto; 
+                    }
+                }
+            }
+        }
+        
         .entry-content {
             background-color: $red;
             background-image: url(../images/about/red-bg.jpg);
             background-position: center;
             padding: rem-calc(45);  
             
+            
+            
             @include breakpoint(large) {
                 padding: rem-calc(75);   
                 
-                max-width: rem-calc(1300);
+                max-width: 80%;
                 margin: rem-calc(-175) auto 0;  
                 position: relative;
                 z-index: 4;

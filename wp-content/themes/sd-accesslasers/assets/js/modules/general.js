@@ -21,6 +21,10 @@ export default {
             $('.section-technologies .grid .grid-image').matchHeight({row:true});
             $('.section-technologies .grid footer').matchHeight({row:true});
             
+            
+            $('.section-core-values .grid .grid-image').matchHeight({row:true});
+            $('.section-core-values .grid .grid-item header').matchHeight({row:true});
+            
             $('.archive .grid article').matchHeight({row:true});
             
             // Blog filters

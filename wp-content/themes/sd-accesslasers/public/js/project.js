@@ -720,6 +720,12 @@ __webpack_require__.r(__webpack_exports__);
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-technologies .grid footer').matchHeight({
       row: true
     });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-core-values .grid .grid-image').matchHeight({
+      row: true
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-core-values .grid .grid-item header').matchHeight({
+      row: true
+    });
     jquery__WEBPACK_IMPORTED_MODULE_0___default()('.archive .grid article').matchHeight({
       row: true
     }); // Blog filters
