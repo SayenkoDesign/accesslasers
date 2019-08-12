@@ -850,16 +850,12 @@ __webpack_require__.r(__webpack_exports__);
           infinite: true,
           adaptiveHeight: true,
           arrows: true,
-          dots: false,
+          dots: true,
           rows: 0,
-
-          /*
-          customPaging : function(slider, i) {
-              let number = i+1;
-              number = number.toString().padStart(2, '0');
-              return '<a class="dot">'+number+'</a>';
+          customPaging: function customPaging(slider, i) {
+            var year = jquery__WEBPACK_IMPORTED_MODULE_0___default()(slider.$slides[i]).data('year');
+            return '<a class="dot">' + year + '</a>';
           },
-          */
           speed: 300,
           nextArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-next', $historySlider),
           prevArrow: jquery__WEBPACK_IMPORTED_MODULE_0___default()('.slick-prev', $historySlider)

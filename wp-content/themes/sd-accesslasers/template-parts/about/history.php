@@ -134,10 +134,11 @@ if( ! class_exists( 'About_History' ) ) {
                 return false;
             }
                        
-            return sprintf( '<div class="slide"><div class="grid-x grid-margin-x align-middle">
+            return sprintf( '<div class="slide" data-year="%s"><div class="grid-x grid-margin-x align-middle">
                                 <div class="cell large-auto">%s</div>
                                 <div class="cell large-6"><div class="entry-content"><header>%s%s</header>%s</div></div>
                              </div></div>', 
+                                substr( get_the_title(), 2),
                                 $image,
                                 $heading,
                                 $title,

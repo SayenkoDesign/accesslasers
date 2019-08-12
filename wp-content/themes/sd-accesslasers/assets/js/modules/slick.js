@@ -76,15 +76,12 @@ export default {
                     infinite: true,
                     adaptiveHeight: true,
                     arrows: true,
-                    dots: false,
+                    dots: true,
                     rows: 0,
-                    /*
                     customPaging : function(slider, i) {
-                        let number = i+1;
-                        number = number.toString().padStart(2, '0');
-                        return '<a class="dot">'+number+'</a>';
+                        let year = $(slider.$slides[i]).data('year');
+                        return '<a class="dot">'+year+'</a>';
                     },
-                    */
                     speed: 300,
                     nextArrow: $('.slick-next', $historySlider),
                     prevArrow: $('.slick-prev', $historySlider),
