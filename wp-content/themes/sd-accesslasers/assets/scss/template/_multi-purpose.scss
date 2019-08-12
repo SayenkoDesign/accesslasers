@@ -16,7 +16,11 @@
     }
     
     .section-block {
-        padding: rem-calc(75 0 45);
+        padding: rem-calc(65 0 0);
+        
+        @include breakpoint(xxlarge) {
+            padding: rem-calc(75 0 45);
+        }
         
         &.content-width-narrow .wrap {
             margin: 0 auto;

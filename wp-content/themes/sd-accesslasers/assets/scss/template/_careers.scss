@@ -295,7 +295,15 @@
         
         .quote-mark {
             position: relative;
-            margin-bottom: rem-calc(40);
+            margin-bottom: rem-calc(10);
+            
+            span {
+                color: $medium-gray;
+                font-size: 150px;
+                height: 80px;
+                line-height: 1;
+                display: block;
+            }
         }
         
         .quote {

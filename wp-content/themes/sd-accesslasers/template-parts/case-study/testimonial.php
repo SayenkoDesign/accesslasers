@@ -58,7 +58,7 @@ if( ! class_exists( 'Testimonial_Section' ) ) {
             }
  
             
-            $quote_mark = sprintf( '<div class="quote-mark"><span><img src="%scase-studies/quote-icon.svg" /></span></div>', 
+            $quote_mark = sprintf( '<div class="quote-mark"><span>&ldquo;</span></div>', 
                                     trailingslashit( THEME_IMG ) );
             
             $quote = sprintf( '<div class="quote">%s%s%s</div>', $quote_mark, $quote, $name );

@@ -59,13 +59,9 @@
 			padding-top: rem-calc(11.5);
             padding-bottom: rem-calc(11.5);
             
-            padding-left: rem-calc(map-get($grid-column-gutter, xsmall)/2); 
-            padding-right: rem-calc(map-get($grid-column-gutter, xsmall)/2); 
+            padding-left: rem-calc(map-get($grid-column-gutter, small)/2); 
+            padding-right: rem-calc(map-get($grid-column-gutter, small)/2); 
            
-            @include breakpoint(small) {
-                padding-left: rem-calc(map-get($grid-column-gutter, small)/2); 
-                padding-right: rem-calc(map-get($grid-column-gutter, small)/2); 
-            }
            
             @include breakpoint(medium) {
                 padding-left: rem-calc(map-get($grid-column-gutter, medium)/2); 
@@ -88,22 +84,43 @@
 
 		}
         
-        &.current-menu-ancestor,
-        &.current_page_parent {
-            > a {
-                color: $red;   
+        @include breakpoint(xlarge) {
+            &.current-menu-ancestor,
+            &.current_page_parent {
+                > a {
+                    color: $red;   
+                }
             }
         }
 	}
     
     .sub-menu {
+        background: $red;
+        
+        @include breakpoint(xlarge) {
+            background: #fff;   
+        }
+        
         margin-left: rem-calc(-1);
+                
+        
+        
         .menu-item {
             text-align: left; 
             
             a {
+                
+                @include breakpoint(large down) {
+                    padding-top: rem-calc(13);
+                    padding-bottom: rem-calc(13);
+                }
+                
                 &:hover {
-                    color: $red;   
+                    color: $white;  
+                    
+                    @include breakpoint(xlarge) {
+                        color: $red;   
+                    }
                 }
             }
         }

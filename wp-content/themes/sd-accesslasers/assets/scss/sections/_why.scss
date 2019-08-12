@@ -11,7 +11,12 @@ section.section-why {
     background-color: #ffffff!important;
             
     .full-screen-scroll-section-element {
-        padding: rem-calc(75 0 0 0);  
+        
+        padding: rem-calc(50 0 0 0); 
+        
+        @include breakpoint(xxlarge) {
+            padding: rem-calc(75 0 0 0);  
+        }
     }
     
     .cell {

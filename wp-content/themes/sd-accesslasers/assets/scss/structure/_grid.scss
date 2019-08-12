@@ -1,7 +1,7 @@
 
 .grid-x {
     &.grid-margin-bottom {
-        .cell {
+        > .cell {
             @each $size, $margin in $grid-margin-gutters {
                 @include breakpoint($size) {
                     margin-bottom: rem-calc($margin);

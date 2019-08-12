@@ -63,7 +63,8 @@
         .icon {
             img {
                 max-height: rem-calc(100);
-                width: auto;   
+                width: auto; 
+                margin-bottom: rem-calc(24);  
             }        
          }
         
@@ -121,6 +122,7 @@
     .section-testimonial {
         background: $gray;
         padding: rem-calc(75 0 35);
+        overflow-x: hidden;
         
         @include breakpoint(large) {
             padding: rem-calc(75 0 25);
@@ -149,7 +151,8 @@
         
         .quote-mark {
             position: relative;
-            margin-bottom: rem-calc(40);
+            margin-bottom: rem-calc(20);
+            height: 80px;
             
             &:before {
                 content: '';
@@ -160,8 +163,19 @@
                 height: 1px; 
                 background-color: #d6d6d6;
                 top: 50%;
-                transformY: translate(-50%);
+                transform: translateY(-50%);
                    
+            }
+            
+            span {
+                color: $medium-gray;
+                font-size: 150px;
+                height: 80px;
+                line-height: 1;   
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
             }
         }
         

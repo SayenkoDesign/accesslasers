@@ -62,8 +62,9 @@
         
         .grid-x {
                         
-            @include breakpoint(large) {
-                min-height: calc(100vh - 124px);                  
+            @include breakpoint(xxlarge) {
+                min-height: calc(100vh - 124px);   
+                padding-top: 0;               
             }
             
             .cell {
