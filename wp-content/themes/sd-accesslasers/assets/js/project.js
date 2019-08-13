@@ -10,7 +10,7 @@ import whatInput from 'what-input';
 import jqueryMatchHeight from 'jquery-match-height';
 
 // Custom Modules
-// import externalLinks from './modules/external-links';
+import externalLinks from './modules/external-links';
 // import facetWp from './modules/facetwp';
 import fixedHeader from './modules/fixed-header';
 import general from './modules/general';
@@ -29,7 +29,7 @@ import accordionFix from './modules/accordion-fix';
 import fullScreenScrollingSection from './modules/full-screen-scrolling-section';
 
 const modules = new ModuleLoader( {
-	// externalLinks,
+	externalLinks,
 	// facetWp,
 	fixedHeader,
 	general,

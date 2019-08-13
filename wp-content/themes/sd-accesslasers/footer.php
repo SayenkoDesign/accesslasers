@@ -30,6 +30,7 @@
                                 
                 $args = [
                     'link' => $footer_cta[ 'button' ]['link'],
+                    'target' => '_blank',
                     'echo' => false,
                     'classes' => 'button large',
                     'modal' => 'contact',

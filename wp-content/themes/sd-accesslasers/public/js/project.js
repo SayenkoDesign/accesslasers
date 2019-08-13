@@ -126,6 +126,33 @@ function onVideoPlayerReady(event) {
 
 /***/ }),
 
+/***/ "./assets/js/modules/external-links.js":
+/*!*********************************************!*\
+  !*** ./assets/js/modules/external-links.js ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  init: function init() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('a').not('svg a, [href*="mailto:"], [href*="tel:"], [class*="foobox"]').each(function () {
+      var isInternalLink = new RegExp('/' + window.location.host + '/');
+
+      if (!isInternalLink.test(this.href)) {
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).attr('target', '_blank');
+      }
+    });
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('a[href*=".pdf"]').attr('target', '_blank');
+  }
+});
+
+/***/ }),
+
 /***/ "./assets/js/modules/fixed-header.js":
 /*!*******************************************!*\
   !*** ./assets/js/modules/fixed-header.js ***!
@@ -1035,13 +1062,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var what_input__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(what_input__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var jquery_match_height__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery-match-height */ "./node_modules/jquery-match-height/dist/jquery.matchHeight.js");
 /* harmony import */ var jquery_match_height__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery_match_height__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _modules_fixed_header__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/fixed-header */ "./assets/js/modules/fixed-header.js");
-/* harmony import */ var _modules_general__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/general */ "./assets/js/modules/general.js");
-/* harmony import */ var _modules_slick__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/slick */ "./assets/js/modules/slick.js");
-/* harmony import */ var _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/smooth-scroll */ "./assets/js/modules/smooth-scroll.js");
-/* harmony import */ var _modules_background_video__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/background-video */ "./assets/js/modules/background-video.js");
-/* harmony import */ var _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/accordion-fix */ "./assets/js/modules/accordion-fix.js");
-/* harmony import */ var _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/full-screen-scrolling-section */ "./assets/js/modules/full-screen-scrolling-section.js");
+/* harmony import */ var _modules_external_links__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./modules/external-links */ "./assets/js/modules/external-links.js");
+/* harmony import */ var _modules_fixed_header__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./modules/fixed-header */ "./assets/js/modules/fixed-header.js");
+/* harmony import */ var _modules_general__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./modules/general */ "./assets/js/modules/general.js");
+/* harmony import */ var _modules_slick__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./modules/slick */ "./assets/js/modules/slick.js");
+/* harmony import */ var _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./modules/smooth-scroll */ "./assets/js/modules/smooth-scroll.js");
+/* harmony import */ var _modules_background_video__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./modules/background-video */ "./assets/js/modules/background-video.js");
+/* harmony import */ var _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./modules/accordion-fix */ "./assets/js/modules/accordion-fix.js");
+/* harmony import */ var _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./modules/full-screen-scrolling-section */ "./assets/js/modules/full-screen-scrolling-section.js");
 
  // Foundation
 
@@ -1052,8 +1080,8 @@ __webpack_require__.r(__webpack_exports__);
  // jquery match height NMP
 
  // Custom Modules
-// import externalLinks from './modules/external-links';
-// import facetWp from './modules/facetwp';
+
+ // import facetWp from './modules/facetwp';
 
 
  // import inlineSvg from './modules/inline-svg';
@@ -1070,21 +1098,21 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var modules = new _loader_ModuleLoader__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  // externalLinks,
+  externalLinks: _modules_external_links__WEBPACK_IMPORTED_MODULE_5__["default"],
   // facetWp,
-  fixedHeader: _modules_fixed_header__WEBPACK_IMPORTED_MODULE_5__["default"],
-  general: _modules_general__WEBPACK_IMPORTED_MODULE_6__["default"],
+  fixedHeader: _modules_fixed_header__WEBPACK_IMPORTED_MODULE_6__["default"],
+  general: _modules_general__WEBPACK_IMPORTED_MODULE_7__["default"],
   // inlineSvg,
   // modalVideo,
   // responsiveVideoEmbed,
   // search,
-  slick: _modules_slick__WEBPACK_IMPORTED_MODULE_7__["default"],
-  smoothScroll: _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_8__["default"],
+  slick: _modules_slick__WEBPACK_IMPORTED_MODULE_8__["default"],
+  smoothScroll: _modules_smooth_scroll__WEBPACK_IMPORTED_MODULE_9__["default"],
   // superfish
-  backgroundVideo: _modules_background_video__WEBPACK_IMPORTED_MODULE_9__["default"],
+  backgroundVideo: _modules_background_video__WEBPACK_IMPORTED_MODULE_10__["default"],
   //menuToggle,
-  accordionFix: _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_10__["default"],
-  fullScreenScrollingSection: _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_11__["default"]
+  accordionFix: _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_11__["default"],
+  fullScreenScrollingSection: _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_12__["default"]
 });
 jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();

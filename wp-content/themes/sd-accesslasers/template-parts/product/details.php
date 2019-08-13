@@ -96,7 +96,7 @@ if( ! class_exists( 'Product_Details' ) ) {
         
         private function get_buttons() {
             
-            $request = sprintf( '<a data-open"request-product" class="button">%s</a>', __( 'request product' ) );
+            $request = sprintf( '<a data-open="contact" class="button">%s</a>', __( 'request product' ) );
             $phone = get_field( 'phone', 'option' );
             if( ! empty( $phone ) ) {
                 $phone = sprintf( '<a href="%s" class="button phone"><span>%s</span></a>', _s_format_telephone_url( $phone ), $phone );
