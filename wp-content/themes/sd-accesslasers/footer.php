@@ -92,6 +92,7 @@
                 <div class="grid-x grid-margin-x">
                     <div class="cell">
                     <?php
+                    $menu = '';
                     if( has_nav_menu( 'copyright' ) ) {
                         $args = array( 
                         'theme_location'  => 'copyright', 
