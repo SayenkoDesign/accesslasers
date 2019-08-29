@@ -58,6 +58,8 @@ if ( ! function_exists( '_s_setup' ) ) :
         
         
         add_theme_support( 'wp-block-styles' );
+        
+        add_theme_support( 'responsive-embeds' );
 
 		/**
 		 * Enable support for Post Thumbnails on posts and pages.
