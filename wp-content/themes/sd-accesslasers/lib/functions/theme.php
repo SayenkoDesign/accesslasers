@@ -79,3 +79,11 @@ function _s_remove_page_template( $pages_templates ) {
 }
 
 // add_filter( 'theme_page_templates', '_s_remove_page_template', 20 );
+
+
+add_filter( 'upload_mimes', 'my_myme_types', 1, 1 );
+function my_myme_types( $mime_types ) {
+  $mime_types['step'] = 'text/plain';     // Adding .svg extension
+  
+  return $mime_types;
+}
