@@ -25,7 +25,7 @@
     }     
     
     $date_format = get_option( 'date_format' );
-    $post_date = _s_get_posted_on( $date_format );
+    $post_date = ''; // _s_get_posted_on( $date_format );
        
     $post_title = sprintf( '<h3><a href="%s">%s</a></h3>', get_permalink(), get_the_title() );
     $read_more = sprintf( '<p class="read-more"><a href="%s" class="more fancy-link">%s</a></p>', get_permalink(), __( 'read more', '_s' ) ) ;

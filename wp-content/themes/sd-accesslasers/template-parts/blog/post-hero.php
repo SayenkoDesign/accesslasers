@@ -74,7 +74,7 @@ if( ! class_exists( 'Hero_Post' ) ) {
             $heading        = _s_format_string( $heading, 'h1' );
             
             $date_format = get_option( 'date_format' );
-            $post_date = _s_get_posted_on( $date_format );
+            $post_date = ''; // _s_get_posted_on( $date_format );
             
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
                                 <div class="cell"><div class="hero-content">%s%s%s</div></div>
