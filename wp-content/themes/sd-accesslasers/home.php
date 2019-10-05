@@ -54,33 +54,7 @@ wp_reset_postdata();
             
                 <main id="main" class="site-main" role="main">
                            
-                    <?php
-                    // Categories?
-                    
-                    /*
-                    $cat_current = false;
-                    $categories = get_categories( [ 'exclude' => 1 ] );
-                    if( ! empty( $categories ) ) {
-                        $out = '';
-                        
-                        if ( is_category() ) { 
-                            $taxonomy = get_queried_object();
-                            if ( is_a( $taxonomy, 'WP_Term') ) {
-                                $cat_current = $taxonomy->term_id;
-                            }
-                        } 
-                        
-                        foreach( $categories as $cat ) {
-                            $class = $cat->term_id == $cat_current ? ' class="cat-current' : '';
-                            $out .= sprintf( '<li><a%s href="%s">%s</a></li>', $class, get_term_link( $cat->term_id ), $cat->name );
-                        }
-                        
-                        if( ! empty( $out ) ) {
-                            printf( '<ul class="no-bullet categories">%s</ul>', $out );      
-                        }
-                    }
-                    */
-                    
+                    <?php                    
                     $args = array(
                         'theme_location' => 'resources',
                         'container' => '',

@@ -117,26 +117,26 @@ function _s_gf_populate_application( $form ) {
     return _s_gf_populate_dropdown( $form, 'populate_application' );
 }
 
-add_filter( 'gform_pre_render', '_s_gf_populate_application' );
-add_filter( 'gform_pre_validation', '_s_gf_populate_application' );
-add_filter( 'gform_pre_submission_filter', '_s_gf_populate_application' );
-add_filter( 'gform_admin_pre_render', '_s_gf_populate_application' );
+//add_filter( 'gform_pre_render', '_s_gf_populate_application' );
+//add_filter( 'gform_pre_validation', '_s_gf_populate_application' );
+//add_filter( 'gform_pre_submission_filter', '_s_gf_populate_application' );
+//add_filter( 'gform_admin_pre_render', '_s_gf_populate_application' );
 
 
 function _s_gf_populate_product( $form ) {
     return _s_gf_populate_dropdown( $form, 'populate_product' );
 }
 
-add_filter( 'gform_pre_render', '_s_gf_populate_product' );
-add_filter( 'gform_pre_validation', '_s_gf_populate_product' );
-add_filter( 'gform_pre_submission_filter', '_s_gf_populate_product' );
-add_filter( 'gform_admin_pre_render', '_s_gf_populate_product' );
+//add_filter( 'gform_pre_render', '_s_gf_populate_product' );
+//add_filter( 'gform_pre_validation', '_s_gf_populate_product' );
+//add_filter( 'gform_pre_submission_filter', '_s_gf_populate_product' );
+//add_filter( 'gform_admin_pre_render', '_s_gf_populate_product' );
 
 function _s_gf_populate_technology( $form ) {
     return _s_gf_populate_dropdown( $form, 'populate_technology' );
 }
 
-add_filter( 'gform_pre_render', '_s_gf_populate_technology' );
-add_filter( 'gform_pre_validation', '_s_gf_populate_technology' );
-add_filter( 'gform_pre_submission_filter', '_s_gf_populate_technology' );
-add_filter( 'gform_admin_pre_render', '_s_gf_populate_technology' );
+//add_filter( 'gform_pre_render', '_s_gf_populate_technology' );
+//add_filter( 'gform_pre_validation', '_s_gf_populate_technology' );
+//add_filter( 'gform_pre_submission_filter', '_s_gf_populate_technology' );
+//add_filter( 'gform_admin_pre_render', '_s_gf_populate_technology' );
