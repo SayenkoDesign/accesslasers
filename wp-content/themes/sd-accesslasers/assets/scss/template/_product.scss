@@ -329,12 +329,12 @@
         .slick-arrows {
             width: rem-calc(180);
             display: flex;
-            margin: 0 auto;
+            margin: rem-calc(50) auto 0;
             
             @include breakpoint(xxlarge) {
                 position: absolute;
                 bottom: 0;
-                right: calc(50% - 90px - #{map-get($grid-margin-gutters, large)/2});
+                right: 0;
             }
             
             .slick-prev,

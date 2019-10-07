@@ -121,7 +121,7 @@ if( ! class_exists( 'Careers_Testimonials_Section' ) ) {
             $quote = sprintf( '<div class="quote">%s%s%s</div>', $quote_mark, $quote, $name );
                 
             return sprintf( '<div class="slide"><div class="grid-x grid-margin-x">    
-            <div class="cell large-5">%s</div><div class="cell large-auto">%s</div></div></div>', $quote, $photo );   
+            <div class="cell large-5">%s</div><div class="cell large-auto">%s</div></div></div>', $photo, $quote );   
         }
       
     }

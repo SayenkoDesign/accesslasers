@@ -251,13 +251,19 @@
                 
         .slider {
             
+            position: relative;
+            
             .cell {
                                 
                 margin-bottom: rem-calc(map-get($grid-margin-gutters, small));
                 
                 @include breakpoint(large) {
                     margin-bottom: rem-calc(map-get($grid-margin-gutters, large));
-                } 
+                }                 
+            }
+            
+            img {
+                margin: 0 auto   
             }
         }
         
@@ -269,7 +275,7 @@
             @include breakpoint(xxlarge) {
                 position: absolute;
                 bottom: rem-calc(map-get($grid-margin-gutters, large));
-                left: calc(50% - 90px - #{map-get($grid-margin-gutters, large)/2});
+                right: 0;
             }
             
             .slick-prev,

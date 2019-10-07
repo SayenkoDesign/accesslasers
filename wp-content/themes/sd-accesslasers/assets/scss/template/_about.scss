@@ -243,6 +243,9 @@
         }
         
         .slider {
+            
+            position: relative;
+            
             h4 {
                 span {
                     font-weight: 700;
@@ -256,7 +259,10 @@
         }
         
         .slider .grid-x > div:last-child {
-            padding-bottom: rem-calc(125); 
+            padding-bottom: rem-calc(90); 
+            @include breakpoint(xxxlarge) {
+                padding-bottom: rem-calc(150); 
+            }
         }
         
         .slick-slider {
@@ -267,17 +273,16 @@
             width: rem-calc(180);
             display: flex;
             margin: 0 auto;
-            margin-bottom: rem-calc(30);
-            
-            @include breakpoint(medium down) {
-                position: absolute;
-                top: 80px;
-            }
             
             @include breakpoint(xxlarge) {
+                position: absolute;
                 top: auto;
                 bottom: 0;
-                left: calc(50% - 90px - #{map-get($grid-margin-gutters, large)/2});
+                right: 0;
+            }
+            
+            @include breakpoint(xxxlarge) {
+                bottom: rem-calc(50);
             }
             
             .slick-prev,
@@ -298,7 +303,7 @@
                 margin: rem-calc(0 20 0);  
                 
                 @include breakpoint(xxlarge) {
-                    margin: rem-calc(0 40 0 0);  
+                    margin: rem-calc(0 0 0 40);  
                 }
             }
             
@@ -312,7 +317,7 @@
                 color: $red;   
             }
             
-            @include breakpoint(large) {
+            @include breakpoint(xxxlarge) {
                 display: block!important;
                 position: relative;
                 left: auto;
@@ -320,13 +325,13 @@
                 text-align: center;
             }
             
-            @include breakpoint(xxlarge) {
+            @include breakpoint(xxxlarge) {
                 position: absolute;
                 right: 0;
-                bottom: rem-calc(45);
-                text-align: left;
+                bottom: 0;
+                text-align: right;
                 width: auto;
-                width: 40%;
+                width: 50%;
             }
         }
     }
