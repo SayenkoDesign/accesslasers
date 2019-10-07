@@ -147,7 +147,15 @@ if( ! class_exists( 'Home_Technologies_Section' ) ) {
     
                     $loop->the_post(); 
                     
-                    $list_items .= sprintf( '<li>%s</li>', get_the_title() );
+                    $title = get_the_title();
+                    
+                    $resource_post = get_field( 'resource_post' );
+                    
+                    if( absint( $resource_post ) ) {
+                        $title = sprintf( '<a href="%s">%s</a>', get_permalink( $resource_post ), get_the_title() );
+                    }
+                    
+                    $list_items .= sprintf( '<li>%s</li>', $title );
     
                 endwhile;
                 
