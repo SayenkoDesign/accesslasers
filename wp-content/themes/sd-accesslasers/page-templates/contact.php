@@ -22,8 +22,8 @@ _s_get_template_part( 'template-parts/contact', 'hero' );
         _s_get_template_part( 'template-parts/contact', 'map' );
         _s_get_template_part( 'template-parts/contact', 'connect' );
         _s_get_template_part( 'template-parts/contact', 'people' );
+        _s_get_template_part( 'template-parts/contact', 'representatives' );
         _s_get_template_part( 'template-parts/global', 'faq' );
-        
     ?>
     </main>
 
