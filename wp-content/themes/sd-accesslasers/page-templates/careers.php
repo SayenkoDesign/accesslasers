@@ -21,8 +21,9 @@ _s_get_template_part( 'template-parts/careers', 'hero' );
 	<?php
         _s_get_template_part( 'template-parts/careers', 'why' );
        _s_get_template_part( 'template-parts/careers', 'benefits' );
-       _s_get_template_part( 'template-parts/careers', 'jobs' );
        _s_get_template_part( 'template-parts/careers', 'testimonials' );
+       _s_get_template_part( 'template-parts/careers', 'jobs' );
+       
         
 	?>
 	</main>

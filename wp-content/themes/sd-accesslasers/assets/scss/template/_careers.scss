@@ -182,11 +182,16 @@
         }
      
         .wrap {
-            max-width: rem-calc(1300); 
+            // max-width: rem-calc(1300); 
             margin: 0 auto;  
         }
         
         #BambooHR {
+            
+            @include breakpoint(medium) {
+                margin-top: rem-calc(-30);
+            }
+            
             h2 {
                 display: none;   
             }
