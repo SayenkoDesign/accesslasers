@@ -99,6 +99,7 @@ if( ! class_exists( 'Contact_Representatives' ) ) {
                      
                      if( ! empty( $row['website'] ) ) {
                          $website = preg_replace("(^https?://)", "", $row['website'] );
+                         $website = str_replace( 'www.', '', $website );
                          $details .= sprintf( '<li><a href="%s" target="_blank">%s</a></li>', $row['website'], $website );
                      }
                                           
