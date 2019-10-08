@@ -87,27 +87,27 @@ if( ! class_exists( 'Contact_Representatives' ) ) {
                          $details .= sprintf( '<li><div class="logo">%s</div></li>', $logo );
                      }
                     
-                     $details .= sprintf( '<li><span>Country: </span>%s</li>', $row['name'] );
+                     // $details .= sprintf( '<li><span>Country: </span>%s</li>', $row['name'] );
                      
                      if( ! empty( $row['organization'] ) ) {
-                         $details .= sprintf( '<li><span>Organization: </span>%s</li>', $row['organization'] );
+                         $details .= sprintf( '<li>%s</li>', $row['organization'] );
                      }
                      
                      if( ! empty( $row['website'] ) ) {
                          $website = preg_replace("(^https?://)", "", $row['website'] );
-                         $details .= sprintf( '<li><span>Website: </span><a href="%s" target="_blank">%s</a></li>', $row['website'], $website );
+                         $details .= sprintf( '<li><a href="%s" target="_blank">%s</a></li>', $row['website'], $website );
                      }
                      
                      if( ! empty( $row['motto'] ) ) {
-                         $details .= sprintf( '<li><span>Motto: </span>%s</li>', $row['motto'] );
+                         $details .= sprintf( '<li>%s</li>', $row['motto'] );
                      }
                      
                      if( ! empty( $row['email'] ) ) {
-                         $details .= sprintf( '<li><span>Email: </span><a href="%s" target="_blank">%s</a></li>', antispambot( $row['email'] ), antispambot( $row['email'] ) );
+                         $details .= sprintf( '<li><a href="%s" target="_blank">%s</a></li>', antispambot( $row['email'] ), antispambot( $row['email'] ) );
                      }
                      
                      if( ! empty( $row['phone'] ) ) {
-                         $details .= sprintf( '<li><span>Phone: </span><a href="%s">%s</a></li>', _s_format_telephone_url( $row['phone'] ), $row['phone'] );
+                         $details .= sprintf( '<li><a href="%s">%s</a></li>', _s_format_telephone_url( $row['phone'] ), $row['phone'] );
                      }
                     
                      $fa->add_item( [ 'title' => $row['name'], 'content' => sprintf( '<ul class="no-bullet">%s</ul>', $details ), 'active' => $count ? false : true ] );
