@@ -83,10 +83,43 @@ if( ! class_exists( 'Home_Hero' ) ) {
         
         $arrow = sprintf( '<a href="#section-what" data-smooth-scroll data-offset="40"><img src="%sicons/arrow-down-white.svg" class="arrow-down" /></a>', trailingslashit( THEME_IMG ) );
         
-        return sprintf( '<%s %s><div %s></div><div %s>%s<div %s>', 
+        if( ! wp_is_mobile() ) {
+                
+            $background_video       = $this->get_fields( 'background_video' );
+            $background_video_webm  = $this->get_fields( 'background_video_webm' );
+            
+            $args = [ 'autoplay' => 'true', 'muted' => 'true', 'loop' => 'true' ];
+                                                                        
+            $attributes = _parse_data_attribute( $args );
+            
+            $source = '';
+            
+            if( ! empty( $background_video_webm ) ) {
+                $background_video_webm = esc_url( $background_video_webm );
+                $source .= sprintf( '<source src="%s" type="video/%s">', $background_video_webm,  pathinfo( $background_video_webm, PATHINFO_EXTENSION ) );
+            }
+            
+            if( ! empty( $background_video ) ) {
+                $background_video = esc_url( $background_video );
+                $source .= sprintf( '<source src="%s" type="video/%s">', $background_video,  pathinfo( $background_video, PATHINFO_EXTENSION ) );
+            }
+                            
+            if( ! empty( $source ) ) {
+                $video = true;
+                $args['poster'] = '';
+                $args['preload'] = 'none';
+                //$this->add_render_attribute( 'wrapper', 'class', 'has-background video-background' );                        
+                $background_video_markup = sprintf( '<video class="video-background" %s>%s</video>', $attributes, $source );                                                          
+            }
+            
+             
+        }
+        
+        return sprintf( '<%s %s><div %s></div>%s<div %s>%s<div %s>', 
                         esc_html( $this->get_html_tag() ), 
                         $this->get_render_attribute_string( 'wrapper' ),
                         $this->get_render_attribute_string( 'background' ),
+                        $background_video_markup,
                         $this->get_render_attribute_string( 'wrap' ),
                         $arrow,
                         $this->get_render_attribute_string( 'container' )

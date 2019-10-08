@@ -117,3 +117,30 @@ img.aligncenter {
 	}
 
 }
+
+
+// Video and Image as background.
+.video-background,
+.image-background {
+	position: absolute;
+    top: 50%;
+    left: 0;
+	width: 100%;
+    height: auto;
+
+	display: block;
+	transform: translateY(-50%);
+	// z-index: -1;
+
+	@supports (object-fit: cover) {
+		width: 100%;
+        height: 100%;
+
+		object-fit: cover;
+	}
+}
+
+// Video as background
+.video-background {
+	object-position: center top;
+} // .video-background
