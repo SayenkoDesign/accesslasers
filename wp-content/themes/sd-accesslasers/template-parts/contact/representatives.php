@@ -93,15 +93,15 @@ if( ! class_exists( 'Contact_Representatives' ) ) {
                          $details .= sprintf( '<li>%s</li>', $row['organization'] );
                      }
                      
-                     if( ! empty( $row['website'] ) ) {
-                         $website = preg_replace("(^https?://)", "", $row['website'] );
-                         $details .= sprintf( '<li><a href="%s" target="_blank">%s</a></li>', $row['website'], $website );
-                     }
-                     
                      if( ! empty( $row['motto'] ) ) {
                          $details .= sprintf( '<li>%s</li>', $row['motto'] );
                      }
                      
+                     if( ! empty( $row['website'] ) ) {
+                         $website = preg_replace("(^https?://)", "", $row['website'] );
+                         $details .= sprintf( '<li><a href="%s" target="_blank">%s</a></li>', $row['website'], $website );
+                     }
+                                          
                      if( ! empty( $row['email'] ) ) {
                          $details .= sprintf( '<li><a href="%s" target="_blank">%s</a></li>', antispambot( $row['email'] ), antispambot( $row['email'] ) );
                      }
