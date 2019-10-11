@@ -32,7 +32,7 @@
         }
         
         @include breakpoint(xxlarge) {
-            .wrap {
+            /*.wrap {
                 position: relative;
                 
                 &:before,
@@ -60,7 +60,7 @@
                     bottom: 103px;
                     right: 110px;
                 } 
-            }
+            }*/
         }
         
         .grid-x {
