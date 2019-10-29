@@ -9,6 +9,8 @@ Home - Hero
 if( ! class_exists( 'Home_Hero' ) ) {
     class Home_Hero extends Element_Section {
         
+        private $video = false;
+        
         public function __construct() {
             parent::__construct();
             
@@ -54,8 +56,8 @@ if( ! class_exists( 'Home_Hero' ) ) {
                 }
             }
             
-            $this->add_render_attribute( 'wrapper', 'class', 'has-background' );
-            $this->add_render_attribute( 'background', 'class', 'background-image' );
+            $this->add_render_attribute( 'wrapper', 'class', 'has-background-image' );
+            $this->add_render_attribute( 'background', 'class', 'image-background' );
             $this->add_render_attribute( 'background', 'style', sprintf( 'background-image: url(%s);', $background_image ) );
             $this->add_render_attribute( 'background', 'style', sprintf( 'background-position: %s %s;', 
                                                                       $background_position_x, $background_position_y ) );
@@ -105,17 +107,17 @@ if( ! class_exists( 'Home_Hero' ) ) {
             }
                             
             if( ! empty( $source ) ) {
-                $video = true;
+                $this->video = true;
                 $args['poster'] = '';
                 $args['preload'] = 'none';
-                //$this->add_render_attribute( 'wrapper', 'class', 'has-background video-background' );                        
+                $this->add_render_attribute( 'wrapper', 'class', 'has-background-video' );                        
                 $background_video_markup = sprintf( '<video class="video-background" %s>%s</video>', $attributes, $source );                                                          
             }
             
              
         }
         
-        return sprintf( '<%s %s><div %s></div>%s<div %s>%s<div %s>', 
+        return sprintf( '<%s %s><div class="background-wrapper"><div %s></div>%s</div><div %s>%s<div %s>', 
                         esc_html( $this->get_html_tag() ), 
                         $this->get_render_attribute_string( 'wrapper' ),
                         $this->get_render_attribute_string( 'background' ),
@@ -147,13 +149,21 @@ if( ! class_exists( 'Home_Hero' ) ) {
                 ];
                 $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
             }
+            
+            $hero_content = sprintf( '<div class="hero-content">%s%s%s</div>', 
+                                    $heading,
+                                    $description,
+                                    $button
+            );
+            
+            if( true === $this->video ) {
+                //$hero_content = '';
+            }
     
             return sprintf( '<div class="grid-container"><div class="grid-x grid-padding-x align-bottom">
-                                <div class="cell"><div class="hero-content">%s%s%s</div></div>
+                                <div class="cell">%s</div>
                             </div></div>',
-                            $heading,
-                            $description,
-                            $button
+                            $hero_content
                          );
         }
     }
