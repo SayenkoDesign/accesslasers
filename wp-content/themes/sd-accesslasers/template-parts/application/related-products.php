@@ -68,7 +68,7 @@ if( ! class_exists( 'Related_Products' ) ) {
 	
             if ( $loop->have_posts() ) : 
                 while ( $loop->have_posts() ) : $loop->the_post(); 
-                    $posts[] = sprintf( '<div class="cell">%s</div>', _s_get_template_part( 'template-parts/product', 'content-column', false, true ) );
+                    $posts[] = sprintf( '%s', _s_get_template_part( 'template-parts/product', 'content-column', false, true ) );
                 endwhile;
             endif;
             
