@@ -931,7 +931,7 @@ __webpack_require__.r(__webpack_exports__);
           slidesToShow: 1,
           slidesToScroll: 1,
           fade: true,
-          autoplay: false,
+          autoplay: true,
           infinite: true,
           arrows: false,
           dots: false,
@@ -941,9 +941,13 @@ __webpack_require__.r(__webpack_exports__);
           prevArrow: '.product__slider-main .slick-prev' //asNavFor: '.product__slider-thumbs .slick',
 
         });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-main .slick').on('afterChange', function (event, slick, i) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-thumbs .slick-slide').removeClass('slick-current');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-thumbs .slick-slide').eq(i).addClass('slick-current');
+        });
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".product__slider-thumbs .slick").slick({
           dots: false,
-          autoplay: false,
+          autoplay: true,
           infinite: true,
           speed: 300,
           arrows: false,
@@ -984,7 +988,7 @@ __webpack_require__.r(__webpack_exports__);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-product-slideshow .slider').imagesLoaded().done(function (instance) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".section-product-slideshow .slider .slick").slick({
           fade: true,
-          autoplay: false,
+          autoplay: true,
           infinite: true,
           adaptiveHeight: true,
           dots: true,
