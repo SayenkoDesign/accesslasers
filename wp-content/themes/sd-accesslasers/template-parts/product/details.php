@@ -220,7 +220,7 @@ if( ! class_exists( 'Product_Details' ) ) {
                 return false;
             }
             
-            return sprintf( '<div class="download-group"><h3>Downloads</h3>%s</div>', $out );
+            return sprintf( '<div class="download-group"><h3>Downloads of Popular Configurations</h3>%s</div>', $out );
         }
         
     }
