@@ -4,7 +4,7 @@
 // Add Search icon to primary menu
 function add_search( $items, $args ) {
     if( $args->theme_location == 'secondary' )  {
-       $search = sprintf('<li class="menu-item menu-item-search"><span><button class="search-button" data-open="modal-search">%s<span class="screen-reader-text">Search</span></span></button></li>', get_svg( 'search' ) );
+       $search = sprintf('<li class="menu-item menu-item-search"><button class="search-button" data-open="modal-search">%s<span class="screen-reader-text">Search</span></button></li>', get_svg( 'search' ) );
        
        return $search . $items;
     }

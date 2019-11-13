@@ -35,6 +35,12 @@ if( ! class_exists( 'About_History' ) ) {
                      $this->get_name() . '-about-history'
                 ]
             ); 
+            
+            $this->add_render_attribute(
+                'wrapper', 'id', [
+                     $this->get_name() . '-about-history'
+                ], true
+            ); 
         } 
         
                    

@@ -128,11 +128,12 @@ if( ! class_exists( 'Global_People_Section' ) ) {
             $line = '<div class="line"></div>';
                                                              
             return sprintf( '<div class="cell">
-                                <div class="grid-item">
+                                <div class="grid-item" id="%s">
                                     <div class="grid-image">%s<header>%s%s%s%s</header></div>
                                     
                                 </div>
                             </div>', 
+                            sanitize_title_with_dashes( get_the_title() ),
                             $thumbnail,
                             $line,
                             $heading,

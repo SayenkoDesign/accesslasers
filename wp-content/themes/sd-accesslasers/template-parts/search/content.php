@@ -11,12 +11,24 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
         <?php
-        $post_type = 'post' == get_post_type() ? 'article' : get_post_type();
+        if( 'post' == get_post_type() ) {
+            $post_type = 'resources';
+        } else if( 'people' == get_post_type() ) {
+            $post_type = 'team';
+        } else {
+            $post_type = get_post_type();
+        }
+
         $label = '';
         $pt = get_post_type_object( get_post_type() );
         if( ! is_wp_error( $pt ) ) {
-            $label = $pt->labels->singular_name;
-            $label = 'post' == get_post_type() ? 'article' : $label;
+            if( 'post' == get_post_type() ) {
+                $label = 'resources';
+            } else if( 'people' == get_post_type() ) {
+                $label = 'team';
+            } else {
+                $label = $pt->labels->singular_name;
+            }
         } else {
             $label = str_replace( '_', ' ', $post_type );   
         }

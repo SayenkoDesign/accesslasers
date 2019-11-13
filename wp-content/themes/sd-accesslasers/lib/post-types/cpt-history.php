@@ -26,7 +26,7 @@ class CPT_History extends CPT_Core {
 			),
 			array( 
 				'public'              => false,
-				'publicly_queryable'  => false,
+				'publicly_queryable'  => true,
 				'show_ui'             => true,
 				'query_var'           => true,
 				'capability_type'     => 'post',
@@ -35,7 +35,7 @@ class CPT_History extends CPT_Core {
 				'show_ui'             => true,
 				'show_in_menu'        => true,
 				'show_in_nav_menus'   => false,
-				'exclude_from_search' => true,
+				'exclude_from_search' => false,
 				'rewrite'             => array( 'slug' => 'history' ),
 				'supports' => array( 'title', 'thumbnail', 'editor', 'revisions' ),
                 'menu_icon' => 'dashicons-calendar-alt'
