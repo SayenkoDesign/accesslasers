@@ -1,0 +1,61 @@
+// Search
+
+.search {
+    
+    .entry-header {
+        h1 {            
+            margin-bottom: rem-calc(75);
+        }
+    }
+    
+    .site-main {
+        padding-top: rem-calc(50);
+        padding-bottom: rem-calc(50);
+    }
+    
+    .entry-post-type {
+        
+        @include breakpoint(large) {
+            margin-top: -5px;
+            margin-bottom: 10px;   
+        }
+                
+        span {
+            display: inline-block;
+            border-radius: rem-calc(2);
+            font-size: rem-calc(12);
+            padding: rem-calc(4 10);
+            color: #fff;
+            background-color: $dark-gray;  
+            line-height: 1;
+            
+        }
+    }
+    
+    
+    article {
+        
+        margin-bottom: rem-calc(30);
+        
+        &:last-child {
+            margin-bottom: 0;   
+        }
+        
+        .entry-title {
+            margin-bottom: rem-calc(5);   
+        }
+        
+        .posted-on {
+            color: #4A4A4A;
+            display: block;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            line-height: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .search-result-description p:last-child {
+            margin-bottom: rem-calc(10);   
+        }
+    }
+}

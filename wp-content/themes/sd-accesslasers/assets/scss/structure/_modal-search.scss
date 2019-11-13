@@ -1,0 +1,68 @@
+.reveal-overlay {
+    
+}
+
+#modal-search.reveal {
+    background: #fff;
+    padding: 0;
+    
+    .close-button {
+        font-family: sans-serif;
+        font-weight: 300;
+		position: absolute;
+		top: rem-calc(5)!important; 
+		right: rem-calc(10px);
+		font-size: 40px;
+		outline: none;
+        color: $dark-gray;
+        cursor: pointer;
+        
+        @include breakpoint(large) {
+            font-size: 60px;
+            top: rem-calc(map-get($grid-column-gutter, large)/2); 
+		    right: rem-calc(map-get($grid-column-gutter, large)/2);
+        }
+  	}
+    
+    .grid-x {
+        height: 100vh;  
+        padding-top: 100px;
+        
+        @include breakpoint(large) {
+            align-items: center;
+            padding-top: 0;
+        }
+    }
+    
+    .search-form {
+        text-align: center;
+        position: relative;
+        max-width: 600px;
+        margin: 0 auto;
+        
+        .search-field {
+            padding: 20px 40px 20px 10px;
+            border: 1px solid $dark-gray;
+            width: 100%;
+            
+            @include breakpoint(large) {
+                
+                padding: 30px 40px 30px 20px;
+                
+                font-size: 26px; 
+                
+                &::placeholder {
+                    font-size: 26px;   
+                }
+            }
+        }
+        
+        .search-submit {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+             
+        }
+    }
+}

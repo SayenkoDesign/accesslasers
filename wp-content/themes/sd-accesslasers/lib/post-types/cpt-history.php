@@ -35,7 +35,7 @@ class CPT_History extends CPT_Core {
 				'show_ui'             => true,
 				'show_in_menu'        => true,
 				'show_in_nav_menus'   => false,
-				'exclude_from_search' => false,
+				'exclude_from_search' => true,
 				'rewrite'             => array( 'slug' => 'history' ),
 				'supports' => array( 'title', 'thumbnail', 'editor', 'revisions' ),
                 'menu_icon' => 'dashicons-calendar-alt'

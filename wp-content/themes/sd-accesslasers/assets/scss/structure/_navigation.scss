@@ -152,6 +152,18 @@
                 display: block;
             }   
         }
+        
+        &.menu-item-search {
+            display: none;   
+            @include breakpoint(large) {
+                display: block;
+                margin-right: rem-calc(15);
+            }
+        }
+        
+        .search-button {
+            cursor: pointer; 
+        }
 
 		&.lets-talk {            
             
