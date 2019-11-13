@@ -72,11 +72,26 @@ if( ! class_exists( 'Hero_Post' ) ) {
                         
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
             $heading = _s_format_string( $heading, 'h1' );
+            
+            $button = get_field( 'hero_button' );
+              
+            if( ! empty( $button ) ) {
+                
+                $button = $button['button'];   
+                
+                $args = [
+                    'link' => $button['link'],
+                    'echo' => false,
+                    'classes' => 'button',
+                ];
+                $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
+            }
     
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell"><div class="hero-content">%s</div></div>
+                                <div class="cell"><div class="hero-content">%s%s</div></div>
                             </div></div>',
-                            $heading
+                            $heading,
+                            $button
                          );
         }
     }
