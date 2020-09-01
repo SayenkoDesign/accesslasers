@@ -85,6 +85,11 @@
 		}
         
         @include breakpoint(xlarge) {
+            
+            a {
+                color: $dark-gray;   
+            }
+            
             &.current-menu-ancestor,
             &.current_page_parent {
                 > a {
@@ -145,44 +150,34 @@
     }
     
 	.menu-item {
-        
-        &.phone-number {
-            display: none;
-            @include breakpoint(xlarge) {
-                display: block;
-            }   
-        }
-
-		&.lets-talk {            
             
-            @include breakpoint(xlarge) {
-                a {
-                    @include button(false, $dark-gray, $dark-gray, $white, 'hollow');
+        @include breakpoint(xlarge) {
+            a {
+                @include button(false, $dark-gray, $dark-gray, $white, 'hollow');
+                display: block;
+                margin-bottom: 0;
+                padding-top: rem-calc(11.5);
+                padding-bottom: rem-calc(11.5);
+                
+                
+                &:hover {
+                    @include button(false, $red, $red, $white );
                     display: block;
                     margin-bottom: 0;
                     padding-top: rem-calc(11.5);
                     padding-bottom: rem-calc(11.5);
-                    
-                    
-                    &:hover {
-                        @include button(false, $red, $red, $white );
-                        display: block;
-                        margin-bottom: 0;
-                        padding-top: rem-calc(11.5);
-                        padding-bottom: rem-calc(11.5);
+    
+                }
+            }
+                
+        }
         
-                    }
-                }
-                    
+        @include breakpoint(xxxlarge) {
+            a {
+                min-width: rem-calc(150);
             }
+        }
             
-            @include breakpoint(xxxlarge) {
-                a {
-                    min-width: rem-calc(150);
-                }
-            }
-            
-       }
         
 	}
 }
