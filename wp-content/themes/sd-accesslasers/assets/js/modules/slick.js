@@ -143,7 +143,7 @@ export default {
                         slidesToShow: 1,
                         slidesToScroll: 1,
                         fade: true,
-                        autoplay: false,
+                        autoplay: true,
                         infinite: true,
                         arrows: false,
                         dots: false,
@@ -155,9 +155,14 @@ export default {
                         
                     });
                     
+                    $('.product__slider-main .slick').on('afterChange', function(event,slick,i){
+                      $('.product__slider-thumbs .slick-slide').removeClass('slick-current');
+                      $('.product__slider-thumbs .slick-slide').eq(i).addClass('slick-current');    				 
+                    });
+                    
                     $(".product__slider-thumbs .slick").slick({
                         dots: false,
-                        autoplay: false,
+                        autoplay: true,
                         infinite: true,
                         speed: 300,
                         arrows: false,
@@ -209,7 +214,7 @@ export default {
             
                 $(".section-product-slideshow .slider .slick").slick({
                     fade: true,
-                    autoplay: false,
+                    autoplay: true,
                     infinite: true,
                     adaptiveHeight: true,
                     dots: true,

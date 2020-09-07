@@ -8,47 +8,57 @@
  */
 
 
-get_header(); ?>
+get_header(); 
 
-<div class="row">
+_s_get_template_part( 'template-parts/search', 'hero' );
+?>
 
-    <div class="large-8 columns">
-    
-        <div id="primary" class="content-area">
-        
+<div class="grid-container">
+
+    <div class="grid-x grid-padding-x">    
+  
+        <div id="primary" class="cell content-area">
+            
             <main id="main" class="site-main" role="main">
-                <?php
-                 
-                if ( have_posts() ) : ?>
-        
-                   <?php
-                    while ( have_posts() ) :
-        
-                        the_post();
-        
-                        get_template_part( 'template-parts/content', get_post_type() );
-        
-                    endwhile;
-                    
-                    echo _s_paginate_links();
-                    
-                else :
-        
-                    get_template_part( 'template-parts/content', 'none' );
-        
-                endif; ?>
-        
+            
+            <header class="entry-header">
+                <h1 class="entry-title">Search Results</h1>
+            </header><!-- .entry-header -->
+            
+            <?php
+             
+            if ( have_posts() ) :  
+            
+                while ( have_posts() ) :
+    
+                    the_post();
+                        
+                    get_template_part( 'template-parts/search/content', get_post_type() );
+    
+                endwhile;
+                
+                if( function_exists( '_s_paginate_links' ) ) {
+                    $pagination =  _s_paginate_links();
+                } else {
+                    $pagination = paginate_links();   
+                }
+                
+                global $wp_query;                
+                if( $wp_query->max_num_pages > 1 ) :
+                    echo $pagination;
+                endif;
+                                
+            else :
+    
+                get_template_part( 'template-parts/content', 'none' );
+    
+            endif; ?>
+    
             </main>
         
         </div>
     
     </div>
-    
-    <div class="large-4 columns">
-    
-        <?php get_sidebar(); ?>
-    
-    </div>	
 
 </div>
 

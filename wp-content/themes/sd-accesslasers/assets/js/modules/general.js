@@ -5,6 +5,11 @@ export default {
 
 		$('html').addClass('window-loaded');
         
+            $(document).on(
+              'open.zf.reveal', '#modal-search', function () {
+                $(this).find("input").first().focus();
+              }
+            );
         
         // Frontpage
         

@@ -53,12 +53,16 @@
                     ?>
                     </div>
                     
+                    <?php
+                    printf('<button class="search-button hide-for-large" data-open="modal-search">%s<span class="screen-reader-text">Search</span></button>',
+                            get_svg( 'search' ) );
+                    ?>
+                    
                     <div class="title-bar" data-responsive-toggle="site-navigation" data-hide-for="xlarge">
   <button class="menu-toggle" type="button" data-toggle="site-navigation"></button>
   
 </div>
-                    
-                    <!--<button class="menu-toggle js-menu-toggle" data-menu="#site-navigation"><span class="screen-reader-text">Toggle Menu</span></button>-->                               
+                                               
                 </div><!-- .site-branding -->
                 
                 <nav id="site-navigation" class="nav-primary" role="navigation" aria-label="Main" itemscope itemtype="https://schema.org/SiteNavigationElement">  
@@ -79,25 +83,31 @@
                             'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>'
                          );
                          // Add telephone to secondary menu
+                         
                          add_filter( 'wp_nav_menu_items', 'add_telephone', 10, 2 );
+                         add_filter( 'wp_nav_menu_items', 'add_search', 10, 2 );
                          wp_nav_menu($args);
+                         add_filter( 'wp_nav_menu_items', 'add_search', 10, 2 );
                          remove_filter( 'wp_nav_menu_items', 'add_telephone', 10, 2 );
+                        
+                        // Search
+                        
                                             
                         // Desktop Menu
-                    $args = array(
-                        'theme_location'  => 'primary',
-                        'container'       => '',
-                        'container_class' => '',
-                        'container_id'    => '',
-                        'menu_id'         => 'primary-menu',
-                        'menu_class'      => 'menu vertical xlarge-horizontal',
-                        'before'          => '',
-                        'after'           => '',
-                        'link_before'     => '',
-                        'link_after'      => '',
-                        'items_wrap'      => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion xlarge-dropdown">%3$s</ul>'
-                    );
-                    wp_nav_menu( $args );
+                        $args = array(
+                            'theme_location'  => 'primary',
+                            'container'       => '',
+                            'container_class' => '',
+                            'container_id'    => '',
+                            'menu_id'         => 'primary-menu',
+                            'menu_class'      => 'menu vertical xlarge-horizontal',
+                            'before'          => '',
+                            'after'           => '',
+                            'link_before'     => '',
+                            'link_after'      => '',
+                            'items_wrap'      => '<ul id="%1$s" class="%2$s" data-responsive-menu="accordion xlarge-dropdown">%3$s</ul>'
+                        );
+                        wp_nav_menu( $args );
                     ?>
                     
                 </nav>

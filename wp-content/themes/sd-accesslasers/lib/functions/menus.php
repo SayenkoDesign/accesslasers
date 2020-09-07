@@ -1,5 +1,16 @@
 <?php
 
+
+// Add Search icon to primary menu
+function add_search( $items, $args ) {
+    if( $args->theme_location == 'secondary' )  {
+       $search = sprintf('<li class="menu-item menu-item-search"><button class="search-button" data-open="modal-search">%s<span class="screen-reader-text">Search</span></button></li>', get_svg( 'search' ) );
+       
+       return $search . $items;
+    }
+    return $items;
+}
+
 // Create jump links with "Link Relationship" text input as cheat
 function child_enable_menu_description( $item_output, $item ) {
 		
@@ -36,8 +47,12 @@ function add_telephone( $items, $args ) {
             $phone = sprintf('<a href="%s">%s</a>', _s_format_telephone_url( $phone ), $phone );
             $phone = sprintf( '<li class="menu-item phone-number show-for-xxlarge">%s</li>', $phone );
         }
+        
+        return $phone . $items;
     }
-    return $phone . $items;
+    
+    return $items;
+    
 }
                 
 
