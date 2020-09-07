@@ -1,9 +1,19 @@
 <?php
 
+function _s__search_filter( $query ) {
+    if ( $query->is_search && $query->is_main_query() ) {
+        $home = get_option( 'page_on_front' );
+        $query->set( 'post__not_in', array( $home ) );
+    }
+}
+
+add_action( 'pre_get_posts', '_s__search_filter' );
+
 
 // Add modals to footer
 function _s_footer() {
     _s_get_template_part( 'template-parts/modal', 'contact' );   
+    _s_get_template_part( 'template-parts/modal', 'search' );  
 }
 add_action( 'wp_footer', '_s_footer' );
 

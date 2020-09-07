@@ -26,7 +26,7 @@ class CPT_FAQ extends CPT_Core {
 			),
 			array( 
 				'public'              => false,
-				'publicly_queryable'  => true,
+				'publicly_queryable'  => false,
 				'show_ui'             => true,
 				'query_var'           => true,
 				'capability_type'     => 'post',
@@ -35,7 +35,7 @@ class CPT_FAQ extends CPT_Core {
 				'show_ui'             => true,
 				'show_in_menu'        => true,
 				'show_in_nav_menus'   => false,
-				'exclude_from_search' => false,
+				'exclude_from_search' => true,
 				'rewrite'             => false,
 				'supports' => array( 'title', 'revisions' )
 			)

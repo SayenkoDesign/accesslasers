@@ -85,11 +85,6 @@
 		}
         
         @include breakpoint(xlarge) {
-            
-            a {
-                color: $dark-gray;   
-            }
-            
             &.current-menu-ancestor,
             &.current_page_parent {
                 > a {
@@ -150,34 +145,56 @@
     }
     
 	.menu-item {
-            
-        @include breakpoint(xlarge) {
-            a {
-                @include button(false, $dark-gray, $dark-gray, $white, 'hollow');
+        
+        &.phone-number {
+            display: none;
+            @include breakpoint(xlarge) {
                 display: block;
-                margin-bottom: 0;
-                padding-top: rem-calc(11.5);
-                padding-bottom: rem-calc(11.5);
-                
-                
-                &:hover {
-                    @include button(false, $red, $red, $white );
+            }   
+        }
+        
+        &.menu-item-search {
+            display: none;   
+            @include breakpoint(large) {
+                display: block;
+                margin-right: rem-calc(15);
+            }
+        }
+        
+        .search-button {
+            cursor: pointer; 
+        }
+
+		&.lets-talk {            
+            
+            @include breakpoint(xlarge) {
+                a {
+                    @include button(false, $dark-gray, $dark-gray, $white, 'hollow');
                     display: block;
                     margin-bottom: 0;
                     padding-top: rem-calc(11.5);
                     padding-bottom: rem-calc(11.5);
-    
+                    
+                    
+                    &:hover {
+                        @include button(false, $red, $red, $white );
+                        display: block;
+                        margin-bottom: 0;
+                        padding-top: rem-calc(11.5);
+                        padding-bottom: rem-calc(11.5);
+        
+                    }
+                }
+                    
+            }
+            
+            @include breakpoint(xxxlarge) {
+                a {
+                    min-width: rem-calc(150);
                 }
             }
-                
-        }
-        
-        @include breakpoint(xxxlarge) {
-            a {
-                min-width: rem-calc(150);
-            }
-        }
             
+       }
         
 	}
 }

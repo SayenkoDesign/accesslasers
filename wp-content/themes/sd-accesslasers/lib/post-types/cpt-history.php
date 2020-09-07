@@ -26,7 +26,7 @@ class CPT_History extends CPT_Core {
 			),
 			array( 
 				'public'              => false,
-				'publicly_queryable'  => false,
+				'publicly_queryable'  => true,
 				'show_ui'             => true,
 				'query_var'           => true,
 				'capability_type'     => 'post',

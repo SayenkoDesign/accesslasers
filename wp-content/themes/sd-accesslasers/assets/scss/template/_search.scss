@@ -1,0 +1,99 @@
+// Search
+
+.search {
+    
+    .entry-header {
+        h1 {            
+            margin-bottom: rem-calc(75);
+        }
+    }
+    
+    .site-main {
+        padding-top: rem-calc(50);
+        padding-bottom: rem-calc(50);
+    }
+    
+    .entry-post-type {
+        
+        @include breakpoint(large) {
+            margin-top: -5px;
+            margin-bottom: 10px;   
+        }
+                
+        span {
+            display: inline-block;
+            border-radius: rem-calc(2);
+            font-size: rem-calc(12);
+            padding: rem-calc(4 10);
+            color: #fff;
+            background-color: $dark-gray;  
+            line-height: 1;
+            
+        }
+    }
+    
+    
+    article {
+        
+        margin-bottom: rem-calc(30);
+        
+        &:last-child {
+            margin-bottom: 0;   
+        }
+        
+        .entry-title {
+            margin-bottom: rem-calc(5);   
+        }
+        
+        .posted-on {
+            color: #4A4A4A;
+            display: block;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            line-height: 25px;
+            margin-bottom: 10px;
+        }
+        
+        .search-result-description p:last-child {
+            margin-bottom: rem-calc(10);   
+        }
+        
+        .entry-footer {
+            a {
+                position: relative;
+                display: inline-block;
+                
+                //min-height: 40px;
+                color: $red;
+                font-size: rem-calc(15);
+                font-weight: 700;
+                letter-spacing: 0.94px;
+                text-transform: uppercase;
+                
+                &:after {
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  right: -32px;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  background-image: url(../images/icons/arrow-laser-right.svg);  
+                  background-size: 22px 16px;
+                  background-repeat: no-repeat;
+                  width: 22px;
+                  height: 16px;
+                  
+                }
+                
+                &:hover:after {
+                  background-image: url(../images/icons/arrow-laser-right-hover.svg);  
+                  background-size: 41px 22px;
+                  background-repeat: no-repeat;
+                  width: 41px;
+                  height: 22px;
+                  margin-right: -19px;
+                }
+            }   
+        }
+    }
+}

@@ -722,7 +722,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   init: function init() {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').addClass('window-loaded'); // Frontpage
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()('html').addClass('window-loaded');
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).on('open.zf.reveal', '#modal-search', function () {
+      jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).find("input").first().focus();
+    }); // Frontpage
     // what
     //$('.section-what .grid .grid-item').matchHeight({row:true});
 
@@ -928,7 +931,7 @@ __webpack_require__.r(__webpack_exports__);
           slidesToShow: 1,
           slidesToScroll: 1,
           fade: true,
-          autoplay: false,
+          autoplay: true,
           infinite: true,
           arrows: false,
           dots: false,
@@ -938,9 +941,13 @@ __webpack_require__.r(__webpack_exports__);
           prevArrow: '.product__slider-main .slick-prev' //asNavFor: '.product__slider-thumbs .slick',
 
         });
+        jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-main .slick').on('afterChange', function (event, slick, i) {
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-thumbs .slick-slide').removeClass('slick-current');
+          jquery__WEBPACK_IMPORTED_MODULE_0___default()('.product__slider-thumbs .slick-slide').eq(i).addClass('slick-current');
+        });
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".product__slider-thumbs .slick").slick({
           dots: false,
-          autoplay: false,
+          autoplay: true,
           infinite: true,
           speed: 300,
           arrows: false,
@@ -981,7 +988,7 @@ __webpack_require__.r(__webpack_exports__);
       jquery__WEBPACK_IMPORTED_MODULE_0___default()('.section-product-slideshow .slider').imagesLoaded().done(function (instance) {
         jquery__WEBPACK_IMPORTED_MODULE_0___default()(".section-product-slideshow .slider .slick").slick({
           fade: true,
-          autoplay: false,
+          autoplay: true,
           infinite: true,
           adaptiveHeight: true,
           dots: true,

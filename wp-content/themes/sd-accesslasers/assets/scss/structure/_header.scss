@@ -19,7 +19,7 @@ Header
     
     @include breakpoint(large down) {
         .site-title {
-            width: rem-calc(249);
+            width: rem-calc(239);
         }
     }
     
@@ -57,7 +57,7 @@ Header
             .site-title {
                 width: rem-calc(249);
             }
-            
+                        
             
             .nav-primary {
                 .menu > .menu-item:not(.button) > a {
@@ -76,6 +76,10 @@ Header
                     &:hover {
                         color: $red;   
                     }
+                }
+                
+                .search-button {
+                    color: $dark-gray!important;   
                 }
                 
                 .menu-item.lets-talk {            
@@ -140,6 +144,10 @@ Header
                     &:hover {
                         color: $red;   
                     }
+                }
+                
+                .search-button {
+                    color: #fff;   
                 }
                 
                 .menu-item.lets-talk {            
@@ -213,13 +221,24 @@ Header
         }
         
         .site-title {
-            margin-right: rem-calc(75);   
+            margin-right: rem-calc(100);   
             
             @include breakpoint(xlarge) {
                 margin-right: 0;   
             }
         }
 	}
+    
+    .search-button {
+        position: relative;
+        top: 11px;  
+        
+        &.hide-for-large {
+            position: absolute;
+            top: 24px;
+            right: 70px;   
+        }
+    }
 
 	.menu-toggle {
 		@include hamburger($black, $black, 28px, 24px, 3px, 3);
