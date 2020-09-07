@@ -146,6 +146,7 @@ mix.webpackConfig( {
 		new CopyWebpackPlugin( [
 			{ from: `${ devPath }/images`, to: 'images' },
 			{ from: `${ devPath }/svg`, to: 'svg' },
+            { from: `${ devPath }/favicon`, to: 'favicon' },
 			{ from: `${ devPath }/languages`, to: 'languages', ignore: [ '*.pot', '*.po' ] },
 		] ),
 		// @link https://github.com/Klathmon/imagemin-webpack-plugin
@@ -187,8 +188,8 @@ if ( process.env.sync ) {
 		notify: false,
 		open: true,
 		https: {
-		 	'key': '/Users/kylerumble/Documents/Certificates/localhost.key',
-			'cert': '/Users/kylerumble/Documents/Certificates/localhost.crt'
+		 	'key': '/Applications/MAMP/Library/OpenSSL/certs/localhost.key',
+			'cert': '/Applications/MAMP/Library/OpenSSL/certs/localhost.crt'
 		},
 		files: [
 			'public/**/*.css',
