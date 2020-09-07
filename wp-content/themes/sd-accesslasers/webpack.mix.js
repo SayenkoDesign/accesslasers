@@ -187,8 +187,8 @@ if ( process.env.sync ) {
 		notify: false,
 		open: true,
 		https: {
-		 	'key': '/Users/kylerumble/Documents/Certificates/localhost.key',
-			'cert': '/Users/kylerumble/Documents/Certificates/localhost.crt'
+		 	'key': '/Applications/MAMP/Library/OpenSSL/certs/localhost.key',
+			'cert': '/Applications/MAMP/Library/OpenSSL/certs/localhost.crt'
 		},
 		files: [
 			'public/**/*.css',
