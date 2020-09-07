@@ -7,6 +7,8 @@
 
 
 // Slick Slider
+$slick-loader-path: "../images/slick/";
+$slick-font-path: "../fonts/";
 @import '../../../node_modules/slick-carousel/slick/slick';
 @import '../../../node_modules/slick-carousel/slick/slick-theme';
 @import "slick-settings";

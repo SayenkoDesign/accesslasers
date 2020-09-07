@@ -12,6 +12,7 @@ if( ! class_exists( 'Product_Details' ) ) {
             parent::__construct();
               
             $fields['photos'] = get_field( 'photos' );  
+            $fields['details'] = get_field( 'details' );  
             $fields['application'] = get_field( 'application' );
             $fields['technology'] = get_field( 'technology' );
             $fields['description'] = get_field( 'description' );
@@ -51,11 +52,14 @@ if( ! class_exists( 'Product_Details' ) ) {
             $heading_large = sprintf( '<header class="show-for-large">%s</header>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h2' ] ) );
             $heading_small = sprintf( '<div class="cell hide-for-large no-margin"><header>%s</header></div>', _s_format_string( get_the_title(), 'h1', [ 'class' => 'h2' ] ) );
             
+            $details_mobile = sprintf( '<div class="hide-for-large">%s</div>', $this->get_details() );
+            $details_desktop = sprintf( '<div class="show-for-large">%s</div>', $this->get_details() );
+            
             $classes = [ 'auto' ];
             $photos = $this->get_photos();
             if( ! empty( $photos ) ) {
                 $classes = [ 'large-5 large-offset-1' ];
-                $photos = sprintf( '<div class="cell large-6">%s</div>', $photos );
+                $photos = sprintf( '<div class="cell large-6">%s%s</div>', $photos, $details_desktop );
             }
             
             
@@ -76,18 +80,22 @@ if( ! class_exists( 'Product_Details' ) ) {
                 $group = sprintf( '<div class="grid-x grid-margin-x application-technology">%s</div>', $group );
             }
             
-            $description = $this->get_description();
+            $description_mobile = sprintf( '<div class="hide-for-large">%s</div>', $this->get_description() );
+            $description_desktop = sprintf( '<div class="show-for-large">%s</div>', $this->get_description() );
             
             $downloads = $this->get_downloads();
             
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-x-margin grid-margin-bottom">%s%s<div class="cell %s">%s%s%s%s%s</div></div></div>',
+            
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-x-margin grid-margin-bottom">%s%s<div class="cell %s">%s%s%s%s%s%s%s</div></div></div>',
                             $heading_small,
                             $photos,
                             join( '', $classes ),
                             $heading_large,
                             $buttons,
+                            $description_mobile, 
                             $group, 
-                            $description,
+                            $description_desktop,
+                            $details_mobile, 
                             $downloads
             );
                
@@ -172,6 +180,24 @@ if( ! class_exists( 'Product_Details' ) ) {
         private function get_description() {
             if( ! empty( $this->get_fields( 'description' ) ) ) {
                 return sprintf( '<div class="description">%s</div>', $this->get_fields( 'description' ) );
+            }
+            return false;
+        }
+        
+        
+        private function get_details() {
+            if( ! empty( $this->get_fields( 'details' ) ) ) {
+                $details = $this->get_fields( 'details' );
+                $text = '';
+                if( ! empty( $details[ 'text' ] ) ) {
+                    $text = $details[ 'text' ];
+                }
+                $button = '';
+                if( ! empty( $details[ 'button' ] ) ) {
+                    $link = $details[ 'button' ];
+                    $button = sprintf( '<a href="%s" class="button"><span>%s</span></a>',$link['url'], $link['title'] );
+                }    
+                return sprintf( '<div class="details">%s%s</div>', $text, $button );
             }
             return false;
         }
