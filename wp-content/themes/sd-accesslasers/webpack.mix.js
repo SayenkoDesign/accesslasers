@@ -133,6 +133,7 @@ mix.sass( `${ devPath }/scss/login.scss`, 'css', sassEditorConfig );
  * function, so we're using the `CopyWebpackPlugin` for processing and copying
  * images into the public folder.
  *
+ 
  * @link https://laravel.com/docs/5.6/mix#custom-webpack-configuration
  * @link https://webpack.js.org/configuration/
  */
