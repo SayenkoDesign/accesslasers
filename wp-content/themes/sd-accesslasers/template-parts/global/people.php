@@ -4,11 +4,15 @@
 if( ! class_exists( 'Global_People_Section' ) ) {
     class Global_People_Section extends Element_Section {
         
-        private static $section_counter = 0;        
-        var $post_type = 'people';
+        private static $section_counter = 0;   
+        
+        public $posts = [];
+        
+        private $post_type = 'people';
         
         public function __construct() {
             parent::__construct(); 
+            $this->posts = [];
             self::$section_counter++;     
         }
               
@@ -34,9 +38,7 @@ if( ! class_exists( 'Global_People_Section' ) ) {
         
         // Add content
         public function render() {
-            
-            $fields = $this->get_fields();
-            
+                        
             $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
             $heading = _s_format_string( $heading, 'h2' );
                                     
@@ -55,57 +57,56 @@ if( ! class_exists( 'Global_People_Section' ) ) {
         
         
         private function people() {
-                        
+                                    
             $post_ids = $this->get_fields( 'posts' );
                                 
-            if( empty( $post_ids ) ) {
-                return false;
-            }
+            if( ! empty( $post_ids ) ) {
+                $args = array(
+                    'post_type' => 'people',
+                    'order' => 'ASC',
+                    'orderby' => 'post__in',
+                    'post__in' => $post_ids,
+                    'posts_per_page' => count( $post_ids ),
+                    'no_found_rows' => true,
+                    'update_post_meta_cache' => false,
+                    'update_post_term_cache' => false,
+                    'fields' => 'ids'
+                );
+                
+                $loop = new WP_Query( $args );
+                
+                
+                if ( $loop->have_posts() ) :                 
+                              
+                    while ( $loop->have_posts() ) :
         
-            $args = array(
-                'post_type' => 'people',
-                'order' => 'ASC',
-                'orderby' => 'post__in',
-                'post__in' => $post_ids,
-                'posts_per_page' => count( $post_ids ),
-                'no_found_rows' => true,
-                'update_post_meta_cache' => false,
-                'update_post_term_cache' => false,
-                'fields' => 'ids'
-            );
-            
-            $loop = new WP_Query( $args );
-            
-            $posts = [];
-            
-            if ( $loop->have_posts() ) :                 
-                          
-                while ( $loop->have_posts() ) :
-    
-                    $loop->the_post(); 
+                        $loop->the_post(); 
+                        
+                        $this->posts[] = $this->get_person();
+        
+                    endwhile;
                     
-                    $posts[] = $this->get_person();
-    
-                endwhile;
-                
-                wp_reset_postdata();
-                
-            endif; 
-                        
-            if( empty( $posts ) ) {
-                return false;
-            }
-                        
+                    wp_reset_postdata();
+                    
+                endif; 
+            } 
+        
             // Get the CTA
             $cta = $this->get_cta();
+                        
+            if( empty( $this->posts ) && empty( $cta ) ) {
+                return false;
+            }
+                        
+            
                                                                         
             if( ! empty( $cta ) ) {
                 $classes = ' has-cta';
-               array_push( $posts, $cta );
+               array_push( $this->posts, $cta );
             }
                                                            
             return sprintf( '<div class="grid-x grid-margin-x small-up-1 medium-up-2 xxxlarge-up-3 align-center grid">%s</div>', 
-                                    join( '', $posts ) );
+                                    join( '', $this->posts ) );
         }
         
         
@@ -201,9 +202,8 @@ if( ! empty( $fields ) ) {
     foreach( $fields as $key => $field ) {
         $section = new Global_People_Section();
         $section->set_fields( $field );
-        $section->render();
+        //$section->render();
         $section->print_element();  
-
     }
     
     echo '</div>';
