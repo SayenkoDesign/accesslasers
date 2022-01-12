@@ -1,1 +1,29 @@
-<svg width="446" height="260" viewBox="0 0 446 260" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="AL_Home" transform="translate(-180 -5432)"><g id="Compare-Technologies" transform="translate(150 4912)"><g id="1" transform="translate(0 235)"><g id="img" transform="translate(0 205)"><g id="icon" transform="translate(143 99)"><path id="Rectangle" fill="#000" fill-rule="nonzero" d="M19.615 2h1.229v220h-1.229z"/><text id="P" font-family="Lato-Semibold, Lato" font-size="12" font-weight="500" fill="#000"><tspan x="3" y="12">P</tspan></text><text id="t" font-family="Lato-Semibold, Lato" font-size="12" font-weight="500" fill="#000"><tspan x="214" y="219">t</tspan></text><path id="Rectangle" fill="#000" fill-rule="nonzero" d="M.229 202H219v1.236H.229z"/><path d="M44.404 202.618c4.823-30.477 8.822-59.013 12-85.606 4.765-39.89 9.884-75.368 15.355-75.545 8.296 0 16.862 97.961 27.712 97.961 10.85 0 16.42-58.884 26.633-58.884 10.213 0 17.508 35.502 27.235 35.502 9.726 0 18.642-21.56 27.396-21.56 8.754 0 17.177 13.014 27.72 13.014 4.089 0 7.77-2.55 11.105-4.432" id="Path-4" stroke="#2C2E32" stroke-width="2"/></g></g></g></g></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="446px" height="260px" viewBox="0 0 446 260" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>Power Stability</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="AL_Home" transform="translate(-180.000000, -5432.000000)">
+            <g id="Compare-Technologies" transform="translate(150.000000, 4912.000000)">
+                <g id="1" transform="translate(0.000000, 235.000000)">
+                    <g id="img" transform="translate(0.000000, 205.000000)">
+                        <g id="bg"></g>
+                        <g id="icon" transform="translate(143.000000, 99.000000)">
+                            <rect id="Rectangle" fill="#000000" fill-rule="nonzero" x="19.6145251" y="2" width="1.22905028" height="220"></rect>
+                            <text id="P" font-family="Lato-Semibold, Lato" font-size="12" font-weight="500" fill="#000000">
+                                <tspan x="3" y="12">P</tspan>
+                            </text>
+                            <text id="t" font-family="Lato-Semibold, Lato" font-size="12" font-weight="500" fill="#000000">
+                                <tspan x="214" y="219">t</tspan>
+                            </text>
+                            <rect id="Rectangle" fill="#000000" fill-rule="nonzero" x="0.229050279" y="202" width="218.77095" height="1.23595506"></rect>
+                            <path d="M44.4044038,202.617978 C49.2266098,172.140852 53.2262691,143.605485 56.4033816,117.011876 C61.1690505,77.1214633 66.2877318,41.6437064 71.7594257,41.4672001 C80.0552196,41.4672001 88.6212647,139.428171 99.4709074,139.428171 C110.32055,139.428171 115.891586,80.5441465 126.104458,80.5441465 C136.31733,80.5441465 143.612238,116.046034 153.338783,116.046034 C163.065328,116.046034 171.981327,94.4855271 180.735217,94.4855271 C189.489107,94.4855271 197.911739,107.5 208.455869,107.5 C212.54388,107.5 216.2255,104.949071 219.559542,103.067882" id="Path-4" stroke="#2C2E32" stroke-width="2"></path>
+                            <path d="" id="Path-6" stroke="#979797"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

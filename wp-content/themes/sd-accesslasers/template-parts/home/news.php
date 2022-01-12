@@ -105,7 +105,6 @@ if( ! class_exists( 'Home_News' ) ) {
             
             $buttons = '<div class="slick-arrows">
                             <button class="slick-prev slick-arrow" aria-label="Previous" type="button">Previous</button>
-                            <div class="counter"></div>
                             <button class="slick-next slick-arrow" aria-label="Next" type="button">Previous</button>
                         </div>';
             

@@ -176,25 +176,16 @@ mix.webpackConfig( {
 } );
 
 
-if ( process.env.sync ) {
+//if ( process.env.sync ) {
 
-	/*
-	 * Monitor files for changes and inject your changes into the browser.
-	 *
-	 * @link https://laravel.com/docs/5.6/mix#browsersync-reloading
-	 */
 	mix.browserSync( {
-		proxy: 'https://accesslasers.vanwp.ca',
+		proxy: 'http://accesslaser.local',
         port: 3000,
-		notify: false,
+		notify: true,
 		open: true,
-		https: {
-		 	'key': '/Applications/MAMP/Library/OpenSSL/certs/localhost.key',
-			'cert': '/Applications/MAMP/Library/OpenSSL/certs/localhost.crt'
-		},
 		files: [
 			'public/**/*.css',
 			'**/*.php',
 		],
 	} );
-}
+//}

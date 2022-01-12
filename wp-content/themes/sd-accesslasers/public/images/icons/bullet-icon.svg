@@ -1,1 +1,19 @@
-<svg width="18" height="5" viewBox="0 0 18 5" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="AL_Home" transform="translate(-766 -5810)" fill="currentColor"><g id="Compare-Technologies" transform="translate(150 4912)"><g id="2" transform="translate(556 235)"><g id="img" transform="translate(0 205)"><g id="bottom" transform="translate(30 376)"><path d="M45.796 77.97a.82.82 0 0 0-1.16 0l-8.65 8.649a2.51 2.51 0 0 0-2.777.457 2.462 2.462 0 1 0 3.944.697l8.643-8.643a.82.82 0 0 0 0-1.16z" id="Path" transform="rotate(-135 39.253 84.512)"/></g></g></g></g></g></g></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="5px" viewBox="0 0 18 5" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
+    <title>bottom</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="AL_Home" transform="translate(-766.000000, -5810.000000)" fill="currentColor">
+            <g id="Compare-Technologies" transform="translate(150.000000, 4912.000000)">
+                <g id="2" transform="translate(556.000000, 235.000000)">
+                    <g id="img" transform="translate(0.000000, 205.000000)">
+                        <g id="bottom" transform="translate(30.000000, 376.000000)">
+                            <path d="M45.7958095,77.969355 C45.6419747,77.8154371 45.43328,77.72896 45.2156659,77.72896 C44.9980519,77.72896 44.7893572,77.8154371 44.6355223,77.969355 L35.9861686,86.6188837 C35.0541372,86.1889103 33.9542173,86.3698039 33.2089789,87.0756222 C32.3123702,87.9538718 32.220103,89.3660643 32.9948142,90.3535116 C33.7695254,91.3409588 35.1631032,91.5874173 36.2294964,90.925575 C37.2958895,90.2637327 37.6935709,88.9055536 37.1525686,87.7730581 L45.7958095,79.1296422 C45.9497274,78.9758073 46.0362046,78.7671127 46.0362046,78.5494986 C46.0362046,78.3318845 45.9497274,78.1231899 45.7958095,77.969355 Z" id="Path" transform="translate(39.253047, 84.512378) rotate(-135.000000) translate(-39.253047, -84.512378) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
