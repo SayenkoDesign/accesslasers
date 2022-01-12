@@ -1149,7 +1149,7 @@ var modules = new _loader_ModuleLoader__WEBPACK_IMPORTED_MODULE_1__["default"]({
   accordionFix: _modules_accordion_fix__WEBPACK_IMPORTED_MODULE_11__["default"],
   fullScreenScrollingSection: _modules_full_screen_scrolling_section__WEBPACK_IMPORTED_MODULE_12__["default"]
 });
-jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {
+jquery__WEBPACK_IMPORTED_MODULE_0___default()(function () {
   jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).foundation();
   modules.init();
 });

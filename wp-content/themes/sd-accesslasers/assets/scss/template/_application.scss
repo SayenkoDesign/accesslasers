@@ -37,10 +37,12 @@
             min-height: 25vw;   
         }
         
-        h1 {
+        h1,
+        p {
             color: #fff;    
         }
-        
+
+               
         .icon {
             color: #fff;   
         }
@@ -81,7 +83,13 @@
         
     }
     
-    
+    .section-related-posts {
+        padding: rem-calc(75 0);
+        
+        @include breakpoint(large) {
+            padding: rem-calc(175 0 100);
+        }
+    }
     
     .section-related-products {
         @include full-width;
@@ -90,7 +98,7 @@
         padding: rem-calc(75 0);
         
         @include breakpoint(large) {
-            padding: rem-calc(175 0 150);
+            padding: rem-calc(100 0 150);
         }
         
         .grid {

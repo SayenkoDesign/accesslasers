@@ -18,6 +18,8 @@ _s_get_template_part( 'template-parts/application', 'post-hero' );
                     the_post();
     
                     _s_get_template_part( 'template-parts/application', 'content-post' );
+
+                    _s_get_template_part( 'template-parts/application', 'related-posts' );
                     
                     _s_get_template_part( 'template-parts/application', 'related-products' );
                         

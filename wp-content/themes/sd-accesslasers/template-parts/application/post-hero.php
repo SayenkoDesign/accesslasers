@@ -76,14 +76,20 @@ if( ! class_exists( 'Hero_Post' ) ) {
                 $icon = sprintf( '<span class="icon">%s</span>', _s_get_acf_image( $grid[ 'icon' ], 'thumbnail' ) );
             }
             
-            $heading = $this->get_fields( 'heading' ) ? $this->get_fields( 'heading' ) : get_the_title();
+            $heading = $grid[ 'heading' ] ?: get_the_title();
             $heading = _s_format_string( $heading, 'h1' );
+
+            $description  = $grid[ 'description' ];
+            if( ! empty( $description ) ) {
+                $description = sprintf( '<div class="hero-description">%s</div>', $description );
+            }
     
             return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x align-middle">
-                                <div class="cell"><div class="hero-content">%s%s</div></div>
+                                <div class="cell"><div class="hero-content">%s%s%s</div></div>
                             </div></div>',
                             $icon, 
-                            $heading
+                            $heading,
+                            $description
                          );
         }
     }
