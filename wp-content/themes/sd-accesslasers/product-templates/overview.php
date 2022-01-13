@@ -15,10 +15,12 @@ get_header(); ?>
 
             the_post();
 
-            _s_get_template_part( 'template-parts/product', 'details' );
+            _s_get_template_part( 'template-parts/product', 'details-overview' );
+            echo '<div class="group">';
             _s_get_template_part( 'template-parts/product', 'slideshow' );
             _s_get_template_part( 'template-parts/product', 'options' );
             _s_get_template_part( 'template-parts/global', 'faq' );
+            echo '</div>';
                 
         endwhile;       
        ?>

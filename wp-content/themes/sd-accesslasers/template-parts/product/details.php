@@ -86,7 +86,7 @@ if( ! class_exists( 'Product_Details' ) ) {
             $downloads = $this->get_downloads();
             
             
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-x-margin grid-margin-bottom">%s%s<div class="cell %s">%s%s%s%s%s%s%s</div></div></div>',
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x grid-margin-bottom">%s%s<div class="cell %s">%s%s%s%s%s%s%s</div></div></div>',
                             $heading_small,
                             $photos,
                             join( '', $classes ),

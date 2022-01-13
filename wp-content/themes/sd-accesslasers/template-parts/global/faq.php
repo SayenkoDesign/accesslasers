@@ -70,7 +70,7 @@ if( ! class_exists( 'Product_FAQ' ) ) {
             }
             
             
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-x-margin"><div class="cell">%s%s</div></div></div>',
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x"><div class="cell">%s%s</div></div></div>',
                             $heading,
                             $faq
             );

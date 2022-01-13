@@ -18,22 +18,29 @@
 		the_content(); 		
 		?>
 		
-	</div><!-- .entry-content -->
+    </div><!-- .entry-content -->
 
-	<footer class="entry-footer">
+    <?php
+     $related_products = _s_get_template_part( 'template-parts/application', 'related-products', false, true );
+
+     echo $related_products;
+    ?>
+
+    <footer class="entry-footer">
         <?php
         $previous = sprintf( '<span>%s</span>',  __( 'Previous Post', '_s') );
                     
         $next = sprintf( '<span>%s</span>',  __( 'Next Post', '_s') );
         
-        $navigation = _s_get_the_post_navigation( array( 'prev_text' => $previous, 'next_text' => $next ) );
+        // echo _s_get_the_post_navigation( array( 'prev_text' => $previous, 'next_text' => $next ) );
         
-        printf( '<h3><span>%s</span></h3><div class="wrap text-center">%s%s</div>', 
+        if( empty( $related_products ) ) {
+                printf( '<h3><span>%s</span></h3><div class="wrap text-center">%s</div>', 
                 __( 'Share This', '_s' ),
-                _s_get_addtoany_share_icons(),
-                $navigation  
-              );
-              
+                _s_get_addtoany_share_icons()
+                );
+        }
+
         
         $form_id = absint( 3 ); 
         $form = GFAPI::get_form( $form_id );
@@ -44,5 +51,6 @@
                           
         ?>           
 	</footer><!-- .entry-footer -->
+	
     
 </article><!-- #post-## -->
