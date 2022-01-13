@@ -31,7 +31,7 @@
         } 
         
         .grid-x {
-            min-height: 25vw;   
+            min-height: 12vw;   
         }
 
         ul.post-categories {
@@ -84,13 +84,16 @@
         
     }
     
-    .content-area {
+    .entry-content,
+    .entry-footer {
         max-width: rem-calc(768);
-        margin: 0 auto;
-        margin-bottom: rem-calc(45);   
+        margin-left: auto;
+        margin-right: auto;
     }
                 
     article {
+
+        margin-bottom: rem-calc(45);  
                         
         .entry-content {
             
@@ -144,6 +147,19 @@
             }
         }
 
+    }
+
+
+    .section-related-products {
+        @include full-width;
+        
+        background-color: $light-gray;
+        padding: rem-calc(75 0);
+        margin-bottom: rem-calc(75);
+        
+        @include breakpoint(large) {
+            padding: rem-calc(100 0 100);
+        }
     }
     
 }

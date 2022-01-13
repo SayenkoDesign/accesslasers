@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 55 (78076) - https://sketchapp.com -->
-    <title>minus</title>
-    <desc>Created with Sketch.</desc>
-    <g id="Product" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="AL_Product-Copy" transform="translate(-1715.000000, -3244.000000)" fill="currentColor">
-            <g id="FAQ" transform="translate(150.000000, 2816.000000)">
-                <g id="5" transform="translate(865.000000, 318.000000)">
-                    <rect id="Combined-Shape" x="710.5" y="110" width="3" height="24"></rect>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="24" height="24" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg"><g id="Product" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="AL_Product-Copy" transform="translate(-1715 -3244)" fill="currentColor"><g id="FAQ" transform="translate(150 2816)"><g id="5" transform="translate(865 318)"><path id="Combined-Shape" d="M710.5 110h3v24h-3z"/></g></g></g></g></svg>

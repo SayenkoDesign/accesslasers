@@ -1,8 +1,17 @@
 // Careers
 
 .template-careers {
-    
+
     .section-hero {
+        background-color: $red;
+        padding-top: rem-calc(35);
+        
+        h1 {
+            color: #fff;   
+        }
+    }
+    
+    /* .section-hero {
         padding: rem-calc(75 0);
         text-align: center;
         
@@ -38,7 +47,7 @@
             color: #fff;    
         }
 
-    }
+    } */
     
     .site-main section:last-child {
         padding-bottom: rem-calc(50);
@@ -167,7 +176,7 @@
         
         padding-bottom: rem-calc(75);
         @include breakpoint(xxlarge) {
-            padding-bottom: rem-calc(150);
+            padding-bottom: rem-calc(100);
         }   
         
         

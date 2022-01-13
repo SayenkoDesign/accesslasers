@@ -12,17 +12,18 @@ add_filter( 'body_class', function ( $classes ) {
 get_header(); ?>
 
 <?php
-_s_get_template_part( 'template-parts/careers', 'hero' );
+_s_get_template_part( 'template-parts/global', 'hero' );
 ?>
 
 <div id="primary" class="content-area">
 
 	<main id="main" class="site-main" role="main">
 	<?php
-        _s_get_template_part( 'template-parts/careers', 'why' );
-       _s_get_template_part( 'template-parts/careers', 'benefits' );
-       _s_get_template_part( 'template-parts/careers', 'testimonials' );
-       _s_get_template_part( 'template-parts/careers', 'jobs' );
+      _s_get_template_part( 'template-parts/careers', 'jobs' );
+      _s_get_template_part( 'template-parts/careers', 'why' );
+      _s_get_template_part( 'template-parts/careers', 'benefits' );
+      _s_get_template_part( 'template-parts/careers', 'testimonials' );
+       
        
         
 	?>

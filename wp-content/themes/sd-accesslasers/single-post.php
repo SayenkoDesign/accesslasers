@@ -19,7 +19,9 @@ _s_get_template_part( 'template-parts/blog', 'post-hero' );
     
                     get_template_part( 'template-parts/content', 'post' );
                         
-                endwhile;       
+                endwhile;  
+                
+               
                ?>
         
             </main>

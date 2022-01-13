@@ -49,7 +49,7 @@ if( ! class_exists( 'Product_Options' ) ) {
                 return false;
             }
             
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-x-margin"><div class="cell">%s</div></div></div>',
+            return sprintf( '<div class="grid-container"><div class="grid-x grid-margin-x"><div class="cell">%s</div></div></div>',
                             $options
             );
                
