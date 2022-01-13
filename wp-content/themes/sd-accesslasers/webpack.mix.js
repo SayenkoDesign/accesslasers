@@ -176,7 +176,7 @@ mix.webpackConfig( {
 } );
 
 
-//if ( process.env.sync ) {
+if ( process.env.sync ) {
 
 	mix.browserSync( {
 		proxy: 'http://accesslaser.local',
@@ -188,4 +188,4 @@ mix.webpackConfig( {
 			'**/*.php',
 		],
 	} );
-//}
+}
