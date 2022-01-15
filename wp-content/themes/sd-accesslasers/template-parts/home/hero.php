@@ -226,13 +226,15 @@ if( ! class_exists( 'Home_Hero' ) ) {
             $title = get_the_title();
             $title = _s_format_string( $title, 'h3' );
             
-            $excerpt = apply_filters( 'the_content', get_the_excerpt() );
+            $excerpt = wp_trim_words( get_the_excerpt(), 20 );
+
+            $excerpt = apply_filters( 'the_content', $excerpt );
 
             if( ! $title && ! $excerpt ) {
                 return false;
             }
             
-            $link = sprintf( '<p><a href="%s" class="read-more"><span>%s</span></a></p>', get_the_permalink( $post_id ), __( 'read more' ) );
+            $link = sprintf( '<p><a href="%s" class=""><span class="screen-reader-text">%s</span></a></p>', get_the_permalink( $post_id ), __( 'read more' ) );
            
             return sprintf( '<div class="post"><div class="grid-x grid-margin-x"><div class="cell medium-4 large-12 xxlarge-4">%s</div><div class="cell medium-8 large-12  xxlarge-8">%s%s%s</div></div></div>', 
                                 get_the_post_thumbnail( get_the_ID(), 'medium' ),

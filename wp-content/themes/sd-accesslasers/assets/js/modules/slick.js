@@ -28,12 +28,24 @@ export default {
         
         if ( $('.slick', $heroSlider).length ) {
 
+            let currentSlide;
+            
+            let updateSliderCounter = function(slick, currentIndex) {
+                currentSlide = slick.slickCurrentSlide() + 1;
+                $('.slick-arrows .counter', $heroSlider ).text(currentSlide + '/' + slick.slideCount);
+              };
+              
             $('.slick', $heroSlider).on('init', function(event, slick) {
+                updateSliderCounter(slick);
                 $heroSlider.css({
                   opacity: 1,
                   visibility: 'visible'
                 });
               });
+            
+            $('.slick', $heroSlider).on('afterChange', function(event, slick, currentSlide) {
+                updateSliderCounter(slick, currentSlide);
+            });
             
             $('.slick', $heroSlider).slick({
                 fade: true,
