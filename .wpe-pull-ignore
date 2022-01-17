@@ -87,3 +87,5 @@ wp-content/plugins/autoupdater*
 #*.zip
 #*.tar
 #*.tgz
+
+node_modules/

@@ -35,7 +35,7 @@ _s_get_template_part( 'template-parts/home', 'hero' );
                 
                 _s_get_template_part( 'template-parts/home', 'technologies' );
                 
-                _s_get_template_part( 'template-parts/home', 'news' );
+                // _s_get_template_part( 'template-parts/home', 'news' );
                     
             endwhile;       
            ?>

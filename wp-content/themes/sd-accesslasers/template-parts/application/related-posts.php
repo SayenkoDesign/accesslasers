@@ -1,7 +1,7 @@
 <?php
 
 /*
-Blog - Related Products
+Application - Related Products
 */
 
 
@@ -48,6 +48,10 @@ if( ! class_exists( 'Related_Posts' ) ) {
             $heading        = _s_format_string( $heading, 'h2' );
             
             $post_ids = $this->get_fields( 'posts' );
+
+            if( empty( $post_ids ) ) {
+                return false;
+            }
                                 
             $args = array(
                 'post_type' => 'post',

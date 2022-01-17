@@ -36,6 +36,12 @@
         .grid-x {
             min-height: 12vw;   // previous 25vw
         }
+
+        .hero-content {
+            @include breakpoint(large) {
+                padding-bottom: rem-calc(40);
+            }
+        }
         
         h1,
         p {

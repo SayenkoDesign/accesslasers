@@ -1,14 +1,8 @@
 {
-    "/js/manifest.js": "/js/manifest.js",
-    "/js/manifest.js.map": "/js/manifest.js.map",
-    "/js/modernizr-custom.js": "/js/modernizr-custom.js",
-    "/js/modernizr-custom.js.map": "/js/modernizr-custom.js.map",
-    "/js/project.js": "/js/project.js",
-    "/css/style.css": "/css/style.css",
-    "/css/login.css": "/css/login.css",
-    "/js/project.js.map": "/js/project.js.map",
-    "/css/style.css.map": "/css/style.css.map",
-    "/css/login.css.map": "/css/login.css.map",
-    "/js/vendor.js": "/js/vendor.js",
-    "/js/vendor.js.map": "/js/vendor.js.map"
+    "/js/manifest.js": "/js/manifest.js?id=01c8731923a46c30aaed",
+    "/js/modernizr-custom.js": "/js/modernizr-custom.js?id=e3195fc3e6073752926b",
+    "/js/project.js": "/js/project.js?id=6226ec02560f65d958ff",
+    "/css/style.css": "/css/style.css?id=050f54db59f7cf2e553d",
+    "/css/login.css": "/css/login.css?id=b99d18e5b0752f634904",
+    "/js/vendor.js": "/js/vendor.js?id=ec31c9e7ad352b721ba8"
 }
