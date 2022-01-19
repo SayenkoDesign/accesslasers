@@ -15,6 +15,7 @@ if( ! class_exists( 'Home_Hero' ) ) {
             parent::__construct();
             
             $fields = get_field( 'hero' );
+            $fields['category'] = get_field( 'category' );
             $this->set_fields( $fields );
                                     
             // Render the section
@@ -150,22 +151,99 @@ if( ! class_exists( 'Home_Hero' ) ) {
                 $button  = sprintf( '<p>%s</p>', _s_acf_button( $args ) );
             }
             
-            $hero_content = sprintf( '<div class="hero-content">%s%s%s</div>', 
+            $hero_content = sprintf( '<div class="hero-content align-self-middle">%s<div class="description">%s</div></div>', 
                                     $heading,
-                                    $description,
-                                    $button
+                                    $description
             );
             
-            if( true === $this->video ) {
-                //$hero_content = '';
-            }
+
     
-            return sprintf( '<div class="grid-container"><div class="grid-x grid-padding-x align-bottom">
+            return sprintf( '<div class="grid-container full"><div class="grid-x large-up-2">
+                                <div class="cell flex-container">%s</div>
                                 <div class="cell">%s</div>
                             </div></div>',
-                            $hero_content
+                            $hero_content,
+                            $this->get_posts()
                          );
         }
+
+
+        private function get_posts() {
+        
+            $args = array(
+                'post_type' => 'post',
+                'posts_per_page' => 5,
+                'no_found_rows' => true,
+                'update_post_meta_cache' => false,
+                'update_post_term_cache' => false,
+                'fields' => 'ids'
+            );
+
+            $category = $this->get_fields( 'category' );
+            
+            if( ! empty( $category ) ) {
+                $args['cat'] = $category;
+            }
+            
+            $loop = new WP_Query( $args );
+            
+            $posts = '';
+            
+            if ( $loop->have_posts() ) :                 
+                          
+                while ( $loop->have_posts() ) :
+    
+                    $loop->the_post(); 
+                    
+                    $posts .= $this->get_post( get_the_ID() );
+    
+                endwhile;
+                
+            endif; 
+            
+            wp_reset_postdata();
+            
+            $buttons = '<div class="slick-arrows">
+                            <button class="slick-prev slick-arrow" aria-label="Previous" type="button">Previous</button>
+                            <div class="counter"></div>
+                            <button class="slick-next slick-arrow" aria-label="Next" type="button">Previous</button>
+                        </div>';
+            
+            if( ! empty( $posts ) ) {
+                return sprintf( '<div class="slider"><div class="wrap"><div class="slick">%s</div>
+                                    %s
+                                </div></div>', $posts, $buttons );
+            }
+            
+        }
+        
+        private function get_post( $post_id = false ) {
+            
+            if( ! absint( $post_id ) ) {
+                return false;
+            }
+            
+            $title = get_the_title();
+            $title = _s_format_string( $title, 'h3' );
+            
+            $excerpt = wp_trim_words( get_the_excerpt(), 20 );
+
+            $excerpt = apply_filters( 'the_content', $excerpt );
+
+            if( ! $title && ! $excerpt ) {
+                return false;
+            }
+            
+            $link = sprintf( '<p><a href="%s" class=""><span class="screen-reader-text">%s</span></a></p>', get_the_permalink( $post_id ), __( 'read more' ) );
+           
+            return sprintf( '<div class="post"><div class="grid-x grid-margin-x"><div class="cell medium-4 large-12 xxlarge-4">%s</div><div class="cell medium-8 large-12  xxlarge-8">%s%s%s</div></div></div>', 
+                                get_the_post_thumbnail( get_the_ID(), 'medium' ),
+                                $title,
+                                $excerpt,
+                                $link
+                             );
+        }
+        
     }
 }
    

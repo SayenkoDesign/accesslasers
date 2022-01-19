@@ -18,6 +18,8 @@
 	include_once( 'includes/cpt-core/CPT_Core.php' );
 	include_once( 'includes/taxonomy-core/Taxonomy_Core.php' );
     include_once( 'includes/theme-functions/array.php' );
+    include_once( 'includes/theme-functions/html.php' );
+    include_once( 'includes/theme-functions/string.php' );
     include_once( 'includes/theme-functions/attributes.php' );
 
 /****************************************

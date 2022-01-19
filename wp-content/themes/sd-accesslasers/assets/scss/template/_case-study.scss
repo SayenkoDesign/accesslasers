@@ -53,7 +53,7 @@
         } 
         
         .grid-x {
-            min-height: 25vw;   
+            min-height: 12vw;   
         }
         
         h1 {
@@ -94,7 +94,7 @@
         @include breakpoint(xxlarge) {
             .icon {
                 display: block;
-                margin-top: rem-calc(-280);  
+                margin-top: rem-calc(-240);  
                 margin-bottom: rem-calc(75); 
                 position: relative;
                 z-index: 3; 

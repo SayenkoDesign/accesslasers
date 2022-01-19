@@ -8,5 +8,10 @@
         position: relative;
     }
 
+    .hero-content {
+        max-width: rem-calc(1024);
+        margin: 0 auto;
+    }
+
 }
 

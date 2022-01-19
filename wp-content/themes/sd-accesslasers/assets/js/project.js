@@ -46,7 +46,9 @@ const modules = new ModuleLoader( {
     fullScreenScrollingSection
 } );
 
-$( document ).ready( () => {
-	$( document ).foundation();
+
+$(function() {
+
+    $( document ).foundation();
 	modules.init();
-} );
+});
